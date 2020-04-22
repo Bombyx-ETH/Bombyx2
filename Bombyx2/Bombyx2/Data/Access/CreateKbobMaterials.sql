@@ -1,0 +1,22 @@
+CREATE TABLE "KbobMaterials" (
+	"Id"	INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,
+	"NameEnglish"	TEXT,
+	"NameGerman"	TEXT,
+	"NameFrench"	TEXT,
+	"IdKbob"	TEXT,
+	"IdDisposal"	TEXT,
+	"Disposal"	TEXT,
+	"Density"	REAL,
+	"DensityUnit"	TEXT,
+	"Ubp13Embodied"	REAL,
+	"Ubp13EoL"	REAL,
+	"TotalEmbodied"	REAL,
+	"TotalEoL"	REAL,
+	"RenewableEmbodied"	REAL,
+	"RenewableEoL"	REAL,
+	"NonRenewableEmbodied"	REAL,
+	"NonRenewableEoL"	REAL,
+	"GHGEmbodied"	REAL,
+	"GHGEoL"	REAL,
+	"ThermalCond"	REAL
+)

@@ -68,11 +68,15 @@
     <Compile Include="Bombyx2Component.cs" />
     <Compile Include="Bombyx2Info.cs" />
     <Compile Include="Data\Access\Config.cs" />
+    <Compile Include="Data\Access\KbobMaterialsDataAccess.cs" />
     <Compile Include="Data\Access\SQLiteDataAccess.cs" />
     <Compile Include="Data\Models\Class1.cs" />
+    <Compile Include="Data\Models\KbobMaterial.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Data\Access\CreateKbobMaterials.sql" />
+    <Content Include="Data\Access\InsertKbobMaterials.sql" />
     <Content Include="Data\Access\MaterialsDB.db">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

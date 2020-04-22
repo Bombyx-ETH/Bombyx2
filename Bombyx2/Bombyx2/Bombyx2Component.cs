@@ -23,7 +23,8 @@ namespace Bombyx2
 
         protected override void RegisterOutputParams(GH_OutputParamManager pManager)
         {
-            pManager.AddTextParameter("1", "1", "1", GH_ParamAccess.list);
+            pManager.AddTextParameter("test", "test", "test", GH_ParamAccess.list);
+            pManager.AddTextParameter("materials", "materials", "materials", GH_ParamAccess.list);
         }
 
         protected override void SolveInstance(IGH_DataAccess DA)
@@ -32,12 +33,22 @@ namespace Bombyx2
             persons = SQLiteDataAccess.LoadPersons();
             List<string> output = new List<string>();
 
+            List<KbobMaterial> materials = new List<KbobMaterial>();
+            materials = KbobMaterialsDataAccess.LoadKbobMaterials();
+            List<string> outputMats = new List<string>();
+
             foreach (var item in persons)
             {
                 output.Add(item.Name);
             }
 
+            foreach (var item in materials)
+            {
+                outputMats.Add(item.NameEnglish);
+            }
+
             DA.SetDataList(0, output);
+            DA.SetDataList(1, outputMats);
         }
 
         protected override System.Drawing.Bitmap Icon

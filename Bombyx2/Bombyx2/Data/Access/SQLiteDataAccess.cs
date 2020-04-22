@@ -11,7 +11,7 @@ namespace Bombyx2.Data.Access
     {
         public static List<Class1> LoadPersons()
         {
-            using (IDbConnection conn = new SQLiteConnection(LoadConnectionString()))
+            using (IDbConnection conn = new SQLiteConnection(Config.LoadConnectionString()))
             {
                 var output = conn.Query<Class1>("SELECT * FROM Test", new DynamicParameters());
                 return output.ToList();
@@ -20,15 +20,10 @@ namespace Bombyx2.Data.Access
 
         public static void SavePerson(Class1 person)
         {
-            using (IDbConnection conn = new SQLiteConnection(LoadConnectionString()))
+            using (IDbConnection conn = new SQLiteConnection(Config.LoadConnectionString()))
             {
                 conn.Execute("INSERT INTO Test (Name) values (@Name)", person);
             }
-        }
-
-        public static string LoadConnectionString()
-        {
-            return Config.connectionString;
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace Bombyx2.Data.Models
 {
-    public class KbobMaterial
+    public class KbobMaterialModel
     {
         public string Id { get; set; }
         public string NameEnglish { get; set; }

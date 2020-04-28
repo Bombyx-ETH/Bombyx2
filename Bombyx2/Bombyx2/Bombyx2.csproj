@@ -65,14 +65,22 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Bombyx2Component.cs" />
+    <Compile Include="Bombyx2Icon.cs" />
     <Compile Include="Bombyx2Info.cs" />
     <Compile Include="Data\Access\Config.cs" />
     <Compile Include="Data\Access\KbobMaterialsDataAccess.cs" />
-    <Compile Include="Data\Access\SQLiteDataAccess.cs" />
-    <Compile Include="Data\Models\Class1.cs" />
-    <Compile Include="Data\Models\KbobMaterial.cs" />
+    <Compile Include="Data\Models\KbobMaterialModel.cs" />
+    <Compile Include="GUI\00_MaterialLevel\KBOB\KbobMaterial.cs" />
+    <Compile Include="GUI\00_MaterialLevel\KBOB\KbobMaterialList.cs" />
+    <Compile Include="Icons.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Icons.resx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utility\ItemSelector\GH_ValueListAttributes.cs" />
+    <Compile Include="Utility\ItemSelector\GH_ValueListItem.cs" />
+    <Compile Include="Utility\ItemSelector\ItemSelector.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Data\Access\CreateKbobMaterials.sql" />
@@ -80,7 +88,21 @@
     <Content Include="Data\Access\MaterialsDB.db">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Resources\ItemSelector.png" />
+    <None Include="Resources\bombyxLogo.png" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Icons.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Icons.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="GUI\00_MaterialLevel\Custom\" />
+    <Folder Include="GUI\01_ComponentLevel\" />
+    <Folder Include="GUI\02_ImpactLevel\" />
+    <Folder Include="GUI\10_BuildingLevel\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

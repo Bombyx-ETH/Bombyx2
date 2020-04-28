@@ -10,23 +10,21 @@ namespace Bombyx2
         {
             get
             {
-                return "Bombyx2";
+                return "Bombyx 2";
             }
         }
         public override Bitmap Icon
         {
             get
             {
-                //Return a 24x24 pixel bitmap to represent this GHA library.
-                return null;
+                return Icons.bombyxLogo;
             }
         }
         public override string Description
         {
             get
             {
-                //Return a short string describing the purpose of this GHA library.
-                return "";
+                return "Real-time Life Cycle Assessment – Bombyx; version 2";
             }
         }
         public override Guid Id
@@ -41,16 +39,14 @@ namespace Bombyx2
         {
             get
             {
-                //Return a string identifying you or your company.
-                return "";
+                return "ETH Zurich";
             }
         }
         public override string AuthorContact
         {
             get
             {
-                //Return a string representing your preferred contact details.
-                return "";
+                return "bombyx@ibi.baug.ethz.ch";
             }
         }
     }

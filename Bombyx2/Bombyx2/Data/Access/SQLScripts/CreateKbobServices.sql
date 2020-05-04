@@ -1,0 +1,21 @@
+﻿CREATE TABLE "KbobServices" (
+	"Id"	INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,
+	"NameEnglish"	TEXT,
+	"NameGerman"	TEXT,
+	"NameFrench"	TEXT,
+	"IdKbob"	TEXT,
+	"IdDisposal"	TEXT,
+	"Disposal"	TEXT,
+	"Size"	TEXT,
+	"Unit"	TEXT,
+	"Ubp13Embodied"	NUMERIC,
+	"Ubp13EoL"	REAL,
+	"TotalEmbodied"	REAL,
+	"TotalEoL"	REAL,
+	"RenewableEmbodied"	REAL,
+	"RenewableEoL"	REAL,
+	"NonRenewableEmbodied"	REAL,
+	"NonRenewableEoL"	REAL,
+	"GHGEmbodied"	REAL,
+	"GHGEoL"	REAL
+);

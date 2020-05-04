@@ -9,9 +9,9 @@ namespace Bombyx2.GUI._00_MaterialLevel.KBOB
     public class KbobMaterial : GH_Component
     {
         public KbobMaterial()
-          : base("KBOB Material",
+          : base("KBOB Building Material",
                  "KBOB Material",
-                 "Returns KBOB material details from database",
+                 "Returns selected KBOB material details from database",
                  "Bombyx 2",
                  "KBOB")
         {
@@ -35,20 +35,21 @@ namespace Bombyx2.GUI._00_MaterialLevel.KBOB
 
             var newParam = input.Split(':');
             var material = KbobMaterialsDataAccess.GetKbobMaterial(newParam[0]);
-            var output = new Dictionary<string, double>();
-
-            output.Add("Density (kg/m\xB3)", material.Density ?? -1);
-            output.Add("UBP13 Embodied (P/m\xB2 a)", material.UBP13Embodied);
-            output.Add("UBP13 End of Life (P/m\xB2 a)", material.UBP13EoL);
-            output.Add("Total Embodied (kWh oil-eq)", material.TotalEmbodied);
-            output.Add("Total End of Life (kWh oil-eq)", material.TotalEoL);
-            output.Add("Renewable Embodied (kWh oil-eq)", material.RenewableEmbodied);
-            output.Add("Renewable End of Life (kWh oil-eq)", material.RenewableEoL);
-            output.Add("Non Renewable Embodied (kWh oil-eq)", material.NonRenewableEmbodied);
-            output.Add("Non Renewable End of Life (kWh oil-eq)", material.NonRenewableEoL);
-            output.Add("Green House Gases Embodied (kg CO\x2082-eq/m\xB2 a)", material.GHGEmbodied);
-            output.Add("Green House Gases End of Life (kg CO\x2082-eq/m\xB2 a)", material.GHGEoL);
-            output.Add("Thermal Conductivity (W/m*K)", material.ThermalCond ?? -1);
+            var output = new Dictionary<string, double>
+            {
+                { "Density (kg/m\xB3)", material.Density ?? -1d },
+                { "UBP13 Embodied (P/m\xB2 a)", material.UBP13Embodied },
+                { "UBP13 End of Life (P/m\xB2 a)", material.UBP13EoL },
+                { "PE Total Embodied (kWh oil-eq)", material.TotalEmbodied },
+                { "PE Total End of Life (kWh oil-eq)", material.TotalEoL },
+                { "PE Renewable Embodied (kWh oil-eq)", material.RenewableEmbodied },
+                { "PE Renewable End of Life (kWh oil-eq)", material.RenewableEoL },
+                { "PE Non Renewable Embodied (kWh oil-eq)", material.NonRenewableEmbodied },
+                { "PE Non Renewable End of Life (kWh oil-eq)", material.NonRenewableEoL },
+                { "Green House Gases Embodied (kg CO\x2082-eq/m\xB2 a)", material.GHGEmbodied },
+                { "Green House Gases End of Life (kg CO\x2082-eq/m\xB2 a)", material.GHGEoL },
+                { "Thermal Conductivity (W/m*K)", material.ThermalCond ?? -1d }
+            };
 
             var outputValues = output.Values.ToList();
 
@@ -60,7 +61,7 @@ namespace Bombyx2.GUI._00_MaterialLevel.KBOB
         {
             get
             {
-                return null;
+                return Icons.kbobMaterial;
             }
         }
 

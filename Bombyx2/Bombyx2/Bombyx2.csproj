@@ -69,9 +69,19 @@
     <Compile Include="Bombyx2Info.cs" />
     <Compile Include="Data\Access\Config.cs" />
     <Compile Include="Data\Access\KbobMaterialsDataAccess.cs" />
+    <Compile Include="Data\Models\KbobEnergyModel.cs" />
     <Compile Include="Data\Models\KbobMaterialModel.cs" />
+    <Compile Include="Data\Models\KbobServiceModel.cs" />
+    <Compile Include="GUI\00_MaterialLevel\KBOB\KbobEnergy.cs" />
     <Compile Include="GUI\00_MaterialLevel\KBOB\KbobMaterial.cs" />
     <Compile Include="GUI\00_MaterialLevel\KBOB\KbobMaterialList.cs" />
+    <Compile Include="GUI\00_MaterialLevel\KBOB\KbobService.cs" />
+    <Compile Include="GUI\00_MaterialLevel\KBOB\KbobServicesList.cs" />
+    <Compile Include="GUI\02_ImpactLevel\ImpactBuilding.cs" />
+    <Compile Include="GUI\02_ImpactLevel\ImpactComponent.cs" />
+    <Compile Include="GUI\02_ImpactLevel\ImpactElement.cs" />
+    <Compile Include="GUI\02_ImpactLevel\ImpactLayer.cs" />
+    <Compile Include="GUI\02_ImpactLevel\ImpactWindow.cs" />
     <Compile Include="Icons.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -83,13 +93,51 @@
     <Compile Include="Utility\ItemSelector\ItemSelector.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Data\Access\CreateKbobMaterials.sql" />
-    <Content Include="Data\Access\InsertKbobMaterials.sql" />
+    <Content Include="Data\Access\SQLScripts\CreateKbobMaterials.sql" />
+    <Content Include="Data\Access\SQLScripts\CreateKbobServices.sql" />
+    <Content Include="Data\Access\SQLScripts\InsertKbobEnergy.sql" />
+    <Content Include="Data\Access\SQLScripts\InsertKbobMaterials.sql" />
     <Content Include="Data\Access\MaterialsDB.db">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\ItemSelector.png" />
-    <None Include="Resources\bombyxLogo.png" />
+    <Content Include="Data\Access\SQLScripts\CreateKbobEnergy.sql" />
+    <Content Include="Data\Access\SQLScripts\InsertKbobServices.sql" />
+    <Content Include="Resources\impactBuilding.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\impactComponent.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\impactElement.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\impactLayer.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\impactWindow.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\ItemSelector.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\kbobEnergy.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\kbobMaterial.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\kbobMaterialGroups.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\kbobService.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\kbobServiceGroups.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <None Include="Resources\bombyxLogo.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -101,7 +149,6 @@
   <ItemGroup>
     <Folder Include="GUI\00_MaterialLevel\Custom\" />
     <Folder Include="GUI\01_ComponentLevel\" />
-    <Folder Include="GUI\02_ImpactLevel\" />
     <Folder Include="GUI\10_BuildingLevel\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

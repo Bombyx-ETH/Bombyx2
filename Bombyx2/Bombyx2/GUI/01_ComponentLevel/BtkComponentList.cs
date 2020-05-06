@@ -5,52 +5,36 @@ using Bombyx2.Data.Access;
 using Grasshopper.Kernel;
 using Grasshopper.Kernel.Special;
 
-namespace Bombyx2.GUI._00_MaterialLevel.KBOB
+namespace Bombyx2.GUI._01_ComponentLevel
 {
-    public class KbobMaterialList : GH_Component
+    public class BtkComponentList : GH_Component
     {
         GH_Document GrasshopperDocument;
         IGH_Component Component;
 
-        private readonly string[] GROUPS = new string[] {
-            "01: Concrete",
-            "02: Brick",
-            "03: Other massive building materials",
-            "04: Mortar and plaster",
-            "05: Windows, solar shading and facade cladding",
-            "06: Metal building materials",
-            "07: Wood and wooden materials",
-            "08: Adhesives and joint sealants",
-            "09: Geomembranes and protective films",
-            "10: Thermal insulation",
-            "11: Flooring",
-            "12: Doors",
-            "13: Pipes",
-            "14: Paints, coatings",
-            "15: Plastics",
-            "21: Kitchen fixtures and furniture",
-            "00: Preparatory works" };
+        private string[] ComponentList;
 
-        public KbobMaterialList()
-          : base("KBOB Building Material Groups",
-                 "Material Groups",
-                 "Returns KBOB material groups from the database.",
+        public BtkComponentList()
+          : base("Bauteilkatalog Component Groups",
+                 "Component Groups",
+                 "Returns list of Bauteilkatalog component groups from database.",
                  "Bombyx 2",
-                 "KBOB")
+                 "Components")
         {
+            ComponentList = BtkComponentsDataAccess.GetBtkComponentsGroups().ToArray();
         }
 
         protected override void RegisterInputParams(GH_InputParamManager pManager)
         {
             pManager.AddBooleanParameter("Activate (Button)", "Activate (Button)", "Connect a Button to the first \ninput parameter(Activate) and \nclick it to show inputs.", GH_ParamAccess.item);
             pManager[0].Optional = true;
-            pManager.AddTextParameter("Material groups", "Material groups", "Material groups", GH_ParamAccess.item);
+            pManager.AddTextParameter("Component groups", "Component groups", "Component groups", GH_ParamAccess.item);
             pManager[1].Optional = true;
         }
 
         protected override void RegisterOutputParams(GH_OutputParamManager pManager)
         {
-            pManager.AddTextParameter("Materials", "Materials", "Materials", GH_ParamAccess.list);
+            pManager.AddTextParameter("Components", "Components", "Components", GH_ParamAccess.list);
         }
 
         protected override void SolveInstance(IGH_DataAccess DA)
@@ -64,13 +48,13 @@ namespace Bombyx2.GUI._00_MaterialLevel.KBOB
 
             if (input && Params.Input[1].SourceCount == 0)
             {
-                CreateSelectionList(GROUPS, "Material groups", 1, 330, 75);
+                CreateSelectionList(ComponentList, "Component groups", 1, 305, 90);
             }
 
             if (!DA.GetData(1, ref group)) { return; }
 
             var newParam = group.Split(':');
-            var output = KbobMaterialsDataAccess.GetKbobMaterialsList(newParam[0] + "%");
+            var output = BtkComponentsDataAccess.GetBtkComponentsList(newParam[0]);
 
             DA.SetDataList(0, output);
         }
@@ -109,13 +93,13 @@ namespace Bombyx2.GUI._00_MaterialLevel.KBOB
         {
             get
             {
-                return Icons.kbobMaterialGroups;
+                return Icons.btkComponentGroups;
             }
         }
 
         public override Guid ComponentGuid
         {
-            get { return new Guid("f76ba9a8-65fd-4686-9611-97d65227c35c"); }
+            get { return new Guid("c1c8da7d-685a-4dd0-9a93-b6536a823445"); }
         }
     }
 }

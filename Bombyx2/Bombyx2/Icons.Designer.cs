@@ -93,6 +93,16 @@ namespace Bombyx2 {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap btkWindowComponent {
+            get {
+                object obj = ResourceManager.GetObject("btkWindowComponent", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap impactBuilding {
             get {
                 object obj = ResourceManager.GetObject("impactBuilding", resourceCulture);

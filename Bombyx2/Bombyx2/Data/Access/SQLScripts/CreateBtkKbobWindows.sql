@@ -1,0 +1,6 @@
+﻿CREATE TABLE "BtkKbobWindow" (
+	"Id"	INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,
+	"SortCode"	TEXT,
+	"IdKbob"	INTEGER,
+	"FramePercentage"	REAL
+);

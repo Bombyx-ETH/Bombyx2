@@ -72,6 +72,7 @@
     <Compile Include="Data\Access\KbobMaterialsDataAccess.cs" />
     <Compile Include="Data\Models\BtkComponentMaterialModel.cs" />
     <Compile Include="Data\Models\BtkComponentModel.cs" />
+    <Compile Include="Data\Models\BtkComponentWindowModel.cs" />
     <Compile Include="Data\Models\KbobEnergyModel.cs" />
     <Compile Include="Data\Models\KbobMaterialModel.cs" />
     <Compile Include="Data\Models\KbobServiceModel.cs" />
@@ -82,6 +83,7 @@
     <Compile Include="GUI\00_MaterialLevel\KBOB\KbobServicesList.cs" />
     <Compile Include="GUI\01_ComponentLevel\BtkComponent.cs" />
     <Compile Include="GUI\01_ComponentLevel\BtkComponentList.cs" />
+    <Compile Include="GUI\01_ComponentLevel\BtkComponentWindow.cs" />
     <Compile Include="GUI\02_ImpactLevel\ImpactBuilding.cs" />
     <Compile Include="GUI\02_ImpactLevel\ImpactComponent.cs" />
     <Compile Include="GUI\02_ImpactLevel\ImpactElement.cs" />
@@ -100,12 +102,16 @@
   <ItemGroup>
     <Content Include="Data\Access\SQLScripts\CreateBtkComponent.sql" />
     <Content Include="Data\Access\SQLScripts\CreateBtkKbob.sql" />
+    <Content Include="Data\Access\SQLScripts\CreateBtkKbobWindows.sql" />
     <Content Include="Data\Access\SQLScripts\CreateBtkMaterial.sql" />
+    <Content Include="Data\Access\SQLScripts\CreateBtkWindows.sql" />
     <Content Include="Data\Access\SQLScripts\CreateKbobMaterials.sql" />
     <Content Include="Data\Access\SQLScripts\CreateKbobServices.sql" />
     <Content Include="Data\Access\SQLScripts\InsertBtkComponent.sql" />
     <Content Include="Data\Access\SQLScripts\InsertBtkKbob.sql" />
+    <Content Include="Data\Access\SQLScripts\InsertBtkKbobWindows.sql" />
     <Content Include="Data\Access\SQLScripts\InsertBtkMaterial.sql" />
+    <Content Include="Data\Access\SQLScripts\InsertBtkWindows.sql" />
     <Content Include="Data\Access\SQLScripts\InsertKbobEnergy.sql" />
     <Content Include="Data\Access\SQLScripts\InsertKbobMaterials.sql" />
     <Content Include="Data\Access\DB\MaterialsDB.db">
@@ -115,6 +121,7 @@
     <Content Include="Data\Access\SQLScripts\InsertKbobServices.sql" />
     <Content Include="Resources\btkComponent.png" />
     <Content Include="Resources\btkComponentGroups.png" />
+    <Content Include="Resources\btkWindowComponent.png" />
     <Content Include="Resources\impactBuilding.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

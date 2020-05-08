@@ -127,6 +127,9 @@
   <data name="btkComponentGroups" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\btkComponentGroups.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="btkWindowComponent" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\btkWindowComponent.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="impactBuilding" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\impactBuilding.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>

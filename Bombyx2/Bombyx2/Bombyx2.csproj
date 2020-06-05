@@ -68,7 +68,7 @@
     <Compile Include="Bombyx2Icon.cs" />
     <Compile Include="Bombyx2Info.cs" />
     <Compile Include="Data\Access\BtkComponentsDataAccess.cs" />
-    <Compile Include="Data\Access\DB\Config.cs" />
+    <Compile Include="Data\Access\Config.cs" />
     <Compile Include="Data\Access\KbobMaterialsDataAccess.cs" />
     <Compile Include="Data\Models\BtkComponentMaterialModel.cs" />
     <Compile Include="Data\Models\BtkComponentModel.cs" />
@@ -114,11 +114,11 @@
     <Content Include="Data\Access\SQLScripts\InsertBtkWindows.sql" />
     <Content Include="Data\Access\SQLScripts\InsertKbobEnergy.sql" />
     <Content Include="Data\Access\SQLScripts\InsertKbobMaterials.sql" />
-    <Content Include="Data\Access\DB\MaterialsDB.db">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="Data\Access\SQLScripts\CreateKbobEnergy.sql" />
     <Content Include="Data\Access\SQLScripts\InsertKbobServices.sql" />
+    <Content Include="MaterialsDB.db">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resources\btkComponent.png" />
     <Content Include="Resources\btkComponentGroups.png" />
     <Content Include="Resources\btkWindowComponent.png" />

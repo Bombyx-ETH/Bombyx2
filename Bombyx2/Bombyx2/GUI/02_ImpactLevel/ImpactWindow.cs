@@ -23,7 +23,7 @@ namespace Bombyx2.GUI._02_ImpactLevel
             pManager.AddNumberParameter("Frame percentage", "Frame percentage", "Value", GH_ParamAccess.item);
             pManager.AddIntegerParameter("Reference study period", "RSP (years)", "Manual input", GH_ParamAccess.item);
             pManager.AddIntegerParameter("Reference service life", "RSL (years)", "Manual input", GH_ParamAccess.item);
-            pManager.AddNumberParameter("Area (square meters)", "Area (m\xB2)", "Manual input", GH_ParamAccess.item);
+            pManager.AddNumberParameter("Surface area (square meters)", "Surface area (m\xB2)", "Manual input", GH_ParamAccess.item);
         }
 
         protected override void RegisterOutputParams(GH_OutputParamManager pManager)
@@ -72,12 +72,12 @@ namespace Bombyx2.GUI._02_ImpactLevel
             {
                 repNum = 0;
             }
-
+            //fix units
             var frameDict = new Dictionary<string, double>
             {
-                { "UBP13 Embodied (P/m\xB2 a)", frame[1] * frameArea },
-                { "UBP13 Replacements (P/m\xB2 a)", ((frame[1] + frame[2]) * repNum) * frameArea },
-                { "UBP13 End of Life (P/m\xB2 a)", frame[2] * frameArea },
+                { "UBP13 Embodied (P/m\xB2)", frame[1] * frameArea },
+                { "UBP13 Replacements (P/m\xB2)", ((frame[1] + frame[2]) * repNum) * frameArea },
+                { "UBP13 End of Life (P/m\xB2)", frame[2] * frameArea },
                 { "Total Embodied (kWh oil-eq)", frame[3] * frameArea },
                 { "Total Replacements (kWh oil-eq)", ((frame[3] + frame[4]) * repNum) * frameArea },
                 { "Total End of Life (kWh oil-eq)", frame[4] * frameArea },
@@ -87,17 +87,17 @@ namespace Bombyx2.GUI._02_ImpactLevel
                 { "Non Renewable Embodied (kWh oil-eq)", frame[7] * frameArea },
                 { "Non Renewable Replacements (kWh oil-eq)", ((frame[7] + frame[8]) * repNum) * frameArea },
                 { "Non Renewable End of Life (kWh oil-eq)", frame[8] * frameArea },
-                { "Green House Gasses Embodied (kg CO\x2082-eq/m\xB2 a)", frame[9] * frameArea },
-                { "Green House Gasses Replacements (kg CO\x2082-eq/m\xB2 a)", ((frame[9] + frame[10]) * repNum) * frameArea },
-                { "Green House Gasses End of Life (kg CO\x2082-eq/m\xB2 a)", frame[10] * frameArea },
+                { "Green House Gasses Embodied (kg CO\x2082-eq/m\xB2)", frame[9] * frameArea },
+                { "Green House Gasses Replacements (kg CO\x2082-eq/m\xB2)", ((frame[9] + frame[10]) * repNum) * frameArea },
+                { "Green House Gasses End of Life (kg CO\x2082-eq/m\xB2)", frame[10] * frameArea },
                 { "U value: (1/Rf)*area(filling)", (1 / frame[11]) * frameArea }
             };
 
             var fillingDict = new Dictionary<string, double>
             {
-                { "UBP13 Embodied (P/m\xB2 a)", filling[1] * fillingArea },
-                { "UBP13 Replacements (P/m\xB2 a)", ((filling[1] + filling[2]) * repNum) * fillingArea },
-                { "UBP13 End of Life (P/m\xB2 a)", filling[2] * fillingArea },
+                { "UBP13 Embodied (P/m\xB2)", filling[1] * fillingArea },
+                { "UBP13 Replacements (P/m\xB2)", ((filling[1] + filling[2]) * repNum) * fillingArea },
+                { "UBP13 End of Life (P/m\xB2)", filling[2] * fillingArea },
                 { "Total Embodied (kWh oil-eq)", filling[3] * fillingArea },
                 { "Total Replacements (kWh oil-eq)", ((filling[3] + filling[4]) * repNum) * fillingArea },
                 { "Total End of Life (kWh oil-eq)", filling[4] * fillingArea },
@@ -107,17 +107,17 @@ namespace Bombyx2.GUI._02_ImpactLevel
                 { "Non Renewable Embodied (kWh oil-eq)", filling[7] * fillingArea },
                 { "Non Renewable Replacements (kWh oil-eq)", ((filling[7] + filling[8]) * repNum) * fillingArea },
                 { "Non Renewable End of Life (kWh oil-eq)", filling[8] * fillingArea },
-                { "Green House Gasses Embodied (kg CO\x2082-eq/m\xB2 a)", filling[9] * fillingArea },
-                { "Green House Gasses Replacements (kg CO\x2082-eq/m\xB2 a)", ((filling[9] + filling[10]) * repNum) * fillingArea },
-                { "Green House Gasses End of Life (kg CO\x2082-eq/m\xB2 a)", filling[10] * fillingArea },
+                { "Green House Gasses Embodied (kg CO\x2082-eq/m\xB2)", filling[9] * fillingArea },
+                { "Green House Gasses Replacements (kg CO\x2082-eq/m\xB2)", ((filling[9] + filling[10]) * repNum) * fillingArea },
+                { "Green House Gasses End of Life (kg CO\x2082-eq/m\xB2)", filling[10] * fillingArea },
                 { "U value: (1/Rg)*area(glasing)", (1 / filling[11]) * fillingArea }
             };
 
             var window = new Dictionary<string, double>
             {
-                { "UBP13 Embodied (P/m\xB2 a)", frameDict["UBP13 Embodied (P/m\xB2 a)"] + fillingDict["UBP13 Embodied (P/m\xB2 a)"] },
-                { "UBP13 Replacements (P/m\xB2 a)", frameDict["UBP13 Replacements (P/m\xB2 a)"] + fillingDict["UBP13 Replacements (P/m\xB2 a)"] },
-                { "UBP13 End of Life (P/m\xB2 a)", frameDict["UBP13 End of Life (P/m\xB2 a)"] + fillingDict["UBP13 End of Life (P/m\xB2 a)"] },
+                { "UBP13 Embodied (P/m\xB2)", frameDict["UBP13 Embodied (P/m\xB2)"] + fillingDict["UBP13 Embodied (P/m\xB2)"] },
+                { "UBP13 Replacements (P/m\xB2)", frameDict["UBP13 Replacements (P/m\xB2)"] + fillingDict["UBP13 Replacements (P/m\xB2)"] },
+                { "UBP13 End of Life (P/m\xB2)", frameDict["UBP13 End of Life (P/m\xB2)"] + fillingDict["UBP13 End of Life (P/m\xB2)"] },
                 { "Total Embodied (kWh oil-eq)", frameDict["Total Embodied (kWh oil-eq)"] + fillingDict["Total Embodied (kWh oil-eq)"] },
                 { "Total Replacements (kWh oil-eq)", frameDict["Total Replacements (kWh oil-eq)"] + fillingDict["Total Replacements (kWh oil-eq)"] },
                 { "Total End of Life (kWh oil-eq)", frameDict["Total End of Life (kWh oil-eq)"] + fillingDict["Total End of Life (kWh oil-eq)"] },
@@ -127,9 +127,9 @@ namespace Bombyx2.GUI._02_ImpactLevel
                 { "Non Renewable Embodied (kWh oil-eq)", frameDict["Non Renewable Embodied (kWh oil-eq)"] + fillingDict["Non Renewable Embodied (kWh oil-eq)"] },
                 { "Non Renewable Replacements (kWh oil-eq)", frameDict["Non Renewable Replacements (kWh oil-eq)"] + fillingDict["Non Renewable Replacements (kWh oil-eq)"] },
                 { "Non Renewable End of Life (kWh oil-eq)", frameDict["Non Renewable End of Life (kWh oil-eq)"] + fillingDict["Non Renewable End of Life (kWh oil-eq)"] },
-                { "Green House Gasses Embodied (kg CO\x2082-eq/m\xB2 a)", frameDict["Green House Gasses Embodied (kg CO\x2082-eq/m\xB2 a)"] + fillingDict["Green House Gasses Embodied (kg CO\x2082-eq/m\xB2 a)"] },
-                { "Green House Gasses Replacements (kg CO\x2082-eq/m\xB2 a)", frameDict["Green House Gasses Replacements (kg CO\x2082-eq/m\xB2 a)"] + fillingDict["Green House Gasses Replacements (kg CO\x2082-eq/m\xB2 a)"] },
-                { "Green House Gasses End of Life (kg CO\x2082-eq/m\xB2 a)", frameDict["Green House Gasses End of Life (kg CO\x2082-eq/m\xB2 a)"] + fillingDict["Green House Gasses End of Life (kg CO\x2082-eq/m\xB2 a)"] },
+                { "Green House Gasses Embodied (kg CO\x2082-eq/m\xB2)", frameDict["Green House Gasses Embodied (kg CO\x2082-eq/m\xB2)"] + fillingDict["Green House Gasses Embodied (kg CO\x2082-eq/m\xB2)"] },
+                { "Green House Gasses Replacements (kg CO\x2082-eq/m\xB2)", frameDict["Green House Gasses Replacements (kg CO\x2082-eq/m\xB2)"] + fillingDict["Green House Gasses Replacements (kg CO\x2082-eq/m\xB2)"] },
+                { "Green House Gasses End of Life (kg CO\x2082-eq/m\xB2)", frameDict["Green House Gasses End of Life (kg CO\x2082-eq/m\xB2)"] + fillingDict["Green House Gasses End of Life (kg CO\x2082-eq/m\xB2)"] },
                 { "U value: (Uf+Ug)/area", (frameDict["U value: (1/Rf)*area(filling)"] + fillingDict["U value: (1/Rg)*area(glasing)"]) / area }
             };
 

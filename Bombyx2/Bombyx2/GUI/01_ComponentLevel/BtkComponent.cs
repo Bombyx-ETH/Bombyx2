@@ -81,9 +81,9 @@ namespace Bombyx2.GUI._01_ComponentLevel
 
             var results = new Dictionary<string, double>
             {
-                { "UBP13 Embodied (P/m\xB2 a)", 0 },
-                { "UBP13 Replacements (P/m\xB2 a)", 0 },
-                { "UBP13 End of Life (P/m\xB2 a)", 0 },
+                { "UBP13 Embodied (P/m\xB2)", 0 },
+                { "UBP13 Replacements (P/m\xB2)", 0 },
+                { "UBP13 End of Life (P/m\xB2)", 0 },
                 { "Total Embodied (kWh oil-eq)", 0 },
                 { "Total Replacements (kWh oil-eq)", 0 },
                 { "Total End of Life (kWh oil-eq)", 0 },
@@ -93,17 +93,17 @@ namespace Bombyx2.GUI._01_ComponentLevel
                 { "Non Renewable Embodied (kWh oil-eq)", 0 },
                 { "Non Renewable Replacements (kWh oil-eq)", 0 },
                 { "Non Renewable End of Life (kWh oil-eq)", 0 },
-                { "Green House Gasses Embodied (kg CO\x2082-eq/m\xB2 a)", 0 },
-                { "Green House Gasses Replacements (kg CO\x2082-eq/m\xB2 a)", 0 },
-                { "Green House Gasses End of Life (kg CO\x2082-eq/m\xB2 a)", 0 },
+                { "Green House Gasses Embodied (kg CO\x2082-eq/m\xB2)", 0 },
+                { "Green House Gasses Replacements (kg CO\x2082-eq/m\xB2)", 0 },
+                { "Green House Gasses End of Life (kg CO\x2082-eq/m\xB2)", 0 },
                 { "R value", 0 }
             };
 
             foreach (var item in sumResults)
             {
-                results["UBP13 Embodied (P/m\xB2 a)"] += item.UBP13EmbodiedSum;
-                results["UBP13 Replacements (P/m\xB2 a)"] += item.UBP13RepSum;
-                results["UBP13 End of Life (P/m\xB2 a)"] += item.UBP13EoLSum;
+                results["UBP13 Embodied (P/m\xB2)"] += item.UBP13EmbodiedSum;
+                results["UBP13 Replacements (P/m\xB2)"] += item.UBP13RepSum;
+                results["UBP13 End of Life (P/m\xB2)"] += item.UBP13EoLSum;
                 results["Total Embodied (kWh oil-eq)"] += item.TotalEmbodiedSum;
                 results["Total Replacements (kWh oil-eq)"] += item.TotalRepSum;
                 results["Total End of Life (kWh oil-eq)"] += item.TotalEoLSum;
@@ -113,9 +113,9 @@ namespace Bombyx2.GUI._01_ComponentLevel
                 results["Non Renewable Embodied (kWh oil-eq)"] += item.NonRenewableEmbodiedSum;
                 results["Non Renewable Replacements (kWh oil-eq)"] += item.NonRenewableRepSum;
                 results["Non Renewable End of Life (kWh oil-eq)"] += item.NonRenewableEoLSum;
-                results["Green House Gasses Embodied (kg CO\x2082-eq/m\xB2 a)"] += item.GHGEmbodiedSum;
-                results["Green House Gasses Replacements (kg CO\x2082-eq/m\xB2 a)"] += item.GHGRepSum;
-                results["Green House Gasses End of Life (kg CO\x2082-eq/m\xB2 a)"] += item.GHGEoLEoLSum;
+                results["Green House Gasses Embodied (kg CO\x2082-eq/m\xB2)"] += item.GHGEmbodiedSum;
+                results["Green House Gasses Replacements (kg CO\x2082-eq/m\xB2)"] += item.GHGRepSum;
+                results["Green House Gasses End of Life (kg CO\x2082-eq/m\xB2)"] += item.GHGEoLEoLSum;
                 results["R value"] += item.ResistanceSum;
             }
 

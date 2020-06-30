@@ -38,16 +38,16 @@ namespace Bombyx2.GUI._00_MaterialLevel.KBOB
             var output = new Dictionary<string, double>
             {
                 { "Density (kg/m\xB3)", material.Density ?? -1d },
-                { "UBP13 Embodied (P/m\xB2 a)", material.UBP13Embodied },
-                { "UBP13 End of Life (P/m\xB2 a)", material.UBP13EoL },
-                { "PE Total Embodied (kWh oil-eq)", material.TotalEmbodied },
-                { "PE Total End of Life (kWh oil-eq)", material.TotalEoL },
-                { "PE Renewable Embodied (kWh oil-eq)", material.RenewableEmbodied },
-                { "PE Renewable End of Life (kWh oil-eq)", material.RenewableEoL },
-                { "PE Non Renewable Embodied (kWh oil-eq)", material.NonRenewableEmbodied },
-                { "PE Non Renewable End of Life (kWh oil-eq)", material.NonRenewableEoL },
-                { "Green House Gases Embodied (kg CO\x2082-eq/m\xB2 a)", material.GHGEmbodied },
-                { "Green House Gases End of Life (kg CO\x2082-eq/m\xB2 a)", material.GHGEoL },
+                { "UBP13 Embodied (P/m\xB2)", Math.Round(material.UBP13Embodied, 2) },
+                { "UBP13 End of Life (P/m\xB2)", Math.Round(material.UBP13EoL, 2) },
+                { "PE Total Embodied (kWh oil-eq)", Math.Round(material.TotalEmbodied, 2) },
+                { "PE Total End of Life (kWh oil-eq)", Math.Round(material.TotalEoL, 2) },
+                { "PE Renewable Embodied (kWh oil-eq)", Math.Round(material.RenewableEmbodied, 2) },
+                { "PE Renewable End of Life (kWh oil-eq)", Math.Round(material.RenewableEoL, 2) },
+                { "PE Non Renewable Embodied (kWh oil-eq)", Math.Round(material.NonRenewableEmbodied, 2) },
+                { "PE Non Renewable End of Life (kWh oil-eq)", Math.Round(material.NonRenewableEoL, 2) },
+                { "Green House Gases Embodied (kg CO\x2082-eq/m\xB2)", Math.Round(material.GHGEmbodied, 2) },
+                { "Green House Gases End of Life (kg CO\x2082-eq/m\xB2)", Math.Round(material.GHGEoL, 2) },
                 { "Thermal Conductivity (W/m*K)", material.ThermalCond ?? -1d }
             };
 

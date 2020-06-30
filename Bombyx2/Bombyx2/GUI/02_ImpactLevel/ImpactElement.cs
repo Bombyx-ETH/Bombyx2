@@ -28,7 +28,7 @@ namespace Bombyx2.GUI._02_ImpactLevel
             pManager.AddNumberParameter("Component properties", "Component\nproperties", "List of component properties", GH_ParamAccess.list);
             pManager.AddTextParameter("Thermal ressistivity", "Thermal ressistivity", "By selecting element's Thermal ressistivity, air resistance will be added to the U value.", GH_ParamAccess.item);
             pManager[1].Optional = true;
-            pManager.AddNumberParameter("Area (square meters)", "Area (m\xB2)", "Manual value", GH_ParamAccess.item);
+            pManager.AddNumberParameter("Surface area (square meters)", "Surface area (m\xB2)", "Manual value", GH_ParamAccess.item);
             pManager[2].Optional = true;
         }
 
@@ -53,7 +53,7 @@ namespace Bombyx2.GUI._02_ImpactLevel
 
             if (Params.Input[0].SourceCount == 1 && Params.Input[1].SourceCount == 0)
             {
-                CreateSelectionList(FunctionsList, "Thermal ressistivity", 1, 200, -20);
+                CreateSelectionList(FunctionsList, "Thermal ressistivity", 1, 200, 50);
                 ExpireSolution(true);
             }
 
@@ -67,9 +67,9 @@ namespace Bombyx2.GUI._02_ImpactLevel
 
             var results = new Dictionary<string, double>
             {
-                { "UBP13 Embodied (P/m\xB2 a)", 0 },
-                { "UBP13 Replacements (P/m\xB2 a)", 0 },
-                { "UBP13 End of Life (P/m\xB2 a)", 0 },
+                { "UBP13 Embodied (P/m\xB2)", 0 },
+                { "UBP13 Replacements (P/m\xB2)", 0 },
+                { "UBP13 End of Life (P/m\xB2)", 0 },
                 { "PE Total Embodied (kWh oil-eq)", 0 },
                 { "PE Total Replacements (kWh oil-eq)", 0 },
                 { "PE Total End of Life (kWh oil-eq)", 0 },
@@ -79,17 +79,17 @@ namespace Bombyx2.GUI._02_ImpactLevel
                 { "PE Non Renewable Embodied (kWh oil-eq)", 0 },
                 { "PE Non Renewable Replacements (kWh oil-eq)", 0 },
                 { "PE Non Renewable End of Life (kWh oil-eq)", 0 },
-                { "Green House Gasses Embodied (kg CO\x2082-eq/m\xB2 a)", 0 },
-                { "Green House Gasses Replacements (kg CO\x2082-eq/m\xB2 a)", 0 },
-                { "Green House Gasses End of Life (kg CO\x2082-eq/m\xB2 a)", 0 },
+                { "Green House Gasses Embodied (kg CO\x2082-eq/m\xB2)", 0 },
+                { "Green House Gasses Replacements (kg CO\x2082-eq/m\xB2)", 0 },
+                { "Green House Gasses End of Life (kg CO\x2082-eq/m\xB2)", 0 },
                 { "U value", 0 }
             };
 
             foreach (var item in valueSets)
             {
-                results["UBP13 Embodied (P/m\xB2 a)"] += item[0];
-                results["UBP13 Replacements (P/m\xB2 a)"] += item[1];
-                results["UBP13 End of Life (P/m\xB2 a)"] += item[2];
+                results["UBP13 Embodied (P/m\xB2)"] += item[0];
+                results["UBP13 Replacements (P/m\xB2)"] += item[1];
+                results["UBP13 End of Life (P/m\xB2)"] += item[2];
                 results["PE Total Embodied (kWh oil-eq)"] += item[3];
                 results["PE Total Replacements (kWh oil-eq)"] += item[4];
                 results["PE Total End of Life (kWh oil-eq)"] += item[5];
@@ -99,28 +99,28 @@ namespace Bombyx2.GUI._02_ImpactLevel
                 results["PE Non Renewable Embodied (kWh oil-eq)"] += item[9];
                 results["PE Non Renewable Replacements (kWh oil-eq)"] += item[10];
                 results["PE Non Renewable End of Life (kWh oil-eq)"] += item[11];
-                results["Green House Gasses Embodied (kg CO\x2082-eq/m\xB2 a)"] += item[12];
-                results["Green House Gasses Replacements (kg CO\x2082-eq/m\xB2 a)"] += item[13];
-                results["Green House Gasses End of Life (kg CO\x2082-eq/m\xB2 a)"] += item[14];
+                results["Green House Gasses Embodied (kg CO\x2082-eq/m\xB2)"] += item[12];
+                results["Green House Gasses Replacements (kg CO\x2082-eq/m\xB2)"] += item[13];
+                results["Green House Gasses End of Life (kg CO\x2082-eq/m\xB2)"] += item[14];
                 results["U value"] += item[15];
             }
 
-            results["UBP13 Embodied (P/m\xB2 a)"] *= area;
-            results["UBP13 Replacements (P/m\xB2 a)"] *= area;
-            results["UBP13 End of Life (P/m\xB2 a)"] *= area;
-            results["PE Total Embodied (kWh oil-eq)"] *= area;
-            results["PE Total Replacements (kWh oil-eq)"] *= area;
-            results["PE Total End of Life (kWh oil-eq)"] *= area;
-            results["PE Renewable Embodied (kWh oil-eq)"] *= area;
-            results["PE Renewable Replacements (kWh oil-eq)"] *= area;
-            results["PE Renewable End of Life (kWh oil-eq)"] *= area;
-            results["PE Non Renewable Embodied (kWh oil-eq)"] *= area;
-            results["PE Non Renewable Replacements (kWh oil-eq)"] *= area;
-            results["PE Non Renewable End of Life (kWh oil-eq)"] *= area;
-            results["Green House Gasses Embodied (kg CO\x2082-eq/m\xB2 a)"] *= area;
-            results["Green House Gasses Replacements (kg CO\x2082-eq/m\xB2 a)"] *= area;
-            results["Green House Gasses End of Life (kg CO\x2082-eq/m\xB2 a)"] *= area;
-            results["U value"] = 1 / results["U value"];
+            results["UBP13 Embodied (P/m\xB2)"] = Math.Round(results["UBP13 Embodied (P/m\xB2)"] * area, 2);
+            results["UBP13 Replacements (P/m\xB2)"] = Math.Round(results["UBP13 Replacements (P/m\xB2)"] * area, 2);
+            results["UBP13 End of Life (P/m\xB2)"] = Math.Round(results["UBP13 End of Life (P/m\xB2)"] * area, 2);
+            results["PE Total Embodied (kWh oil-eq)"] = Math.Round(results["PE Total Embodied (kWh oil-eq)"] * area, 2);
+            results["PE Total Replacements (kWh oil-eq)"] = Math.Round(results["PE Total Replacements (kWh oil-eq)"] * area, 2);
+            results["PE Total End of Life (kWh oil-eq)"] = Math.Round(results["PE Total End of Life (kWh oil-eq)"] * area, 2);
+            results["PE Renewable Embodied (kWh oil-eq)"] = Math.Round(results["PE Renewable Embodied (kWh oil-eq)"] * area, 2);
+            results["PE Renewable Replacements (kWh oil-eq)"] = Math.Round(results["PE Renewable Replacements (kWh oil-eq)"] * area, 2);
+            results["PE Renewable End of Life (kWh oil-eq)"] = Math.Round(results["PE Renewable End of Life (kWh oil-eq)"] * area, 2);
+            results["PE Non Renewable Embodied (kWh oil-eq)"] = Math.Round(results["PE Non Renewable Embodied (kWh oil-eq)"] * area, 2);
+            results["PE Non Renewable Replacements (kWh oil-eq)"] = Math.Round(results["PE Non Renewable Replacements (kWh oil-eq)"] * area, 2);
+            results["PE Non Renewable End of Life (kWh oil-eq)"] = Math.Round(results["PE Non Renewable End of Life (kWh oil-eq)"] * area, 2);
+            results["Green House Gasses Embodied (kg CO\x2082-eq/m\xB2)"] = Math.Round(results["Green House Gasses Embodied (kg CO\x2082-eq/m\xB2)"] * area, 2);
+            results["Green House Gasses Replacements (kg CO\x2082-eq/m\xB2)"] = Math.Round(results["Green House Gasses Replacements (kg CO\x2082-eq/m\xB2)"] * area, 2);
+            results["Green House Gasses End of Life (kg CO\x2082-eq/m\xB2)"] = Math.Round(results["Green House Gasses End of Life (kg CO\x2082-eq/m\xB2)"] * area, 2);
+            results["U value"] = Math.Round(1 / results["U value"], 4);
 
             var resultValues = results.Values.ToList();
 

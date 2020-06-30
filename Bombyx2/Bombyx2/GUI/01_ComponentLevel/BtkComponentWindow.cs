@@ -22,7 +22,7 @@ namespace Bombyx2.GUI._01_ComponentLevel
             pManager.AddTextParameter("Component", "Component", "Selected component", GH_ParamAccess.item);
             pManager.AddIntegerParameter("Reference study period", "RSP (years)", "Manual input of RSP (years)", GH_ParamAccess.item);
             pManager.AddIntegerParameter("Reference service life", "RSL (years)", "Manual input of RSL (years)", GH_ParamAccess.item);
-            pManager.AddNumberParameter("Area (square meters)", "Area (m\xB2)", "Manual input", GH_ParamAccess.item);
+            pManager.AddNumberParameter("Surface area (square meters)", "Surface area (m\xB2)", "Manual input of surface area in meters", GH_ParamAccess.item);
         }
 
         protected override void RegisterOutputParams(GH_OutputParamManager pManager)
@@ -87,9 +87,9 @@ namespace Bombyx2.GUI._01_ComponentLevel
 
             var results = new Dictionary<string, double>
             {
-                { "UBP13 Embodied (P/m\xB2 a)", 0 },
-                { "UBP13 Replacements (P/m\xB2 a)", 0 },
-                { "UBP13 End of Life (P/m\xB2 a)", 0 },
+                { "UBP13 Embodied (P/m\xB2)", 0 },
+                { "UBP13 Replacements (P/m\xB2)", 0 },
+                { "UBP13 End of Life (P/m\xB2)", 0 },
                 { "PE Total Embodied (kWh oil-eq)", 0 },
                 { "PE Total Replacements (kWh oil-eq)", 0 },
                 { "PE Total End of Life (kWh oil-eq)", 0 },
@@ -99,18 +99,18 @@ namespace Bombyx2.GUI._01_ComponentLevel
                 { "PE Non Renewable Embodied (kWh oil-eq)", 0 },
                 { "PE Non Renewable Replacements (kWh oil-eq)", 0 },
                 { "PE Non Renewable End of Life (kWh oil-eq)", 0 },
-                { "Green House Gasses Embodied (kg CO\x2082-eq/m\xB2 a)", 0 },
-                { "Green House Gasses Replacements (kg CO\x2082-eq/m\xB2 a)", 0 },
-                { "Green House Gasses End of Life (kg CO\x2082-eq/m\xB2 a)", 0 },
+                { "Green House Gasses Embodied (kg CO\x2082-eq/m\xB2)", 0 },
+                { "Green House Gasses Replacements (kg CO\x2082-eq/m\xB2)", 0 },
+                { "Green House Gasses End of Life (kg CO\x2082-eq/m\xB2)", 0 },
                 { "U value", 0 },
-                { "G value", 0 }
+                { "g value", 0 }
             };
 
             foreach (var item in sumResults)
             {
-                results["UBP13 Embodied (P/m\xB2 a)"] += item.UBP13EmbodiedSum;
-                results["UBP13 Replacements (P/m\xB2 a)"] += (item.UBP13EmbodiedSum + item.UBP13EoLSum) * repNum;
-                results["UBP13 End of Life (P/m\xB2 a)"] += item.UBP13EoLSum;
+                results["UBP13 Embodied (P/m\xB2)"] += item.UBP13EmbodiedSum;
+                results["UBP13 Replacements (P/m\xB2)"] += (item.UBP13EmbodiedSum + item.UBP13EoLSum) * repNum;
+                results["UBP13 End of Life (P/m\xB2)"] += item.UBP13EoLSum;
                 results["PE Total Embodied (kWh oil-eq)"] += item.TotalEmbodiedSum;
                 results["PE Total Replacements (kWh oil-eq)"] += (item.TotalEmbodiedSum + item.TotalEoLSum) * repNum;
                 results["PE Total End of Life (kWh oil-eq)"] += item.TotalEoLSum;
@@ -120,11 +120,11 @@ namespace Bombyx2.GUI._01_ComponentLevel
                 results["PE Non Renewable Embodied (kWh oil-eq)"] += item.NonRenewableEmbodiedSum;
                 results["PE Non Renewable Replacements (kWh oil-eq)"] += (item.NonRenewableEmbodiedSum + item.NonRenewableEoLSum) * repNum;
                 results["PE Non Renewable End of Life (kWh oil-eq)"] += item.NonRenewableEoLSum;
-                results["Green House Gasses Embodied (kg CO\x2082-eq/m\xB2 a)"] += item.GHGEmbodiedSum;
-                results["Green House Gasses Replacements (kg CO\x2082-eq/m\xB2 a)"] += (item.GHGEmbodiedSum + item.GHGEoLEoLSum) * repNum;
-                results["Green House Gasses End of Life (kg CO\x2082-eq/m\xB2 a)"] += item.GHGEoLEoLSum;
+                results["Green House Gasses Embodied (kg CO\x2082-eq/m\xB2)"] += item.GHGEmbodiedSum;
+                results["Green House Gasses Replacements (kg CO\x2082-eq/m\xB2)"] += (item.GHGEmbodiedSum + item.GHGEoLEoLSum) * repNum;
+                results["Green House Gasses End of Life (kg CO\x2082-eq/m\xB2)"] += item.GHGEoLEoLSum;
                 results["U value"] = output[0].Uvalue;
-                results["G value"] = output[0].Gvalue;
+                results["g value"] = output[0].Gvalue;
             }
 
             var resultValues = results.Values.ToList();

@@ -23,14 +23,14 @@ namespace Bombyx2.GUI._02_ImpactLevel
             pManager.AddNumberParameter("Frame percentage", "Frame percentage", "Value", GH_ParamAccess.item);
             pManager.AddIntegerParameter("Reference study period", "RSP (years)", "Manual input", GH_ParamAccess.item);
             pManager.AddIntegerParameter("Reference service life", "RSL (years)", "Manual input", GH_ParamAccess.item);
-            pManager.AddNumberParameter("Surface area (square meters)", "Surface area (m\xB2)", "Manual input", GH_ParamAccess.item);
+            pManager.AddNumberParameter("Surface area (m\xB2)", "Surface area (m\xB2)", "Manual input", GH_ParamAccess.item);
         }
 
         protected override void RegisterOutputParams(GH_OutputParamManager pManager)
         {
             pManager.AddTextParameter("LCA factors (text)", "LCA factors (text)", "Element Properties (text)", GH_ParamAccess.item);
             pManager.AddNumberParameter("LCA factors (values)", "LCA factors (values)", "Element Properties (values)", GH_ParamAccess.item);
-            pManager.AddNumberParameter("UA value", "UA value (W/K)", "Area U Value", GH_ParamAccess.item);
+            pManager.AddNumberParameter("U value", "U value (W/K)", "U Value", GH_ParamAccess.item);
             pManager.AddTextParameter("LCA frame (text)", "LCA frame (text)", "Frame (text)", GH_ParamAccess.item);
             pManager.AddTextParameter("LCA filling (text)", "LCA filling (text)", "Filling (text)", GH_ParamAccess.item);
         }

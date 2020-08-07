@@ -22,14 +22,14 @@ namespace Bombyx2.GUI._01_ComponentLevel
             pManager.AddTextParameter("Component", "Component", "Selected component", GH_ParamAccess.item);
             pManager.AddIntegerParameter("Reference study period", "RSP (years)", "Manual input of RSP (years)", GH_ParamAccess.item);
             pManager.AddIntegerParameter("Reference service life", "RSL (years)", "Manual input of RSL (years)", GH_ParamAccess.item);
-            pManager.AddNumberParameter("Surface area (square meters)", "Surface area (m\xB2)", "Manual input of surface area in meters", GH_ParamAccess.item);
+            pManager.AddNumberParameter("Surface area (m\xB2)", "Surface area (m\xB2)", "Manual input of surface area in meters", GH_ParamAccess.item);
         }
 
         protected override void RegisterOutputParams(GH_OutputParamManager pManager)
         {
             pManager.AddTextParameter("Window properties (text)", "Window properties (text)", "Window properties (text)", GH_ParamAccess.item);
             pManager.AddNumberParameter("Window properties (values)", "Window properties (values)", "Window properties (values)", GH_ParamAccess.item);
-            pManager.AddNumberParameter("UA value (W/K): (Uf+Ug)/area", "UA value (W/K): (Uf+Ug)/area", "Area U Value", GH_ParamAccess.item);
+            pManager.AddNumberParameter("U value (W/K)", "U value (W/K)", "U Value", GH_ParamAccess.item);
         }
 
         protected override void SolveInstance(IGH_DataAccess DA)

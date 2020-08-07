@@ -42,7 +42,7 @@ namespace Bombyx2.GUI._10_BuildingLevel
 
         protected override void RegisterOutputParams(GH_OutputParamManager pManager)
         {
-            pManager.AddTextParameter("Building input", "Building\ninput", "Building input", GH_ParamAccess.list);
+            pManager.AddTextParameter("Building parameters", "Building\nparameters", "Building parameters", GH_ParamAccess.list);
         }
 
         protected override void SolveInstance(IGH_DataAccess DA)

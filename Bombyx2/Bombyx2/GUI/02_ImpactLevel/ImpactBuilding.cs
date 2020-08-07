@@ -19,6 +19,7 @@ namespace Bombyx2.GUI._02_ImpactLevel
         protected override void RegisterInputParams(GH_InputParamManager pManager)
         {
             pManager.AddNumberParameter("LCA Factors\nElement", "LCA Factors\n(Element)", "List of LCA factors", GH_ParamAccess.list);
+            pManager[0].DataMapping = GH_DataMapping.Flatten;
             pManager.AddNumberParameter("Reference study period (years)", "RSP (years)", "Reference study period (years)", GH_ParamAccess.item);
             pManager.AddNumberParameter("NFA (square meters)", "NFA (m\xB2)", "NFA (square meters)", GH_ParamAccess.item);
         }

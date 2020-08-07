@@ -96,6 +96,8 @@
     <Compile Include="GUI\02_ImpactLevel\ImpactLayer.cs" />
     <Compile Include="GUI\02_ImpactLevel\ImpactWindow.cs" />
     <Compile Include="GUI\10_BuildingLevel\BuildingInput.cs" />
+    <Compile Include="GUI\10_BuildingLevel\BuildingOutput.cs" />
+    <Compile Include="GUI\10_BuildingLevel\ElementInput.cs" />
     <Compile Include="Icons.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

@@ -72,11 +72,13 @@
     <Compile Include="Bombyx2Icon.cs" />
     <Compile Include="Bombyx2Info.cs" />
     <Compile Include="Data\Access\BtkComponentsDataAccess.cs" />
+    <Compile Include="Data\Access\BuildingLevelDataAccess.cs" />
     <Compile Include="Data\Access\Config.cs" />
     <Compile Include="Data\Access\KbobMaterialsDataAccess.cs" />
     <Compile Include="Data\Models\BtkComponentMaterialModel.cs" />
     <Compile Include="Data\Models\BtkComponentModel.cs" />
     <Compile Include="Data\Models\BtkComponentWindowModel.cs" />
+    <Compile Include="Data\Models\BuildingLevelModel.cs" />
     <Compile Include="Data\Models\CustomMaterialModel.cs" />
     <Compile Include="Data\Models\KbobEnergyModel.cs" />
     <Compile Include="Data\Models\KbobMaterialModel.cs" />
@@ -131,6 +133,10 @@
     <Content Include="Resources\btkComponent.png" />
     <Content Include="Resources\btkComponentGroups.png" />
     <Content Include="Resources\btkWindowComponent.png" />
+    <None Include="Resources\elementInput.png" />
+    <None Include="Resources\buildingInput.png" />
+    <None Include="Resources\buildingOutput.png" />
+    <None Include="Resources\customMaterial.png" />
     <Content Include="Resources\impactBuilding.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

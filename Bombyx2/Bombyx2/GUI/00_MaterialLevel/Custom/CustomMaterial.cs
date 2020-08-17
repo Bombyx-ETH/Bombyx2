@@ -68,7 +68,7 @@ namespace Bombyx2.GUI._00_MaterialLevel.KBOB
         {
             get
             {
-                return null;
+                return Icons.customMaterial;
             }
         }
 

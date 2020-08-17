@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using Bombyx2.Data.Access;
 using Grasshopper.Kernel;
 using Grasshopper.Kernel.Special;
 
@@ -11,10 +12,10 @@ namespace Bombyx2.GUI._10_BuildingLevel
         GH_Document GrasshopperDocument;
         IGH_Component Component;
 
-        private string[] SIZE_VALUES = new string[] { "Small", "Mid-size", "Highrise" };
-        private string[] USAGE_VALUES = new string[] { "Residential single family", "Residential multi family", "Office" };
-        private string[] ENERGY_VALUES = new string[] { "Standard", "Above average", "Passive house" };
-        private string[] STRUCTUAL_VALUES = new string[] { "Concrete", "Wood", "Brick", "Steel" };
+        private string[] SIZE_VALUES = new string[] { "Low rise", "Mid Rise", "High Rise" };
+        private string[] USAGE_VALUES = new string[] { "Resi SFH", "Resi MFH", "Office" };
+        private string[] ENERGY_VALUES = new string[] { "Minimum", "Above Standard", "PassivHaus" };
+        private string[] STRUCTUAL_VALUES = new string[] { "Concrete", "Masonry", "Timber", "Steel" };
 
         public BuildingInput()
           : base("Building Input",
@@ -43,6 +44,17 @@ namespace Bombyx2.GUI._10_BuildingLevel
         protected override void RegisterOutputParams(GH_OutputParamManager pManager)
         {
             pManager.AddTextParameter("Building parameters", "Building\nparameters", "Building parameters", GH_ParamAccess.list);
+            //pManager.AddTextParameter("Roof (C4.4., F1., G4.)", "Roof", "Roof (C4.4., F1., G4.)", GH_ParamAccess.list);
+            //pManager.AddGenericParameter("Interior Walls (C2.2., G3.)", "Interior Walls", "Interior Walls (C2.2., G3.)", GH_ParamAccess.list);
+            //pManager.AddGenericParameter("Partition Walls (G1., G3.)", "Partition Walls", "Partition Walls (G1., G3.)", GH_ParamAccess.list);
+            //pManager.AddGenericParameter("Windows (E3.)", "Windows", "Windows (E3.)", GH_ParamAccess.list);
+            //pManager.AddGenericParameter("Balcony (C4.3.)", "Balcony", "Balcony (C4.3.)", GH_ParamAccess.list);
+            //pManager.AddGenericParameter("Technical Equipment (D1., D5.2, D5.3/D5.4., D7., D8.)", "Technical Equipment", "Technical Equipment (D1., D5.2, D5.3/D5.4., D7., D8.)", GH_ParamAccess.list);
+            //pManager.AddGenericParameter("Ceilings (C4.1., G4., G2.)", "Ceilings", "Ceilings (C4.1., G4., G2.)", GH_ParamAccess.list);
+            //pManager.AddGenericParameter("Columns (C3.)", "Columns", "Columns (C3.)", GH_ParamAccess.list);
+            //pManager.AddGenericParameter("Ext Walls above ground (C2.1B., E2., G3.)", "Ext Walls above ground", "Ext Walls above ground (C2.1B., E2., G3.)", GH_ParamAccess.list);
+            //pManager.AddGenericParameter("Ext Walls under ground (C2.1A., E1.)", "Ext Walls under ground", "Ext Walls under ground (C2.1A., E1.)", GH_ParamAccess.list);
+            //pManager.AddGenericParameter("Foundation (C1., G2.)", "Foundation", "Foundation (C1., G2.)", GH_ParamAccess.list);
         }
 
         protected override void SolveInstance(IGH_DataAccess DA)
@@ -65,9 +77,9 @@ namespace Bombyx2.GUI._10_BuildingLevel
                 Params.Input[4].SourceCount == 0)
             {
                 CreateDropDownList(SIZE_VALUES, "Building size", 1, 200, -20);
-                CreateDropDownList(USAGE_VALUES, "Building usage", 2, 275, -10);
+                CreateDropDownList(USAGE_VALUES, "Building usage", 2, 200, -10);
                 CreateDropDownList(ENERGY_VALUES, "Energy preference", 3, 230, 0);
-                CreateDropDownList(STRUCTUAL_VALUES, "Structual material", 4, 202, 10);
+                CreateDropDownList(STRUCTUAL_VALUES, "Structual material", 4, 195, 10);
                 Message = "Component activated.";
             }
 
@@ -76,13 +88,24 @@ namespace Bombyx2.GUI._10_BuildingLevel
             if (!DA.GetData(3, ref energy)) { return; }
             if (!DA.GetData(4, ref structural)) { return; }
 
-            var outputList = new List<string>();
-            outputList.Add(size);
-            outputList.Add(usage);
-            outputList.Add(energy);
-            outputList.Add(structural);
+            var inputs = new List<string>();
+            inputs.Add(size);
+            inputs.Add(usage);
+            inputs.Add(energy); 
+            inputs.Add(structural);
 
-            DA.SetDataList(0, outputList);
+            DA.SetDataList(0, inputs);
+            //DA.SetDataList(0, BuildingLevelDataAccess.GetComponentsForBuilding("Roof", inputs));
+            //DA.SetDataList(1, BuildingLevelDataAccess.GetComponentsForBuilding("InteriorWalls", inputs));
+            //DA.SetDataList(2, BuildingLevelDataAccess.GetComponentsForBuilding("PartitionWalls", inputs));
+            //DA.SetDataList(3, BuildingLevelDataAccess.GetComponentsForBuilding("Windows", inputs));
+            //DA.SetDataList(4, BuildingLevelDataAccess.GetComponentsForBuilding("Balcony", inputs));
+            //DA.SetDataList(5, BuildingLevelDataAccess.GetComponentsForBuilding("TechnicalEquipment", inputs));
+            //DA.SetDataList(6, BuildingLevelDataAccess.GetComponentsForBuilding("Ceilings", inputs));
+            //DA.SetDataList(7, BuildingLevelDataAccess.GetComponentsForBuilding("Columns", inputs));
+            //DA.SetDataList(8, BuildingLevelDataAccess.GetComponentsForBuilding("ExtWallsAboveGround", inputs));
+            //DA.SetDataList(9, BuildingLevelDataAccess.GetComponentsForBuilding("ExtWallsUnderGround", inputs));
+            //DA.SetDataList(10, BuildingLevelDataAccess.GetComponentsForBuilding("Foundation", inputs));
         }
 
         private void CreateDropDownList(string[] values, string nick, int inputParam, int offsetX, int offsetY)
@@ -120,7 +143,7 @@ namespace Bombyx2.GUI._10_BuildingLevel
         {
             get
             {
-                return null;
+                return Icons.buildingInput;
             }
         }
 

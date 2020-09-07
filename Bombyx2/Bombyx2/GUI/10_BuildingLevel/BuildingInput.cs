@@ -79,7 +79,7 @@ namespace Bombyx2.GUI._10_BuildingLevel
                 CreateDropDownList(SIZE_VALUES, "Building size", 1, 200, -20);
                 CreateDropDownList(USAGE_VALUES, "Building usage", 2, 200, -10);
                 CreateDropDownList(ENERGY_VALUES, "Energy preference", 3, 230, 0);
-                CreateDropDownList(STRUCTUAL_VALUES, "Structual material", 4, 195, 10);
+                CreateDropDownList(STRUCTUAL_VALUES, "Structural material", 4, 195, 10);
                 Message = "Component activated.";
             }
 

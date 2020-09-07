@@ -37,7 +37,7 @@ namespace Bombyx2.GUI._10_BuildingLevel
         protected override void RegisterInputParams(GH_InputParamManager pManager)
         {
             pManager.AddTextParameter("Element", "Element", "Element", GH_ParamAccess.list);
-            pManager.AddTextParameter("Building size", "Building size", "Building size", GH_ParamAccess.item);
+            pManager.AddTextParameter("Element type", "Element type", "Element type", GH_ParamAccess.item);
             pManager[1].Optional = true;
             pManager.AddNumberParameter("Area (m\xB2)", "Area (m\xB2)", "Area in square meters", GH_ParamAccess.item);
             pManager[2].Optional = true;
@@ -47,6 +47,7 @@ namespace Bombyx2.GUI._10_BuildingLevel
         {
             pManager.AddGenericParameter("Element values", "Element values", "Element values", GH_ParamAccess.list);
             pManager.AddTextParameter("List of Elements", "List of Elements", "List of Elements", GH_ParamAccess.list);
+            pManager.AddNumberParameter("-", "---------------------", "-", GH_ParamAccess.item);
             pManager.AddTextParameter("Minimum values", "Minimum values", "Minimum values", GH_ParamAccess.list);
             pManager.AddTextParameter("Maximum values", "Maximum values", "Maximum values", GH_ParamAccess.list);
             pManager.AddTextParameter("Average values", "Average values", "Average values", GH_ParamAccess.list);
@@ -76,7 +77,8 @@ namespace Bombyx2.GUI._10_BuildingLevel
             var resultsMin = new List<BuildingLevelModel>();
             var resultsMax = new List<BuildingLevelModel>();
             var resultsAvg = new List<BuildingLevelModel>();
-            var outputAll = new List<BuildingLevelModel>();
+            var output = new List<BuildingLevelModel>();
+            var outputAll = new BuildingLevelModel();
             var outputMin = new BuildingLevelModel();
             var outputMax = new BuildingLevelModel();
             var outputAvg = new BuildingLevelModel();
@@ -163,6 +165,21 @@ namespace Bombyx2.GUI._10_BuildingLevel
                 item.NonRenewableEoL *= area;
                 item.GHGEmbodied *= area;
                 item.GHGEoL *= area;
+            }
+
+            foreach (var item in resultsAll)
+            {
+                outputAll.UBP13Embodied += item.UBP13Embodied;
+                outputAll.UBP13EoL += item.UBP13EoL;
+                outputAll.TotalEmbodied += item.TotalEmbodied;
+                outputAll.TotalEoL += item.TotalEoL;
+                outputAll.RenewableEmbodied += item.RenewableEmbodied;
+                outputAll.RenewableEoL += item.RenewableEoL;
+                outputAll.NonRenewableEmbodied += item.NonRenewableEmbodied;
+                outputAll.NonRenewableEoL += item.NonRenewableEoL;
+                outputAll.GHGEmbodied += item.GHGEmbodied;
+                outputAll.GHGEoL += item.GHGEoL;
+                outputAll.Uvalue += item.Uvalue;
             }
 
             foreach (var item in resultsMin)
@@ -342,15 +359,16 @@ namespace Bombyx2.GUI._10_BuildingLevel
                 outputAvgText["U value (W/m2*K)"] = Math.Round(outputAvgText["U value (W/m2*K)"] + item.Uvalue, 4);
             }
 
-            outputAll.Add(outputMin);
-            outputAll.Add(outputMax);
-            outputAll.Add(outputAvg);
+            output.Add(outputAll);
+            output.Add(outputMin);
+            output.Add(outputMax);
+            output.Add(outputAvg);
 
-            DA.SetDataList(0, outputAll);
+            DA.SetDataList(0, output);
             DA.SetDataList(1, resultsAll);
-            DA.SetDataList(2, outputMinText);
-            DA.SetDataList(3, outputMaxText);
-            DA.SetDataList(4, outputAvgText);
+            DA.SetDataList(3, outputMinText);
+            DA.SetDataList(4, outputMaxText);
+            DA.SetDataList(5, outputAvgText);
 
         }
 

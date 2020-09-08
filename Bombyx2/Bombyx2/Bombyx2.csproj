@@ -100,6 +100,7 @@
     <Compile Include="GUI\10_BuildingLevel\BuildingInput.cs" />
     <Compile Include="GUI\10_BuildingLevel\BuildingOutput.cs" />
     <Compile Include="GUI\10_BuildingLevel\ElementInput.cs" />
+    <Compile Include="GUI\10_BuildingLevel\SpecificComponent.cs" />
     <Compile Include="Icons.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -133,6 +134,7 @@
     <Content Include="Resources\btkComponent.png" />
     <Content Include="Resources\btkComponentGroups.png" />
     <Content Include="Resources\btkWindowComponent.png" />
+    <None Include="Resources\specificComponent.png" />
     <None Include="Resources\elementInput.png" />
     <None Include="Resources\buildingInput.png" />
     <None Include="Resources\buildingOutput.png" />

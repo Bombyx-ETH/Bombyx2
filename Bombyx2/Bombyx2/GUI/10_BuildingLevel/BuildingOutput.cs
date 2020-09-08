@@ -25,11 +25,11 @@ namespace Bombyx2.GUI._10_BuildingLevel
 
         protected override void RegisterOutputParams(GH_OutputParamManager pManager)
         {
-            pManager.AddNumberParameter("(All) Global warming potential", "(All) GWP (kg CO\x2082-eq/m\xB2 a)", "(All) Global warming potential (kg CO\x2082-eq/m\xB2 a)", GH_ParamAccess.item);
-            pManager.AddNumberParameter("(All) PE Total", "(All) PE Total (kWh oil-eq a)", "(All) PE Total (kWh oil-eq a)", GH_ParamAccess.item);
-            pManager.AddNumberParameter("(All) PE Renewable", "(All) PE Renewable (kWh oil-eq a)", "(All) PE Renewable (kWh oil-eq a)", GH_ParamAccess.item);
-            pManager.AddNumberParameter("(All) PE Non-Renewable", "(All) PE Non-Renewable (kWh oil-eq a)", "(All) PE Non-Renewable (kWh oil-eq a)", GH_ParamAccess.item);
-            pManager.AddNumberParameter("(All) UBP impact", "(All) UBP (P/m\xB2 a)", "(All) UBP (P/m\xB2 a)", GH_ParamAccess.item);
+            pManager.AddNumberParameter("(Avg) Global warming potential", "(Avg) GWP (kg CO\x2082-eq/m\xB2 a)", "(Avg) Global warming potential (kg CO\x2082-eq/m\xB2 a)", GH_ParamAccess.item);
+            pManager.AddNumberParameter("(Avg) PE Total", "(Avg) PE Total (kWh oil-eq a)", "(Avg) PE Total (kWh oil-eq a)", GH_ParamAccess.item);
+            pManager.AddNumberParameter("(Avg) PE Renewable", "(Avg) PE Renewable (kWh oil-eq a)", "(Avg) PE Renewable (kWh oil-eq a)", GH_ParamAccess.item);
+            pManager.AddNumberParameter("(Avg) PE Non-Renewable", "(Avg) PE Non-Renewable (kWh oil-eq a)", "(Avg) PE Non-Renewable (kWh oil-eq a)", GH_ParamAccess.item);
+            pManager.AddNumberParameter("(Avg) UBP impact", "(Avg) UBP (P/m\xB2 a)", "(Avg) UBP (P/m\xB2 a)", GH_ParamAccess.item);
             pManager.AddNumberParameter("-","----------------------------------------------", "-", GH_ParamAccess.item);
             pManager.AddTextParameter("Minimum values", "Minimum values", "Minimum values", GH_ParamAccess.list);
             pManager.AddTextParameter("Maximum values", "Maximum values", "Maximum values", GH_ParamAccess.list);
@@ -132,11 +132,11 @@ namespace Bombyx2.GUI._10_BuildingLevel
                 { "(Avg) UBP (P/m\xB2 a)", Math.Round(UBPSumAvg, 2) },
             };
 
-            DA.SetData(0, Math.Round(ghgSumAll, 2));
-            DA.SetData(1, Math.Round(peTotalSumAll, 2));
-            DA.SetData(2, Math.Round(peRenewableSumAll, 2));
-            DA.SetData(3, Math.Round(peNonRenewableSumAll, 2));
-            DA.SetData(4, Math.Round(UBPSumAll, 2));
+            DA.SetData(0, Math.Round(ghgSumAvg, 2));
+            DA.SetData(1, Math.Round(peTotalSumAvg, 2));
+            DA.SetData(2, Math.Round(peRenewableSumAvg, 2));
+            DA.SetData(3, Math.Round(peNonRenewableSumAvg, 2));
+            DA.SetData(4, Math.Round(UBPSumAvg, 2));
 
             DA.SetDataList(6, resultsMin);
             DA.SetDataList(7, resultsMax);

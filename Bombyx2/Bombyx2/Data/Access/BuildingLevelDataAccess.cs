@@ -30,28 +30,28 @@ namespace Bombyx2.Data.Access
                 switch (type)
                 {
                     case "all":
-                        query += "SELECT ec.ComponentID as ComponentID, ec.ComponentTitle as ComponentTitle, 1 / (ec.Thickness / km.ThermalCond) as Uvalue, " +
+                        query += "SELECT ec.eBKP as eBKP, ec.ComponentID as ComponentID, ec.ComponentTitle as ComponentTitle, 1 / (ec.Thickness / km.ThermalCond) as Uvalue, " +
                                  "km.Ubp13Embodied as UBP13Embodied, km.Ubp13EoL as UBP13EoL, km.TotalEmbodied as TotalEmbodied, km.TotalEoL as TotalEoL, " +
                                  "km.RenewableEmbodied as RenewableEmbodied, km.RenewableEoL as RenewableEoL, km.NonRenewableEmbodied as NonRenewableEmbodied, " +
                                  "km.NonRenewableEoL as NonRenewableEoL, km.GHGEmbodied as GHGEmbodied, km.GHGEoL as GHGEoL ";
                         break;
 
                     case "min":
-                        query += "SELECT ec.ComponentID as ComponentID, ec.ComponentTitle as ComponentTitle, MIN(1 / (ec.Thickness / km.ThermalCond)) as Uvalue, " +
+                        query += "SELECT ec.eBKP as eBKP, ec.ComponentID as ComponentID, ec.ComponentTitle as ComponentTitle, MIN(1 / (ec.Thickness / km.ThermalCond)) as Uvalue, " +
                                  "MIN(km.Ubp13Embodied) as UBP13Embodied, MIN(km.Ubp13EoL) as UBP13EoL, MIN(km.TotalEmbodied) as TotalEmbodied, MIN(km.TotalEoL) as TotalEoL, " +
                                  "MIN(km.RenewableEmbodied) as RenewableEmbodied, MIN(km.RenewableEoL) as RenewableEoL, MIN(km.NonRenewableEmbodied) as NonRenewableEmbodied, " +
                                  "MIN(km.NonRenewableEoL) as NonRenewableEoL, MIN(km.GHGEmbodied) as GHGEmbodied, MIN(km.GHGEoL) as GHGEoL ";
                         break;
 
                     case "max":
-                        query += "SELECT ec.ComponentID  as ComponentID, ec.ComponentTitle as ComponentTitle, MAX(1 / (ec.Thickness / km.ThermalCond)) as Uvalue, " +
+                        query += "SELECT ec.eBKP as eBKP, ec.ComponentID  as ComponentID, ec.ComponentTitle as ComponentTitle, MAX(1 / (ec.Thickness / km.ThermalCond)) as Uvalue, " +
                                  "MAX(km.Ubp13Embodied) as UBP13Embodied, MAX(km.Ubp13EoL) as UBP13EoL, MAX(km.TotalEmbodied) as TotalEmbodied, MAX(km.TotalEoL) as TotalEoL, " +
                                  "MAX(km.RenewableEmbodied) as RenewableEmbodied, MAX(km.RenewableEoL) as RenewableEoL, MAX(km.NonRenewableEmbodied) as NonRenewableEmbodied, " +
                                  "MAX(km.NonRenewableEoL) as NonRenewableEoL, MAX(km.GHGEmbodied) as GHGEmbodied, MAX(km.GHGEoL) as GHGEoL ";
                         break;
 
                     case "avg":
-                        query += "SELECT ec.ComponentID  as ComponentID, ec.ComponentTitle as ComponentTitle, AVG(1 / (ec.Thickness / km.ThermalCond)) as Uvalue, " +
+                        query += "SELECT ec.eBKP as eBKP, ec.ComponentID  as ComponentID, ec.ComponentTitle as ComponentTitle, AVG(1 / (ec.Thickness / km.ThermalCond)) as Uvalue, " +
                                  "AVG(km.Ubp13Embodied) as UBP13Embodied, AVG(km.Ubp13EoL) as UBP13EoL, AVG(km.TotalEmbodied) as TotalEmbodied, AVG(km.TotalEoL) as TotalEoL, " +
                                  "AVG(km.RenewableEmbodied) as RenewableEmbodied, AVG(km.RenewableEoL) as RenewableEoL, AVG(km.NonRenewableEmbodied) as NonRenewableEmbodied, " +
                                  "AVG(km.NonRenewableEoL) as NonRenewableEoL, AVG(km.GHGEmbodied) as GHGEmbodied, AVG(km.GHGEoL) as GHGEoL ";
@@ -62,7 +62,7 @@ namespace Bombyx2.Data.Access
                          "LEFT JOIN KbobMaterials km " +
                          "ON ec.KBOBID = km.IdKbob " +
                          "WHERE ec.KBOBID between '00.001' AND '21.013' ";
-                
+
                 if (element.Equals("Roof"))
                 {
                     query += Roof;
@@ -117,6 +117,28 @@ namespace Bombyx2.Data.Access
                          "ORDER BY ec.eBKP";
 
                 var output = conn.Query<BuildingLevelModel>(query);
+                return output.ToList();
+            }
+        }
+
+        public static List<string> GetComponentsForElement(string comp, List<string> inputs)
+        {
+            using (IDbConnection conn = new SQLiteConnection(Config.LoadConnectionString()))
+            {
+                var query = "SELECT DISTINCT ec.eBKP || ': ' || km.NameEnglish " +
+                            "FROM EcoKompositComponents ec " +
+                            "LEFT JOIN KbobMaterials km " +
+                            "ON ec.KBOBID = km.IdKbob " +
+                            "WHERE ec.eBKP = '" + comp + "' " +
+                            "AND BuildingHeight LIKE '%" + inputs[0] + "%' " +
+                            "AND BuildingUse LIKE '%" + inputs[1] + "%' " +
+                            "AND EnergyStandard LIKE '%" + inputs[2] + "%' " +
+                            "AND StructuralMaterial LIKE '%" + inputs[3] + "%' " +
+                            "AND km.ThermalCond IS NOT NULL " +
+                            "AND ec.Thickness IS NOT NULL " +
+                            "ORDER BY ec.eBKP";
+
+                var output = conn.Query<string>(query);
                 return output.ToList();
             }
         }

@@ -2,6 +2,7 @@
 {
     public class BuildingLevelModel
     {
+        public string eBKP { get; set; }
         public string ComponentID { get; set; }
         public string ComponentTitle { get; set; }
         public double Uvalue { get; set; }

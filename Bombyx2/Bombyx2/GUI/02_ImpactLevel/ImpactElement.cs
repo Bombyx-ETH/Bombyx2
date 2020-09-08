@@ -12,7 +12,7 @@ namespace Bombyx2.GUI._02_ImpactLevel
         GH_Document GrasshopperDocument;
         IGH_Component Component;
 
-        private string[] FunctionsList = new string[] { "External wall", "Internal wall", "Floor", "Ceiling", "Roof", "Window", "Other" };
+        private string[] FunctionsList = new string[] { "External wall", "Internal wall", "Floor", "Ceiling", "Roof", "Other" };
 
         public ImpactElement()
           : base("Element impact",

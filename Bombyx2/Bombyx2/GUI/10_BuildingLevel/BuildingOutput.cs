@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using Bombyx2.Data.Models;
 using Grasshopper.Kernel;
+using Bombyx2.Data.Access;
+using System.Linq;
 
 namespace Bombyx2.GUI._10_BuildingLevel
 {
@@ -19,8 +21,11 @@ namespace Bombyx2.GUI._10_BuildingLevel
         protected override void RegisterInputParams(GH_InputParamManager pManager)
         {
             pManager.AddGenericParameter("Element values", "Element\nvalues", "Element values", GH_ParamAccess.list);
-            pManager.AddTextParameter("Selected elements", "Selected\nelements", "Selected elements", GH_ParamAccess.list);
+            pManager.AddTextParameter("Selected components", "Selected\ncomponents", "Selected components", GH_ParamAccess.list);
             pManager[1].Optional = true;
+            pManager.AddGenericParameter("Remaining components", "Remaining\ncomponents", "Remaining components", GH_ParamAccess.list);
+            pManager[2].Optional = true;
+            pManager[2].DataMapping = GH_DataMapping.Flatten;
         }
 
         protected override void RegisterOutputParams(GH_OutputParamManager pManager)
@@ -31,28 +36,43 @@ namespace Bombyx2.GUI._10_BuildingLevel
             pManager.AddNumberParameter("(Avg) PE Non-Renewable", "(Avg) PE Non-Renewable (kWh oil-eq a)", "(Avg) PE Non-Renewable (kWh oil-eq a)", GH_ParamAccess.item);
             pManager.AddNumberParameter("(Avg) UBP impact", "(Avg) UBP (P/m\xB2 a)", "(Avg) UBP (P/m\xB2 a)", GH_ParamAccess.item);
             pManager.AddNumberParameter("-","----------------------------------------------", "-", GH_ParamAccess.item);
+            pManager.AddNumberParameter("(Selected) Global warming potential", "(Selected) GWP (kg CO\x2082-eq/m\xB2 a)", "(Selected) Global warming potential (kg CO\x2082-eq/m\xB2 a)", GH_ParamAccess.item);
+            pManager.AddNumberParameter("(Selected) PE Total", "(Selected) PE Total (kWh oil-eq a)", "(Selected) PE Total (kWh oil-eq a)", GH_ParamAccess.item);
+            pManager.AddNumberParameter("(Selected) PE Renewable", "(Selected) PE Renewable (kWh oil-eq a)", "(Selected) PE Renewable (kWh oil-eq a)", GH_ParamAccess.item);
+            pManager.AddNumberParameter("(Selected) PE Non-Renewable", "(Selected) PE Non-Renewable (kWh oil-eq a)", "(Selected) PE Non-Renewable (kWh oil-eq a)", GH_ParamAccess.item);
+            pManager.AddNumberParameter("(Selected) UBP impact", "(Selected) UBP (P/m\xB2 a)", "(Selected) UBP (P/m\xB2 a)", GH_ParamAccess.item);
+            pManager.AddNumberParameter("-", "----------------------------------------------", "-", GH_ParamAccess.item);
             pManager.AddTextParameter("Minimum values", "Minimum values", "Minimum values", GH_ParamAccess.list);
             pManager.AddTextParameter("Maximum values", "Maximum values", "Maximum values", GH_ParamAccess.list);
             pManager.AddTextParameter("Average values", "Average values", "Average values", GH_ParamAccess.list);
-            pManager.AddNumberParameter("-", "----------------------------------------------", "-", GH_ParamAccess.item);
-            pManager.AddTextParameter(" (All) LCA factors (text)", "(All) LCA factors (text)", "(All) Building Properties (text)", GH_ParamAccess.list);
-            pManager.AddNumberParameter(" (All) LCA factors (values)", "(All) LCA factors (values)", "(All) Building Properties (values)", GH_ParamAccess.list);
-            pManager.AddNumberParameter("-", "----------------------------------------------", "-", GH_ParamAccess.item);
-            //pManager.AddNumberParameter("(Selected) Global warming potential", "(Selected) GWP (kg CO\x2082-eq/m\xB2 a)", "(Selected) Global warming potential (kg CO\x2082-eq/m\xB2 a)", GH_ParamAccess.item);
-            //pManager.AddNumberParameter("(Selected) PE Total", "(Selected) PE Total (kWh oil-eq a)", "(Selected) PE Total (kWh oil-eq a)", GH_ParamAccess.item);
-            //pManager.AddNumberParameter("(Selected) PE Renewable", "(Selected) PE Renewable (kWh oil-eq a)", "(Selected) PE Renewable (kWh oil-eq a)", GH_ParamAccess.item);
-            //pManager.AddNumberParameter("(Selected) PE Non-Renewable", "(Selected) PE Non-Renewable (kWh oil-eq a)", "(Selected) PE Non-Renewable (kWh oil-eq a)", GH_ParamAccess.item);
-            //pManager.AddNumberParameter("(Selected) UBP impact", "(Selected) UBP (P/m\xB2 a)", "(Selected) UBP (P/m\xB2 a)", GH_ParamAccess.item);
+            //pManager.AddNumberParameter("-", "----------------------------------------------", "-", GH_ParamAccess.item);
+            //pManager.AddTextParameter(" (All) LCA factors (text)", "(All) LCA factors (text)", "(All) Building Properties (text)", GH_ParamAccess.list);
+            //pManager.AddNumberParameter(" (All) LCA factors (values)", "(All) LCA factors (values)", "(All) Building Properties (values)", GH_ParamAccess.list);
+            //pManager.AddNumberParameter("-", "----------------------------------------------", "-", GH_ParamAccess.item);
+            
             //pManager.AddTextParameter(" (Selected) LCA factors (text)", "(Selected) LCA factors (text)", "(Selected) Building Properties (text)", GH_ParamAccess.item);
             //pManager.AddNumberParameter(" (Selected) LCA factors (values)", "(Selected) LCA factors (values)", "(Selected) Building Properties (values)", GH_ParamAccess.item);
         }
 
         protected override void SolveInstance(IGH_DataAccess DA)
         {
-            var input = new List<BuildingLevelModel>();
-            if (!DA.GetDataList(0, input)) { return; }
+            var inputAll = new List<BuildingLevelModel>();
+            DA.GetDataList(0, inputAll);
 
-            var splited = SplitList(input, 4);
+            var inputSpecific = new List<string>();
+            DA.GetDataList(1, inputSpecific);
+
+            var specificComponents = new List<BuildingLevelModel>();
+            foreach (var item in inputSpecific)
+            {
+                var splitted = item.Split(':');
+                specificComponents.Add(BuildingLevelDataAccess.GetSpecificForBuilding(splitted[0], splitted[1].Trim()));
+            }
+
+            var remainingComponents = new List<BuildingLevelModel>();
+            DA.GetDataList(2, remainingComponents);
+
+            var splited = SplitList(inputAll, 4);
             //summ all
             var ghgSumAll = 0d;
             var peTotalSumAll = 0d;
@@ -77,32 +97,62 @@ namespace Bombyx2.GUI._10_BuildingLevel
             var peRenewableSumAvg = 0d;
             var peNonRenewableSumAvg = 0d;
             var UBPSumAvg = 0d;
+            //summ specific
+            var ghgSumSpecific = 0d;
+            var peTotalSumSpecific = 0d;
+            var peRenewableSumSpecific = 0d;
+            var peNonRenewableSumSpecific = 0d;
+            var UBPSumSpecific = 0d;
+            //summ specific remains
+            var ghgSumSpecificRemain = 0d;
+            var peTotalSumSpecificRemain = 0d;
+            var peRenewableSumSpecificRemain = 0d;
+            var peNonRenewableSumSpecificRemain = 0d;
+            var UBPSumSpecificRemain = 0d;
+
+            if (remainingComponents.Count != 0)
+            {
+                ghgSumSpecificRemain = remainingComponents.Average(ghg1 => ghg1.GHGEmbodied) + remainingComponents.Average(ghg2 => ghg2.GHGEoL);
+                peTotalSumSpecificRemain = remainingComponents.Average(tot1 => tot1.TotalEmbodied) + remainingComponents.Average(tot2 => tot2.TotalEoL);
+                peRenewableSumSpecificRemain = remainingComponents.Average(ren1 => ren1.RenewableEmbodied) + remainingComponents.Average(ren2 => ren2.RenewableEoL);
+                peNonRenewableSumSpecificRemain = remainingComponents.Average(non1 => non1.NonRenewableEmbodied) + remainingComponents.Average(non2 => non2.NonRenewableEoL);
+                UBPSumSpecificRemain = remainingComponents.Average(ubp1 => ubp1.UBP13Embodied) + remainingComponents.Average(ubp2 => ubp2.UBP13EoL);
+            }
 
             foreach (var list in splited)
             {
-                ghgSumAll += list[0].GHGEmbodied + list[0].GHGEoL;
-                peTotalSumAll += list[0].TotalEmbodied + list[0].TotalEoL;
-                peRenewableSumAll += list[0].RenewableEmbodied + list[0].RenewableEoL;
-                peNonRenewableSumAll += list[0].NonRenewableEmbodied + list[0].NonRenewableEoL;
-                UBPSumAll += list[0].UBP13Embodied + list[0].UBP13EoL;
+                ghgSumAll += (list[0].GHGEmbodied + list[0].GHGEoL);
+                peTotalSumAll += (list[0].TotalEmbodied + list[0].TotalEoL);
+                peRenewableSumAll += (list[0].RenewableEmbodied + list[0].RenewableEoL);
+                peNonRenewableSumAll += (list[0].NonRenewableEmbodied + list[0].NonRenewableEoL);
+                UBPSumAll += (list[0].UBP13Embodied + list[0].UBP13EoL);
 
-                ghgSumMin += list[1].GHGEmbodied + list[1].GHGEoL;
-                peTotalSumMin += list[1].TotalEmbodied + list[1].TotalEoL;
-                peRenewableSumMin += list[1].RenewableEmbodied + list[1].RenewableEoL;
-                peNonRenewableSumMin += list[1].NonRenewableEmbodied + list[1].NonRenewableEoL;
-                UBPSumMin += list[1].UBP13Embodied + list[1].UBP13EoL;
+                ghgSumMin += (list[1].GHGEmbodied + list[1].GHGEoL);
+                peTotalSumMin += (list[1].TotalEmbodied + list[1].TotalEoL);
+                peRenewableSumMin += (list[1].RenewableEmbodied + list[1].RenewableEoL);
+                peNonRenewableSumMin += (list[1].NonRenewableEmbodied + list[1].NonRenewableEoL);
+                UBPSumMin += (list[1].UBP13Embodied + list[1].UBP13EoL);
 
-                ghgSumMax += list[2].GHGEmbodied + list[2].GHGEoL;
-                peTotalSumMax += list[2].TotalEmbodied + list[2].TotalEoL;
-                peRenewableSumMax += list[2].RenewableEmbodied + list[2].RenewableEoL;
-                peNonRenewableSumMax += list[2].NonRenewableEmbodied + list[2].NonRenewableEoL;
-                UBPSumMax += list[2].UBP13Embodied + list[2].UBP13EoL;
+                ghgSumMax += (list[2].GHGEmbodied + list[2].GHGEoL);
+                peTotalSumMax += (list[2].TotalEmbodied + list[2].TotalEoL);
+                peRenewableSumMax += (list[2].RenewableEmbodied + list[2].RenewableEoL);
+                peNonRenewableSumMax += (list[2].NonRenewableEmbodied + list[2].NonRenewableEoL);
+                UBPSumMax += (list[2].UBP13Embodied + list[2].UBP13EoL);
 
-                ghgSumAvg += list[3].GHGEmbodied + list[3].GHGEoL;
-                peTotalSumAvg += list[3].TotalEmbodied + list[3].TotalEoL;
-                peRenewableSumAvg += list[3].RenewableEmbodied + list[3].RenewableEoL;
-                peNonRenewableSumAvg += list[3].NonRenewableEmbodied + list[3].NonRenewableEoL;
-                UBPSumAvg += list[3].UBP13Embodied + list[3].UBP13EoL;
+                ghgSumAvg += (list[3].GHGEmbodied + list[3].GHGEoL);
+                peTotalSumAvg += (list[3].TotalEmbodied + list[3].TotalEoL);
+                peRenewableSumAvg += (list[3].RenewableEmbodied + list[3].RenewableEoL);
+                peNonRenewableSumAvg += (list[3].NonRenewableEmbodied + list[3].NonRenewableEoL);
+                UBPSumAvg += (list[3].UBP13Embodied + list[3].UBP13EoL);
+            }
+
+            foreach (var item in specificComponents)
+            {
+                ghgSumSpecific += (item.GHGEmbodied + item.GHGEoL);
+                peTotalSumSpecific += (item.TotalEmbodied + item.TotalEoL);
+                peRenewableSumSpecific += (item.RenewableEmbodied + item.RenewableEoL);
+                peNonRenewableSumSpecific += (item.NonRenewableEmbodied + item.NonRenewableEoL);
+                UBPSumSpecific += (item.UBP13Embodied + item.UBP13EoL);
             }
 
             var resultsMin = new Dictionary<string, double>
@@ -138,9 +188,15 @@ namespace Bombyx2.GUI._10_BuildingLevel
             DA.SetData(3, Math.Round(peNonRenewableSumAvg, 2));
             DA.SetData(4, Math.Round(UBPSumAvg, 2));
 
-            DA.SetDataList(6, resultsMin);
-            DA.SetDataList(7, resultsMax);
-            DA.SetDataList(8, resultsAvg);
+            DA.SetData(6, Math.Round(ghgSumSpecific + ghgSumSpecificRemain, 2));
+            DA.SetData(7, Math.Round(peTotalSumSpecific + peTotalSumSpecificRemain, 2));
+            DA.SetData(8, Math.Round(peRenewableSumSpecific + peRenewableSumSpecificRemain, 2));
+            DA.SetData(9, Math.Round(peNonRenewableSumSpecific + peNonRenewableSumSpecificRemain, 2));
+            DA.SetData(10, Math.Round(UBPSumSpecific + UBPSumSpecificRemain, 2));
+
+            DA.SetDataList(12, resultsMin);
+            DA.SetDataList(13, resultsMax);
+            DA.SetDataList(14, resultsAvg);
         }
 
         protected override System.Drawing.Bitmap Icon

@@ -125,7 +125,7 @@ namespace Bombyx2.Data.Access
         {
             using (IDbConnection conn = new SQLiteConnection(Config.LoadConnectionString()))
             {
-                var query = "SELECT DISTINCT ec.eBKP || ': ' || km.NameEnglish " +
+                var query = "SELECT DISTINCT ec.eBKP || ': ' || ec.ComponentTitle " +
                             "FROM EcoKompositComponents ec " +
                             "LEFT JOIN KbobMaterials km " +
                             "ON ec.KBOBID = km.IdKbob " +
@@ -140,6 +140,27 @@ namespace Bombyx2.Data.Access
 
                 var output = conn.Query<string>(query);
                 return output.ToList();
+            }
+        }
+
+        public static BuildingLevelModel GetSpecificForBuilding(string ebkp, string name)
+        {
+            using (IDbConnection conn = new SQLiteConnection(Config.LoadConnectionString()))
+            {
+                var query = "SELECT ec.eBKP as eBKP, ec.ComponentID as ComponentID, ec.ComponentTitle as ComponentTitle, 1 / (ec.Thickness / km.ThermalCond) as Uvalue, " +
+                            "km.Ubp13Embodied as UBP13Embodied, km.Ubp13EoL as UBP13EoL, km.TotalEmbodied as TotalEmbodied, km.TotalEoL as TotalEoL, " +
+                            "km.RenewableEmbodied as RenewableEmbodied, km.RenewableEoL as RenewableEoL, km.NonRenewableEmbodied as NonRenewableEmbodied, " +
+                            "km.NonRenewableEoL as NonRenewableEoL, km.GHGEmbodied as GHGEmbodied, km.GHGEoL as GHGEoL " +            
+                            "FROM EcoKompositComponents ec " +
+                            "LEFT JOIN KbobMaterials km " +
+                            "ON ec.KBOBID = km.IdKbob " +
+                            "WHERE ec.eBKP = '" + ebkp + "' " +
+                            "AND ec.ComponentTitle = '" + name + "' " +
+                            "AND km.ThermalCond IS NOT NULL " +
+                            "AND ec.Thickness IS NOT NULL";
+
+                var output = conn.QueryFirst<BuildingLevelModel>(query);
+                return output;
             }
         }
     }

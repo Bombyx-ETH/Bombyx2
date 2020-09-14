@@ -46,7 +46,7 @@ namespace Bombyx2.GUI._10_BuildingLevel
         protected override void RegisterOutputParams(GH_OutputParamManager pManager)
         {
             pManager.AddGenericParameter("Element values", "Element values", "Element values", GH_ParamAccess.list);
-            pManager.AddGenericParameter("List of Elements", "List of Elements", "List of Elements", GH_ParamAccess.list);
+            pManager.AddGenericParameter("List of components", "List of components", "List of components", GH_ParamAccess.list);
             pManager.AddTextParameter("Building inputs", "Building inputs", "Building inputs", GH_ParamAccess.list);
             pManager.AddNumberParameter("-", "---------------------", "-", GH_ParamAccess.item);
             pManager.AddTextParameter("Minimum values", "Minimum values", "Minimum values", GH_ParamAccess.list);

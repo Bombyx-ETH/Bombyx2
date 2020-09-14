@@ -25,7 +25,7 @@ namespace Bombyx2.GUI._10_BuildingLevel
 
         protected override void RegisterInputParams(GH_InputParamManager pManager)
         {
-            pManager.AddGenericParameter("List of elements", "List of elements", "List of elements", GH_ParamAccess.list);
+            pManager.AddGenericParameter("List of components", "List of components", "List of components", GH_ParamAccess.list);
             pManager.AddTextParameter("Building inputs", "Building inputs", "Building inputs", GH_ParamAccess.list);
             pManager.AddTextParameter("Component eBKP", "Component eBKP", "Component eBKP", GH_ParamAccess.item);
             pManager[2].Optional = true;
@@ -33,8 +33,8 @@ namespace Bombyx2.GUI._10_BuildingLevel
 
         protected override void RegisterOutputParams(GH_OutputParamManager pManager)
         {
-            pManager.AddTextParameter("Specific component", "Specific component", "Specific component", GH_ParamAccess.list);
-            pManager.AddGenericParameter("Element values", "Element values", "Element values", GH_ParamAccess.list);
+            pManager.AddTextParameter("Specific component", "Specific\ncomponent", "Specific component", GH_ParamAccess.list);
+            pManager.AddGenericParameter("Remaining components", "Remaining\ncomponents", "Remaining components", GH_ParamAccess.list);
             pManager.AddTextParameter("Building inputs", "Building inputs", "Building inputs", GH_ParamAccess.list);
         }
 

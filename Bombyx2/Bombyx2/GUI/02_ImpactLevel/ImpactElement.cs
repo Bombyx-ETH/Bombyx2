@@ -26,7 +26,7 @@ namespace Bombyx2.GUI._02_ImpactLevel
         protected override void RegisterInputParams(GH_InputParamManager pManager)
         {
             pManager.AddNumberParameter("Component properties", "Component\nproperties", "List of component properties", GH_ParamAccess.list);
-            pManager.AddTextParameter("Thermal ressistivity", "Thermal ressistivity", "By selecting element's Thermal ressistivity, air resistance will be added to the U value.", GH_ParamAccess.item);
+            pManager.AddTextParameter("Thermal resistivity", "Thermal resistivity", "By selecting element's Thermal resistivity, air resistance will be added to the U value.", GH_ParamAccess.item);
             pManager[1].Optional = true;
             pManager.AddNumberParameter("Surface area (square meters)", "Surface area (m\xB2)", "Manual value", GH_ParamAccess.item);
             pManager[2].Optional = true;
@@ -53,7 +53,7 @@ namespace Bombyx2.GUI._02_ImpactLevel
 
             if (Params.Input[0].SourceCount == 1 && Params.Input[1].SourceCount == 0)
             {
-                CreateSelectionList(FunctionsList, "Thermal ressistivity", 1, 200, 50);
+                CreateSelectionList(FunctionsList, "Thermal resistivity", 1, 200, 50);
                 ExpireSolution(true);
             }
 

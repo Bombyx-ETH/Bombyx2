@@ -36,7 +36,7 @@ namespace Bombyx2.GUI._10_BuildingLevel
 
         protected override void RegisterInputParams(GH_InputParamManager pManager)
         {
-            pManager.AddTextParameter("Element", "Element", "Element", GH_ParamAccess.list);
+            pManager.AddTextParameter("Building parameters", "Building parameters", "Building parameters", GH_ParamAccess.list);
             pManager.AddTextParameter("Element type", "Element type", "Element type", GH_ParamAccess.item);
             pManager[1].Optional = true;
             pManager.AddNumberParameter("Area (m\xB2)", "Area (m\xB2)", "Area in square meters", GH_ParamAccess.item);

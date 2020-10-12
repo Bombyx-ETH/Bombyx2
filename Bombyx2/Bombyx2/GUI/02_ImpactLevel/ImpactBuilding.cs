@@ -67,8 +67,8 @@ namespace Bombyx2.GUI._02_ImpactLevel
                 { "PE Non Renewable End of Life (kWh oil-eq a)", 0 },
                 { "Green House Gasses Embodied (kg CO\x2082-eq/m\xB2 a)", 0 },
                 { "Green House Gasses Replacements (kg CO\x2082-eq/m\xB2 a)", 0 },
-                { "Green House Gasses End of Life (kg CO\x2082-eq/m\xB2 a)", 0 },
-                { "U value", 0 }
+                { "Green House Gasses End of Life (kg CO\x2082-eq/m\xB2 a)", 0 }
+                //{ "U value", 0 }
             };
 
             foreach (var item in valueSets)
@@ -88,7 +88,7 @@ namespace Bombyx2.GUI._02_ImpactLevel
                 results["Green House Gasses Embodied (kg CO\x2082-eq/m\xB2 a)"] += item[12];
                 results["Green House Gasses Replacements (kg CO\x2082-eq/m\xB2 a)"] += item[13];
                 results["Green House Gasses End of Life (kg CO\x2082-eq/m\xB2 a)"] += item[14];
-                results["U value"] += item[15];
+                //results["U value"] += item[15];
             }
 
             results["UBP13 Embodied (P/m\xB2 a)"] = Math.Round(results["UBP13 Embodied (P/m\xB2 a)"] /rspNFA, 2);
@@ -106,7 +106,7 @@ namespace Bombyx2.GUI._02_ImpactLevel
             results["Green House Gasses Embodied (kg CO\x2082-eq/m\xB2 a)"] = Math.Round(results["Green House Gasses Embodied (kg CO\x2082-eq/m\xB2 a)"] / rspNFA, 2);
             results["Green House Gasses Replacements (kg CO\x2082-eq/m\xB2 a)"] = Math.Round(results["Green House Gasses Replacements (kg CO\x2082-eq/m\xB2 a)"] / rspNFA, 2);
             results["Green House Gasses End of Life (kg CO\x2082-eq/m\xB2 a)"] = Math.Round(results["Green House Gasses End of Life (kg CO\x2082-eq/m\xB2 a)"] / rspNFA, 2);
-            results["U value"] = Math.Round(results["U value"], 4);
+            //results["U value"] = Math.Round(results["U value"], 4);
 
             var gwp = Math.Round((results["Green House Gasses Embodied (kg CO\x2082-eq/m\xB2 a)"] +
                                   results["Green House Gasses Replacements (kg CO\x2082-eq/m\xB2 a)"] +

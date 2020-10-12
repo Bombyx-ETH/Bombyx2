@@ -30,7 +30,7 @@ namespace Bombyx2.GUI._02_ImpactLevel
         {
             pManager.AddTextParameter("LCA factors (text)", "LCA factors (text)", "Element Properties (text)", GH_ParamAccess.item);
             pManager.AddNumberParameter("LCA factors (values)", "LCA factors (values)", "Element Properties (values)", GH_ParamAccess.item);
-            pManager.AddNumberParameter("U value", "U value (W/K)", "U Value", GH_ParamAccess.item);
+            pManager.AddNumberParameter("U value", "U value (W/m2*K)", "U Value", GH_ParamAccess.item);
             pManager.AddTextParameter("LCA frame (text)", "LCA frame (text)", "Frame (text)", GH_ParamAccess.item);
             pManager.AddTextParameter("LCA filling (text)", "LCA filling (text)", "Filling (text)", GH_ParamAccess.item);
         }
@@ -90,7 +90,7 @@ namespace Bombyx2.GUI._02_ImpactLevel
                 { "Green House Gasses Embodied (kg CO\x2082-eq/m\xB2)", frame[9] * frameArea },
                 { "Green House Gasses Replacements (kg CO\x2082-eq/m\xB2)", ((frame[9] + frame[10]) * repNum) * frameArea },
                 { "Green House Gasses End of Life (kg CO\x2082-eq/m\xB2)", frame[10] * frameArea },
-                { "U value: (1/Rf)*area(filling)", (1 / frame[11]) * frameArea }
+                { "U value: (1/Rf)*area(filling)", frame[11] * frameArea }
             };
 
             var fillingDict = new Dictionary<string, double>
@@ -110,7 +110,7 @@ namespace Bombyx2.GUI._02_ImpactLevel
                 { "Green House Gasses Embodied (kg CO\x2082-eq/m\xB2)", filling[9] * fillingArea },
                 { "Green House Gasses Replacements (kg CO\x2082-eq/m\xB2)", ((filling[9] + filling[10]) * repNum) * fillingArea },
                 { "Green House Gasses End of Life (kg CO\x2082-eq/m\xB2)", filling[10] * fillingArea },
-                { "U value: (1/Rg)*area(glasing)", (1 / filling[11]) * fillingArea }
+                { "U value: (1/Rg)*area(glasing)", filling[11] * fillingArea }
             };
 
             var window = new Dictionary<string, double>

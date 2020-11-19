@@ -89,13 +89,7 @@ namespace Bombyx2.GUI._10_BuildingLevel
 
             var rspNFA = RSP * NFA;
 
-            var splited = SplitList(inputAll, 4);
-            //summ all
-            var ghgSumAll = 0d;
-            var peTotalSumAll = 0d;
-            var peRenewableSumAll = 0d;
-            var peNonRenewableSumAll = 0d;
-            var UBPSumAll = 0d;
+            var splited = SplitList(inputAll, 3);
             //summ min
             var ghgSumMin = 0d;
             var peTotalSumMin = 0d;
@@ -138,29 +132,23 @@ namespace Bombyx2.GUI._10_BuildingLevel
 
             foreach (var list in splited)
             {
-                ghgSumAll += (list[0].GHGEmbodied + list[0].GHGEoL);
-                peTotalSumAll += (list[0].TotalEmbodied + list[0].TotalEoL);
-                peRenewableSumAll += (list[0].RenewableEmbodied + list[0].RenewableEoL);
-                peNonRenewableSumAll += (list[0].NonRenewableEmbodied + list[0].NonRenewableEoL);
-                UBPSumAll += (list[0].UBP13Embodied + list[0].UBP13EoL);
+                ghgSumMin += (list[0].GHGEmbodied + list[0].GHGEoL);
+                peTotalSumMin += (list[0].TotalEmbodied + list[0].TotalEoL);
+                peRenewableSumMin += (list[0].RenewableEmbodied + list[0].RenewableEoL);
+                peNonRenewableSumMin += (list[0].NonRenewableEmbodied + list[0].NonRenewableEoL);
+                UBPSumMin += (list[0].UBP13Embodied + list[0].UBP13EoL);
 
-                ghgSumMin += (list[1].GHGEmbodied + list[1].GHGEoL);
-                peTotalSumMin += (list[1].TotalEmbodied + list[1].TotalEoL);
-                peRenewableSumMin += (list[1].RenewableEmbodied + list[1].RenewableEoL);
-                peNonRenewableSumMin += (list[1].NonRenewableEmbodied + list[1].NonRenewableEoL);
-                UBPSumMin += (list[1].UBP13Embodied + list[1].UBP13EoL);
+                ghgSumMax += (list[1].GHGEmbodied + list[1].GHGEoL);
+                peTotalSumMax += (list[1].TotalEmbodied + list[1].TotalEoL);
+                peRenewableSumMax += (list[1].RenewableEmbodied + list[1].RenewableEoL);
+                peNonRenewableSumMax += (list[1].NonRenewableEmbodied + list[1].NonRenewableEoL);
+                UBPSumMax += (list[1].UBP13Embodied + list[1].UBP13EoL);
 
-                ghgSumMax += (list[2].GHGEmbodied + list[2].GHGEoL);
-                peTotalSumMax += (list[2].TotalEmbodied + list[2].TotalEoL);
-                peRenewableSumMax += (list[2].RenewableEmbodied + list[2].RenewableEoL);
-                peNonRenewableSumMax += (list[2].NonRenewableEmbodied + list[2].NonRenewableEoL);
-                UBPSumMax += (list[2].UBP13Embodied + list[2].UBP13EoL);
-
-                ghgSumAvg += (list[3].GHGEmbodied + list[3].GHGEoL);
-                peTotalSumAvg += (list[3].TotalEmbodied + list[3].TotalEoL);
-                peRenewableSumAvg += (list[3].RenewableEmbodied + list[3].RenewableEoL);
-                peNonRenewableSumAvg += (list[3].NonRenewableEmbodied + list[3].NonRenewableEoL);
-                UBPSumAvg += (list[3].UBP13Embodied + list[3].UBP13EoL);
+                ghgSumAvg += (list[2].GHGEmbodied + list[2].GHGEoL);
+                peTotalSumAvg += (list[2].TotalEmbodied + list[2].TotalEoL);
+                peRenewableSumAvg += (list[2].RenewableEmbodied + list[2].RenewableEoL);
+                peNonRenewableSumAvg += (list[2].NonRenewableEmbodied + list[2].NonRenewableEoL);
+                UBPSumAvg += (list[2].UBP13Embodied + list[2].UBP13EoL);
             }
 
             foreach (var item in specificComponents)
@@ -175,50 +163,38 @@ namespace Bombyx2.GUI._10_BuildingLevel
             var resultsMin = new Dictionary<string, double>
             {
                 { "(Min) GWP (kg CO\x2082-eq/m\xB2 a)", Math.Round(ghgSumMin / rspNFA, 4) },
-                { "(Min) PE Total (kWh oil-eq a)", Math.Round(peTotalSumMin / rspNFA, 4) },
-                { "(Min) PE Renewable (kWh oil-eq a)", Math.Round(peRenewableSumMin / rspNFA, 4) },
-                { "(Min) PE Non-Renewable (kWh oil-eq a)", Math.Round(peNonRenewableSumMin / rspNFA, 4) },
+                { "(Min) PE Total (kWh oil-eq/m\xB2 a)", Math.Round(peTotalSumMin / rspNFA, 4) },
+                { "(Min) PE Renewable (kWh oil-eq/m\xB2 a)", Math.Round(peRenewableSumMin / rspNFA, 4) },
+                { "(Min) PE Non-Renewable (kWh oil-eq/m\xB2 a)", Math.Round(peNonRenewableSumMin / rspNFA, 4) },
                 { "(Min) UBP (P/m\xB2 a)", Math.Round(UBPSumMin / rspNFA, 4) },
             };
 
             var resultsMax = new Dictionary<string, double>
             {
-                { "(Max) GWP (kg CO\x2082-eq/m\xB2 a)", Math.Round(ghgSumMax / rspNFA, 2) },
-                { "(Max) PE Total (kWh oil-eq a)", Math.Round(peTotalSumMax / rspNFA, 2) },
-                { "(Max) PE Renewable (kWh oil-eq a)", Math.Round(peRenewableSumMax / rspNFA, 2) },
-                { "(Max) PE Non-Renewable (kWh oil-eq a)", Math.Round(peNonRenewableSumMax / rspNFA, 2) },
+                { "(Max) GWP (kg CO\x2082-eq/m\xB2 a)", Math.Round(ghgSumMax / rspNFA, 4) },
+                { "(Max) PE Total (kWh oil-eq/m\xB2 a)", Math.Round(peTotalSumMax / rspNFA, 4) },
+                { "(Max) PE Renewable (kWh oil-eq/m\xB2 a)", Math.Round(peRenewableSumMax / rspNFA, 4) },
+                { "(Max) PE Non-Renewable (kWh oil-eq/m\xB2 a)", Math.Round(peNonRenewableSumMax / rspNFA, 4) },
                 { "(Max) UBP (P/m\xB2 a)", Math.Round(UBPSumMax / rspNFA, 2) },
             };
 
             var resultsAvg = new Dictionary<string, double>
             {
-                { "(Avg) GWP (kg CO\x2082-eq/m\xB2 a)", Math.Round(ghgSumAvg / rspNFA, 2) },
-                { "(Avg) PE Total (kWh oil-eq a)", Math.Round(peTotalSumAvg / rspNFA, 2) },
-                { "(Avg) PE Renewable (kWh oil-eq a)", Math.Round(peRenewableSumAvg / rspNFA, 2) },
-                { "(Avg) PE Non-Renewable (kWh oil-eq a)", Math.Round(peNonRenewableSumAvg / rspNFA, 2) },
-                { "(Avg) UBP (P/m\xB2 a)", Math.Round(UBPSumAvg / rspNFA, 2) },
+                { "(Avg) GWP (kg CO\x2082-eq/m\xB2 a)", Math.Round(ghgSumAvg / rspNFA, 4) },
+                { "(Avg) PE Total (kWh oil-eq/m\xB2 a)", Math.Round(peTotalSumAvg / rspNFA, 4) },
+                { "(Avg) PE Renewable (kWh oil-eq/m\xB2 a)", Math.Round(peRenewableSumAvg / rspNFA, 4) },
+                { "(Avg) PE Non-Renewable (kWh oil-eq/m\xB2 a)", Math.Round(peNonRenewableSumAvg / rspNFA, 4) },
+                { "(Avg) UBP (P/m\xB2 a)", Math.Round(UBPSumAvg / rspNFA, 4) },
             };
 
             var resultsSpecific = new Dictionary<string, double>
             {
-                { "(Avg) GWP (kg CO\x2082-eq/m\xB2 a)", Math.Round((ghgSumSpecific + ghgSumSpecificRemain) / rspNFA, 2) },
-                { "(Avg) PE Total (kWh oil-eq a)", Math.Round((peTotalSumSpecific + peTotalSumSpecificRemain) / rspNFA, 2) },
-                { "(Avg) PE Renewable (kWh oil-eq a)", Math.Round((peRenewableSumSpecific + peRenewableSumSpecificRemain) / rspNFA, 2) },
-                { "(Avg) PE Non-Renewable (kWh oil-eq a)", Math.Round((peNonRenewableSumSpecific + peNonRenewableSumSpecificRemain) / rspNFA, 2) },
-                { "(Avg) UBP (P/m\xB2 a)", Math.Round((UBPSumSpecific + UBPSumSpecificRemain) / rspNFA, 2) },
+                { "(Avg) GWP (kg CO\x2082-eq/m\xB2 a)", Math.Round((ghgSumSpecific + ghgSumSpecificRemain) / rspNFA, 4) },
+                { "(Avg) PE Total (kWh oil-eq/m\xB2 a)", Math.Round((peTotalSumSpecific + peTotalSumSpecificRemain) / rspNFA, 4) },
+                { "(Avg) PE Renewable (kWh oil-eq/m\xB2 a)", Math.Round((peRenewableSumSpecific + peRenewableSumSpecificRemain) / rspNFA, 4) },
+                { "(Avg) PE Non-Renewable (kWh oil-eq/m\xB2 a)", Math.Round((peNonRenewableSumSpecific + peNonRenewableSumSpecificRemain) / rspNFA, 4) },
+                { "(Avg) UBP (P/m\xB2 a)", Math.Round((UBPSumSpecific + UBPSumSpecificRemain) / rspNFA, 4) },
             };
-
-            //DA.SetData(0, Math.Round(ghgSumAvg, 2));
-            //DA.SetData(1, Math.Round(peTotalSumAvg, 2));
-            //DA.SetData(2, Math.Round(peRenewableSumAvg, 2));
-            //DA.SetData(3, Math.Round(peNonRenewableSumAvg, 2));
-            //DA.SetData(4, Math.Round(UBPSumAvg, 2));
-
-            //DA.SetData(6, Math.Round(ghgSumSpecific + ghgSumSpecificRemain, 2));
-            //DA.SetData(7, Math.Round(peTotalSumSpecific + peTotalSumSpecificRemain, 2));
-            //DA.SetData(8, Math.Round(peRenewableSumSpecific + peRenewableSumSpecificRemain, 2));
-            //DA.SetData(9, Math.Round(peNonRenewableSumSpecific + peNonRenewableSumSpecificRemain, 2));
-            //DA.SetData(10, Math.Round(UBPSumSpecific + UBPSumSpecificRemain, 2));
 
             var resultsMinValues = resultsMin.Values.ToList();
             DA.SetDataList(0, resultsMin);

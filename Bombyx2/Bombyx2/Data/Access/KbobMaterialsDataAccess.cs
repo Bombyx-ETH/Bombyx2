@@ -61,7 +61,7 @@ namespace Bombyx2.Data.Access
         {
             using (IDbConnection conn = new SQLiteConnection(Config.LoadConnectionString()))
             {
-                var output = conn.Query<string>("SELECT IdKbob || ': ' || NameGerman FROM KbobEnergy WHERE IdKbob IN('43.001','43.002','43.006','43.007','43.008','43.009','44.001','44.002','44.003')", new DynamicParameters());
+                var output = conn.Query<string>("SELECT IdKbob || ': ' || NameGerman FROM KbobEnergy", new DynamicParameters());
                 return output.ToList();
             }
         }
@@ -97,6 +97,19 @@ namespace Bombyx2.Data.Access
             using (IDbConnection conn = new SQLiteConnection(Config.LoadConnectionString()))
             {
                 var output = conn.Query<KbobServiceModel>("SELECT * FROM KbobServices", new DynamicParameters());
+                return output.ToList();
+            }
+        }
+
+        #endregion
+
+        #region Transport
+
+        public static List<KbobTransportModel> GetTransportMaterial()
+        {
+            using (IDbConnection conn = new SQLiteConnection(Config.LoadConnectionString()))
+            {
+                var output = conn.Query<KbobTransportModel>("SELECT * FROM KbobTransport WHERE IdKbob LIKE '62%'", new DynamicParameters());
                 return output.ToList();
             }
         }

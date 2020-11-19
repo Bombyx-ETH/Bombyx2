@@ -72,9 +72,9 @@ namespace Bombyx2.GUI._02_ImpactLevel
                 { "PE Non Renewable Embodied (kWh oil-eq)", 0 },
                 { "PE Non Renewable Replacements (kWh oil-eq)", 0 },
                 { "PE Non Renewable End of Life (kWh oil-eq)", 0 },
-                { "Green House Gasses Embodied (kg CO\x2082-eq/m\xB2)", 0 },
-                { "Green House Gasses Replacements (kg CO\x2082-eq/m\xB2)", 0 },
-                { "Green House Gasses End of Life (kg CO\x2082-eq/m\xB2)", 0 },
+                { "Green House Gasses Embodied (kg CO\x2082-eq)", 0 },
+                { "Green House Gasses Replacements (kg CO\x2082-eq)", 0 },
+                { "Green House Gasses End of Life (kg CO\x2082-eq)", 0 },
                 { "R value", 0 }
             };
 
@@ -92,9 +92,9 @@ namespace Bombyx2.GUI._02_ImpactLevel
                 results["PE Non Renewable Embodied (kWh oil-eq)"] += item[7];
                 results["PE Non Renewable Replacements (kWh oil-eq)"] += ((item[7] + item[8]) * repNum);
                 results["PE Non Renewable End of Life (kWh oil-eq)"] += item[8];
-                results["Green House Gasses Embodied (kg CO\x2082-eq/m\xB2)"] += item[9];
-                results["Green House Gasses Replacements (kg CO\x2082-eq/m\xB2)"] += ((item[9] + item[10]) * repNum);
-                results["Green House Gasses End of Life (kg CO\x2082-eq/m\xB2)"] += item[10];
+                results["Green House Gasses Embodied (kg CO\x2082-eq)"] += item[9];
+                results["Green House Gasses Replacements (kg CO\x2082-eq)"] += ((item[9] + item[10]) * repNum);
+                results["Green House Gasses End of Life (kg CO\x2082-eq)"] += item[10];
                 results["R value"] = Math.Round(results["R value"] + item[11], 4);
             }
 

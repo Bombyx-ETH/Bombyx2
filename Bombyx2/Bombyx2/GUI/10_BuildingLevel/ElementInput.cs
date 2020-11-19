@@ -13,6 +13,82 @@ namespace Bombyx2.GUI._10_BuildingLevel
         GH_Document GrasshopperDocument;
         IGH_Component Component;
 
+        private List<string> Roof = new List<string> {
+            "AND eBKP = 'C 4.4' ",
+            "AND eBKP = 'F 1.1' ",
+            "AND eBKP = 'F 1.2' ",
+            "AND eBKP = 'F 1.3' ",
+            "AND eBKP = 'G 4.1' ",
+            "AND eBKP = 'G 4.2' " };
+
+        private List<string> InteriorWalls = new List<string> {
+            "AND eBKP = 'C 2.2' ",
+            "AND eBKP = 'G 3.1' " };
+
+        private List<string> PartitionWalls = new List<string> {
+            "AND eBKP = 'G 1.1' ",
+            "AND eBKP = 'G 1.3' ",
+            "AND eBKP = 'G 1.4' ",
+            "AND eBKP = 'G 3.1' ",
+            "AND eBKP = 'G 3.2' " };
+
+        private List<string> Windows = new List<string> { "AND eBKP = 'E 3.1' " };
+
+        private List<string> Balcony = new List<string> { "AND eBKP = 'C 4.3' " };
+
+        private List<string> TechnicalEquipment = new List<string> {
+            "AND eBKP = 'D 1.1' ",
+            "AND eBKP = 'D 1.2' ",
+            "AND eBKP = 'D 1.5' ",
+            "AND eBKP = 'D 1.6' ",
+            "AND eBKP = 'D 5.2' ",
+            "AND eBKP = 'D 5.3' ",
+            "AND eBKP = 'D 5.4' ",
+            "AND eBKP = 'D 7.1' ",
+            "AND eBKP = 'D 7.2' ",
+            "AND eBKP = 'D 7.3' ",
+            "AND eBKP = 'D 7.4' ",
+            "AND eBKP = 'D 7.5' ",
+            "AND eBKP = 'D 8.1' ",
+            "AND eBKP = 'D 8.3' ",
+            "AND eBKP = 'D 8.4' ",
+            "AND eBKP = 'D 8.5' " };
+
+        private List<string> Ceilings = new List<string> {
+            "AND eBKP = 'C 4.1' ",
+            "AND eBKP = 'G 4.1' ",
+            "AND eBKP = 'G 4.2' ",
+            "AND eBKP = 'G 2.1' ",
+            "AND eBKP = 'G 2.2' " };
+
+        private List<string> Columns = new List<string> { "AND eBKP = 'C 3.2' " };
+
+        private List<string> ExtWallsAboveGround = new List<string> {
+            "AND eBKP = 'C 2.1' ",
+            "AND eBKP = 'E 2.1' ",
+            "AND eBKP = 'E 2.2' ",
+            "AND eBKP = 'E 2.3' ",
+            "AND eBKP = 'E 2.4' ",
+            "AND eBKP = 'E 2.5' ",
+            "AND eBKP = 'E 2.6' ",
+            "AND eBKP = 'G 3.1' ",
+            "AND eBKP = 'G 3.2' " };
+
+        private List<string> ExtWallsUnderGround = new List<string> {
+            "AND eBKP = 'C 2.1' ",
+            "AND eBKP = 'E 1.1' ",
+            "AND eBKP = 'E 1.2' ",
+            "AND eBKP = 'E 1.3' " };
+
+        private List<string> Foundation = new List<string> {
+            "AND eBKP = 'C 1.1' ",
+            "AND eBKP = 'C 1.2' ",
+            "AND eBKP = 'C 1.3' ",
+            "AND eBKP = 'C 1.4' ",
+            "AND eBKP = 'C 1.5' ",
+            "AND eBKP = 'G 2.1' ",
+            "AND eBKP = 'G 2.2' " };
+
         private string[] ELEMENT = new string[] { "Roof",
                                                   "Interior walls",
                                                   "Partition walls",
@@ -78,289 +154,226 @@ namespace Bombyx2.GUI._10_BuildingLevel
             var resultsMin = new List<BuildingLevelModel>();
             var resultsMax = new List<BuildingLevelModel>();
             var resultsAvg = new List<BuildingLevelModel>();
-            var output = new List<BuildingLevelModel>();
-            var outputAll = new BuildingLevelModel();
+
+            switch (element)
+            {             
+                case "Roof":               
+                    foreach (var comp in Roof)
+                    {
+                        resultsMin.Add(BuildingLevelDataAccess.GetComponentsForBuilding(null, comp, inputs, "min"));
+                        resultsMax.Add(BuildingLevelDataAccess.GetComponentsForBuilding(null, comp, inputs, "max"));
+                        resultsAvg.Add(BuildingLevelDataAccess.GetComponentsForBuilding("Roof", null, inputs, "avg"));
+                    }
+
+                    resultsAll = BuildingLevelDataAccess.GetAllComponentsForBuilding("Roof", inputs, area);
+                    break;
+
+                case "Interior walls":
+                    foreach (var comp in InteriorWalls)
+                    {
+                        resultsMin.Add(BuildingLevelDataAccess.GetComponentsForBuilding(null, comp, inputs, "min"));
+                        resultsMax.Add(BuildingLevelDataAccess.GetComponentsForBuilding(null, comp, inputs, "max"));
+                        resultsAvg.Add(BuildingLevelDataAccess.GetComponentsForBuilding("InteriorWalls", null, inputs, "avg"));
+                    }
+
+                    resultsAll = BuildingLevelDataAccess.GetAllComponentsForBuilding("InteriorWalls", inputs, area);
+                    break;
+
+                case "Partition walls":
+                    foreach (var comp in PartitionWalls)
+                    {
+                        resultsMin.Add(BuildingLevelDataAccess.GetComponentsForBuilding(null, comp, inputs, "min"));
+                        resultsMax.Add(BuildingLevelDataAccess.GetComponentsForBuilding(null, comp, inputs, "max"));
+                        resultsAvg.Add(BuildingLevelDataAccess.GetComponentsForBuilding("PartitionWalls", null, inputs, "avg"));
+                    }
+
+                    resultsAll = BuildingLevelDataAccess.GetAllComponentsForBuilding("PartitionWalls", inputs, area);
+                    break;
+
+                case "Windows":
+                    foreach (var comp in Windows)
+                    {
+                        resultsMin.Add(BuildingLevelDataAccess.GetComponentsForBuilding(null, comp, inputs, "min"));
+                        resultsMax.Add(BuildingLevelDataAccess.GetComponentsForBuilding(null, comp, inputs, "max"));
+                        resultsAvg.Add(BuildingLevelDataAccess.GetComponentsForBuilding("Windows", null, inputs, "avg"));
+                    }
+
+                    resultsAll = BuildingLevelDataAccess.GetAllComponentsForBuilding("Windows", inputs, area);
+                    break;
+
+                case "Balcony":
+                    foreach (var comp in Balcony)
+                    {
+                        resultsMin.Add(BuildingLevelDataAccess.GetComponentsForBuilding(null, comp, inputs, "min"));
+                        resultsMax.Add(BuildingLevelDataAccess.GetComponentsForBuilding(null, comp, inputs, "max"));
+                        resultsAvg.Add(BuildingLevelDataAccess.GetComponentsForBuilding("Balcony", null, inputs, "avg"));
+                    }
+
+                    resultsAll = BuildingLevelDataAccess.GetAllComponentsForBuilding("Balcony", inputs, area);
+                    break;
+
+                case "Technical equipment":
+                    foreach (var comp in TechnicalEquipment)
+                    {
+                        resultsMin.Add(BuildingLevelDataAccess.GetComponentsForBuilding(null, comp, inputs, "min"));
+                        resultsMax.Add(BuildingLevelDataAccess.GetComponentsForBuilding(null, comp, inputs, "max"));
+                        resultsAvg.Add(BuildingLevelDataAccess.GetComponentsForBuilding("TechnicalEquipment", null, inputs, "avg"));
+                    }
+
+                    resultsAll = BuildingLevelDataAccess.GetAllComponentsForBuilding("TechnicalEquipment", inputs, area);
+                    break;
+
+                case "Ceilings":
+                    foreach (var comp in Ceilings)
+                    {
+                        resultsMin.Add(BuildingLevelDataAccess.GetComponentsForBuilding(null, comp, inputs, "min"));
+                        resultsMax.Add(BuildingLevelDataAccess.GetComponentsForBuilding(null, comp, inputs, "max"));
+                        resultsAvg.Add(BuildingLevelDataAccess.GetComponentsForBuilding("Ceilings", null, inputs, "avg"));
+                    }
+
+                    resultsAll = BuildingLevelDataAccess.GetAllComponentsForBuilding("Ceilings", inputs, area);
+                    break;
+
+                case "Columns":
+                    foreach (var comp in Columns)
+                    {
+                        resultsMin.Add(BuildingLevelDataAccess.GetComponentsForBuilding(null, comp, inputs, "min"));
+                        resultsMax.Add(BuildingLevelDataAccess.GetComponentsForBuilding(null, comp, inputs, "max"));
+                        resultsAvg.Add(BuildingLevelDataAccess.GetComponentsForBuilding("Columns", null, inputs, "avg"));
+                    }
+
+                    resultsAll = BuildingLevelDataAccess.GetAllComponentsForBuilding("Columns", inputs, area);
+                    break;
+
+                case "Ext walls above ground":
+                    foreach (var comp in ExtWallsAboveGround)
+                    {
+                        resultsMin.Add(BuildingLevelDataAccess.GetComponentsForBuilding(null, comp, inputs, "min"));
+                        resultsMax.Add(BuildingLevelDataAccess.GetComponentsForBuilding(null, comp, inputs, "max"));
+                        resultsAvg.Add(BuildingLevelDataAccess.GetComponentsForBuilding("ExtWallsAboveGround", null, inputs, "avg"));
+                    }
+
+                    resultsAll = BuildingLevelDataAccess.GetAllComponentsForBuilding("ExtWallsAboveGround", inputs, area);
+                    break;
+
+                case "Ext walls under ground":
+                    foreach (var comp in ExtWallsUnderGround)
+                    {
+                        resultsMin.Add(BuildingLevelDataAccess.GetComponentsForBuilding(null, comp, inputs, "min"));
+                        resultsMax.Add(BuildingLevelDataAccess.GetComponentsForBuilding(null, comp, inputs, "max"));
+                        resultsAvg.Add(BuildingLevelDataAccess.GetComponentsForBuilding("ExtWallsUnderGround", null, inputs, "avg"));
+                    }
+
+                    resultsAll = BuildingLevelDataAccess.GetAllComponentsForBuilding("ExtWallsUnderGround", inputs, area);
+                    break;
+
+                case "Foundation":
+                    foreach (var comp in Foundation)
+                    {
+                        resultsMin.Add(BuildingLevelDataAccess.GetComponentsForBuilding(null, comp, inputs, "min"));
+                        resultsMax.Add(BuildingLevelDataAccess.GetComponentsForBuilding(null, comp, inputs, "max"));
+                        resultsAvg.Add(BuildingLevelDataAccess.GetComponentsForBuilding("Foundation", null, inputs, "avg"));
+                    }
+
+                    resultsAll = BuildingLevelDataAccess.GetAllComponentsForBuilding("Foundation", inputs, area);
+                    break;
+            }
+
             var outputMin = new BuildingLevelModel();
             var outputMax = new BuildingLevelModel();
             var outputAvg = new BuildingLevelModel();
 
-            switch (element)
-            {
-                case "Roof":
-                    resultsAll = BuildingLevelDataAccess.GetComponentsForBuilding("Roof", inputs, "all");
-                    resultsMin = BuildingLevelDataAccess.GetComponentsForBuilding("Roof", inputs, "min");
-                    resultsMax = BuildingLevelDataAccess.GetComponentsForBuilding("Roof", inputs, "max");
-                    resultsAvg = BuildingLevelDataAccess.GetComponentsForBuilding("Roof", inputs, "avg");
-                    break;
-                case "Interior walls":
-                    resultsAll = BuildingLevelDataAccess.GetComponentsForBuilding("InteriorWalls", inputs, "all");
-                    resultsMin = BuildingLevelDataAccess.GetComponentsForBuilding("InteriorWalls", inputs, "min");
-                    resultsMax = BuildingLevelDataAccess.GetComponentsForBuilding("InteriorWalls", inputs, "max");
-                    resultsAvg = BuildingLevelDataAccess.GetComponentsForBuilding("InteriorWalls", inputs, "avg");
-                    break;
-                case "Partition walls":
-                    resultsAll = BuildingLevelDataAccess.GetComponentsForBuilding("PartitionWalls", inputs, "all");
-                    resultsMin = BuildingLevelDataAccess.GetComponentsForBuilding("PartitionWalls", inputs, "min");
-                    resultsMax = BuildingLevelDataAccess.GetComponentsForBuilding("PartitionWalls", inputs, "max");
-                    resultsAvg = BuildingLevelDataAccess.GetComponentsForBuilding("PartitionWalls", inputs, "avg");
-                    break;
-                case "Windows":
-                    resultsAll = BuildingLevelDataAccess.GetComponentsForBuilding("Windows", inputs, "all");
-                    resultsMin = BuildingLevelDataAccess.GetComponentsForBuilding("Windows", inputs, "min");
-                    resultsMax = BuildingLevelDataAccess.GetComponentsForBuilding("Windows", inputs, "max");
-                    resultsAvg = BuildingLevelDataAccess.GetComponentsForBuilding("Windows", inputs, "avg");
-                    break;
-                case "Balcony":
-                    resultsAll = BuildingLevelDataAccess.GetComponentsForBuilding("Balcony", inputs, "all");
-                    resultsMin = BuildingLevelDataAccess.GetComponentsForBuilding("Balcony", inputs, "min");
-                    resultsMax = BuildingLevelDataAccess.GetComponentsForBuilding("Balcony", inputs, "max");
-                    resultsAvg = BuildingLevelDataAccess.GetComponentsForBuilding("Balcony", inputs, "avg");
-                    break;
-                case "Technical equipment":
-                    resultsAll = BuildingLevelDataAccess.GetComponentsForBuilding("TechnicalEquipment", inputs, "all");
-                    resultsMin = BuildingLevelDataAccess.GetComponentsForBuilding("TechnicalEquipment", inputs, "min");
-                    resultsMax = BuildingLevelDataAccess.GetComponentsForBuilding("TechnicalEquipment", inputs, "max");
-                    resultsAvg = BuildingLevelDataAccess.GetComponentsForBuilding("TechnicalEquipment", inputs, "avg");
-                    break;
-                case "Ceilings":
-                    resultsAll = BuildingLevelDataAccess.GetComponentsForBuilding("Ceilings", inputs, "all");
-                    resultsMin = BuildingLevelDataAccess.GetComponentsForBuilding("Ceilings", inputs, "min");
-                    resultsMax = BuildingLevelDataAccess.GetComponentsForBuilding("Ceilings", inputs, "max");
-                    resultsAvg = BuildingLevelDataAccess.GetComponentsForBuilding("Ceilings", inputs, "avg");
-                    break;
-                case "Columns":
-                    resultsAll = BuildingLevelDataAccess.GetComponentsForBuilding("Columns", inputs, "all");
-                    resultsMin = BuildingLevelDataAccess.GetComponentsForBuilding("Columns", inputs, "min");
-                    resultsMax = BuildingLevelDataAccess.GetComponentsForBuilding("Columns", inputs, "max");
-                    resultsAvg = BuildingLevelDataAccess.GetComponentsForBuilding("Columns", inputs, "avg");
-                    break;
-                case "Ext walls above ground":
-                    resultsAll = BuildingLevelDataAccess.GetComponentsForBuilding("ExtWallsAboveGround", inputs, "all");
-                    resultsMin = BuildingLevelDataAccess.GetComponentsForBuilding("ExtWallsAboveGround", inputs, "min");
-                    resultsMax = BuildingLevelDataAccess.GetComponentsForBuilding("ExtWallsAboveGround", inputs, "max");
-                    resultsAvg = BuildingLevelDataAccess.GetComponentsForBuilding("ExtWallsAboveGround", inputs, "avg");
-                    break;
-                case "Ext walls under ground":
-                    resultsAll = BuildingLevelDataAccess.GetComponentsForBuilding("ExtWallsUnderGround", inputs, "all");
-                    resultsMin = BuildingLevelDataAccess.GetComponentsForBuilding("ExtWallsUnderGround", inputs, "min");
-                    resultsMax = BuildingLevelDataAccess.GetComponentsForBuilding("ExtWallsUnderGround", inputs, "max");
-                    resultsAvg = BuildingLevelDataAccess.GetComponentsForBuilding("ExtWallsUnderGround", inputs, "avg");
-                    break;
-                case "Foundation":
-                    resultsAll = BuildingLevelDataAccess.GetComponentsForBuilding("Foundation", inputs, "all");
-                    resultsMin = BuildingLevelDataAccess.GetComponentsForBuilding("Foundation", inputs, "min");
-                    resultsMax = BuildingLevelDataAccess.GetComponentsForBuilding("Foundation", inputs, "max");
-                    resultsAvg = BuildingLevelDataAccess.GetComponentsForBuilding("Foundation", inputs, "avg");
-                    break;
-            }
-
-            foreach (var item in resultsAll)
-            {
-                item.UBP13Embodied *= area;
-                item.UBP13EoL *= area;
-                item.TotalEmbodied *= area;
-                item.TotalEoL *= area;
-                item.RenewableEmbodied *= area;
-                item.RenewableEoL *= area;
-                item.NonRenewableEmbodied *= area;
-                item.NonRenewableEoL *= area;
-                item.GHGEmbodied *= area;
-                item.GHGEoL *= area;
-            }
-
-            foreach (var item in resultsAll)
-            {
-                outputAll.UBP13Embodied += item.UBP13Embodied;
-                outputAll.UBP13EoL += item.UBP13EoL;
-                outputAll.TotalEmbodied += item.TotalEmbodied;
-                outputAll.TotalEoL += item.TotalEoL;
-                outputAll.RenewableEmbodied += item.RenewableEmbodied;
-                outputAll.RenewableEoL += item.RenewableEoL;
-                outputAll.NonRenewableEmbodied += item.NonRenewableEmbodied;
-                outputAll.NonRenewableEoL += item.NonRenewableEoL;
-                outputAll.GHGEmbodied += item.GHGEmbodied;
-                outputAll.GHGEoL += item.GHGEoL;
-                outputAll.Uvalue += item.Uvalue;
-            }
-
             foreach (var item in resultsMin)
             {
-                item.UBP13Embodied *= area;
-                item.UBP13EoL *= area;
-                item.TotalEmbodied *= area;
-                item.TotalEoL *= area;
-                item.RenewableEmbodied *= area;
-                item.RenewableEoL *= area;
-                item.NonRenewableEmbodied *= area;
-                item.NonRenewableEoL *= area;
-                item.GHGEmbodied *= area;
-                item.GHGEoL *= area;
-            }
-
-            foreach (var item in resultsMin)
-            {
-                outputMin.UBP13Embodied += item.UBP13Embodied;
-                outputMin.UBP13EoL += item.UBP13EoL;
-                outputMin.TotalEmbodied += item.TotalEmbodied;
-                outputMin.TotalEoL += item.TotalEoL;
-                outputMin.RenewableEmbodied += item.RenewableEmbodied;
-                outputMin.RenewableEoL += item.RenewableEoL;
-                outputMin.NonRenewableEmbodied += item.NonRenewableEmbodied;
-                outputMin.NonRenewableEoL += item.NonRenewableEoL;
-                outputMin.GHGEmbodied += item.GHGEmbodied;
-                outputMin.GHGEoL += item.GHGEoL;
-                outputMin.Uvalue += item.Uvalue;
+                outputMin.UBP13Embodied += (item.UBP13Embodied * area);
+                outputMin.UBP13EoL += (item.UBP13EoL * area);
+                outputMin.TotalEmbodied += (item.TotalEmbodied * area);
+                outputMin.TotalEoL += (item.TotalEoL * area);
+                outputMin.RenewableEmbodied += (item.RenewableEmbodied * area);
+                outputMin.RenewableEoL += (item.RenewableEoL * area);
+                outputMin.NonRenewableEmbodied += (item.NonRenewableEmbodied * area);
+                outputMin.NonRenewableEoL += (item.NonRenewableEoL * area);
+                outputMin.GHGEmbodied += (item.GHGEmbodied * area);
+                outputMin.GHGEoL += (item.GHGEoL * area);
+                outputMin.Uvalue += (item.Uvalue * area);
             }
 
             foreach (var item in resultsMax)
             {
-                item.UBP13Embodied *= area;
-                item.UBP13EoL *= area;
-                item.TotalEmbodied *= area;
-                item.TotalEoL *= area;
-                item.RenewableEmbodied *= area;
-                item.RenewableEoL *= area;
-                item.NonRenewableEmbodied *= area;
-                item.NonRenewableEoL *= area;
-                item.GHGEmbodied *= area;
-                item.GHGEoL *= area;
-            }
-
-            foreach (var item in resultsMax)
-            {
-                outputMax.UBP13Embodied += item.UBP13Embodied;
-                outputMax.UBP13EoL += item.UBP13EoL;
-                outputMax.TotalEmbodied += item.TotalEmbodied;
-                outputMax.TotalEoL += item.TotalEoL;
-                outputMax.RenewableEmbodied += item.RenewableEmbodied;
-                outputMax.RenewableEoL += item.RenewableEoL;
-                outputMax.NonRenewableEmbodied += item.NonRenewableEmbodied;
-                outputMax.NonRenewableEoL += item.NonRenewableEoL;
-                outputMax.GHGEmbodied += item.GHGEmbodied;
-                outputMax.GHGEoL += item.GHGEoL;
-                outputMax.Uvalue += item.Uvalue;
-            }
+                outputMax.UBP13Embodied += (item.UBP13Embodied * area);
+                outputMax.UBP13EoL += (item.UBP13EoL * area);
+                outputMax.TotalEmbodied += (item.TotalEmbodied * area);
+                outputMax.TotalEoL += (item.TotalEoL * area);
+                outputMax.RenewableEmbodied += (item.RenewableEmbodied * area);
+                outputMax.RenewableEoL += (item.RenewableEoL * area);
+                outputMax.NonRenewableEmbodied += (item.NonRenewableEmbodied * area);
+                outputMax.NonRenewableEoL += (item.NonRenewableEoL * area);
+                outputMax.GHGEmbodied += (item.GHGEmbodied * area);
+                outputMax.GHGEoL += (item.GHGEoL * area);
+                outputMax.Uvalue += (item.Uvalue * area);
+            }        
 
             foreach (var item in resultsAvg)
             {
-                item.UBP13Embodied *= area;
-                item.UBP13EoL *= area;
-                item.TotalEmbodied *= area;
-                item.TotalEoL *= area;
-                item.RenewableEmbodied *= area;
-                item.RenewableEoL *= area;
-                item.NonRenewableEmbodied *= area;
-                item.NonRenewableEoL *= area;
-                item.GHGEmbodied *= area;
-                item.GHGEoL *= area;
-            }
-
-            foreach (var item in resultsAvg)
-            {
-                outputAvg.UBP13Embodied += item.UBP13Embodied;
-                outputAvg.UBP13EoL += item.UBP13EoL;
-                outputAvg.TotalEmbodied += item.TotalEmbodied;
-                outputAvg.TotalEoL += item.TotalEoL;
-                outputAvg.RenewableEmbodied += item.RenewableEmbodied;
-                outputAvg.RenewableEoL += item.RenewableEoL;
-                outputAvg.NonRenewableEmbodied += item.NonRenewableEmbodied;
-                outputAvg.NonRenewableEoL += item.NonRenewableEoL;
-                outputAvg.GHGEmbodied += item.GHGEmbodied;
-                outputAvg.GHGEoL += item.GHGEoL;
-                outputAvg.Uvalue += item.Uvalue;
+                outputAvg.UBP13Embodied += (item.UBP13Embodied * area);
+                outputAvg.UBP13EoL += (item.UBP13EoL * area);
+                outputAvg.TotalEmbodied += (item.TotalEmbodied * area);
+                outputAvg.TotalEoL += (item.TotalEoL * area);
+                outputAvg.RenewableEmbodied += (item.RenewableEmbodied * area);
+                outputAvg.RenewableEoL += (item.RenewableEoL * area);
+                outputAvg.NonRenewableEmbodied += (item.NonRenewableEmbodied * area);
+                outputAvg.NonRenewableEoL += (item.NonRenewableEoL * area);
+                outputAvg.GHGEmbodied += (item.GHGEmbodied * area);
+                outputAvg.GHGEoL += (item.GHGEoL * area);
+                outputAvg.Uvalue += (item.Uvalue * area);
             }
 
             var outputMinText = new Dictionary<string, double>
             {
-                { "UBP13 Embodied (P/m\xB2)", 0d },
-                { "UBP13 End of Life (P/m\xB2)", 0d },
-                { "PE Total Embodied (kWh oil-eq)", 0d },
-                { "PE Total End of Life (kWh oil-eq)", 0d },
-                { "PE Renewable Embodied (kWh oil-eq)", 0d },
-                { "PE Renewable End of Life (kWh oil-eq)", 0d },
-                { "PE Non Renewable Embodied (kWh oil-eq)", 0d },
-                { "PE Non Renewable End of Life (kWh oil-eq)", 0d },
-                { "Green House Gases Embodied (kg CO\x2082-eq/m\xB2)", 0d },
-                { "Green House Gases End of Life (kg CO\x2082-eq/m\xB2)", 0d },
-                { "U value (W/m2*K)", 0d }
+                { "UBP13 Embodied (P/m\xB2)", Math.Round(outputMin.UBP13Embodied, 2) },
+                { "UBP13 End of Life (P/m\xB2)", Math.Round(outputMin.UBP13EoL, 2) },
+                { "PE Total Embodied (kWh oil-eq)", Math.Round(outputMin.TotalEmbodied, 2) },
+                { "PE Total End of Life (kWh oil-eq)", Math.Round(outputMin.TotalEoL, 2) },
+                { "PE Renewable Embodied (kWh oil-eq)", Math.Round(outputMin.RenewableEmbodied, 2) },
+                { "PE Renewable End of Life (kWh oil-eq)", Math.Round(outputMin.RenewableEoL, 2) },
+                { "PE Non Renewable Embodied (kWh oil-eq)", Math.Round(outputMin.NonRenewableEmbodied, 2) },
+                { "PE Non Renewable End of Life (kWh oil-eq)", Math.Round(outputMin.NonRenewableEoL, 2) },
+                { "Green House Gases Embodied (kg CO\x2082-eq)", Math.Round(outputMin.GHGEmbodied, 2) },
+                { "Green House Gases End of Life (kg CO\x2082-eq)", Math.Round(outputMin.GHGEoL, 2) },
+                { "U value (W/m2*K)", Math.Round(outputMin.Uvalue, 4) }
             };
-
-            foreach (var item in resultsMin)
-            {
-                outputMinText["UBP13 Embodied (P/m\xB2)"] = Math.Round(outputMinText["UBP13 Embodied (P/m\xB2)"] + item.UBP13Embodied, 2);
-                outputMinText["UBP13 End of Life (P/m\xB2)"] = Math.Round(outputMinText["UBP13 End of Life (P/m\xB2)"] + item.UBP13EoL, 2);
-                outputMinText["PE Total Embodied (kWh oil-eq)"] = Math.Round(outputMinText["PE Total Embodied (kWh oil-eq)"] + item.TotalEmbodied, 2);
-                outputMinText["PE Total End of Life (kWh oil-eq)"] = Math.Round(outputMinText["PE Total End of Life (kWh oil-eq)"] + item.TotalEoL, 2);
-                outputMinText["PE Renewable Embodied (kWh oil-eq)"] = Math.Round(outputMinText["PE Renewable Embodied (kWh oil-eq)"] + item.RenewableEmbodied, 2);
-                outputMinText["PE Renewable End of Life (kWh oil-eq)"] = Math.Round(outputMinText["PE Renewable End of Life (kWh oil-eq)"] + item.RenewableEoL, 2);
-                outputMinText["PE Non Renewable Embodied (kWh oil-eq)"] = Math.Round(outputMinText["PE Non Renewable Embodied (kWh oil-eq)"] + item.NonRenewableEmbodied, 2);
-                outputMinText["PE Non Renewable End of Life (kWh oil-eq)"] = Math.Round(outputMinText["PE Non Renewable End of Life (kWh oil-eq)"] + item.NonRenewableEoL, 2);
-                outputMinText["Green House Gases Embodied (kg CO\x2082-eq/m\xB2)"] = Math.Round(outputMinText["Green House Gases Embodied (kg CO\x2082-eq/m\xB2)"] + item.GHGEmbodied, 2);
-                outputMinText["Green House Gases End of Life (kg CO\x2082-eq/m\xB2)"]  = Math.Round(outputMinText["Green House Gases End of Life (kg CO\x2082-eq/m\xB2)"] + item.GHGEoL, 2);
-                outputMinText["U value (W/m2*K)"] = Math.Round(outputMinText["U value (W/m2*K)"] + item.Uvalue, 4);
-            }
 
             var outputMaxText = new Dictionary<string, double>
             {
-                { "UBP13 Embodied (P/m\xB2)", 0d },
-                { "UBP13 End of Life (P/m\xB2)", 0d },
-                { "PE Total Embodied (kWh oil-eq)", 0d },
-                { "PE Total End of Life (kWh oil-eq)", 0d },
-                { "PE Renewable Embodied (kWh oil-eq)", 0d },
-                { "PE Renewable End of Life (kWh oil-eq)", 0d },
-                { "PE Non Renewable Embodied (kWh oil-eq)", 0d },
-                { "PE Non Renewable End of Life (kWh oil-eq)", 0d },
-                { "Green House Gases Embodied (kg CO\x2082-eq/m\xB2)", 0d },
-                { "Green House Gases End of Life (kg CO\x2082-eq/m\xB2)", 0d },
-                { "U value (W/m2*K)", 0d }
+                { "UBP13 Embodied (P/m\xB2)", Math.Round(outputMax.UBP13Embodied, 2) },
+                { "UBP13 End of Life (P/m\xB2)", Math.Round(outputMax.UBP13EoL, 2) },
+                { "PE Total Embodied (kWh oil-eq)", Math.Round(outputMax.TotalEmbodied, 2) },
+                { "PE Total End of Life (kWh oil-eq)", Math.Round(outputMax.TotalEoL, 2) },
+                { "PE Renewable Embodied (kWh oil-eq)", Math.Round(outputMax.RenewableEmbodied, 2) },
+                { "PE Renewable End of Life (kWh oil-eq)", Math.Round(outputMax.RenewableEoL, 2) },
+                { "PE Non Renewable Embodied (kWh oil-eq)", Math.Round(outputMax.NonRenewableEmbodied, 2) },
+                { "PE Non Renewable End of Life (kWh oil-eq)", Math.Round(outputMax.NonRenewableEoL, 2) },
+                { "Green House Gases Embodied (kg CO\x2082-eq)", Math.Round(outputMax.GHGEmbodied, 2) },
+                { "Green House Gases End of Life (kg CO\x2082-eq)", Math.Round(outputMax.GHGEoL, 2) },
+                { "U value (W/m2*K)", Math.Round(outputMax.Uvalue, 4) }
             };
-
-            foreach (var item in resultsMax)
-            {
-                outputMaxText["UBP13 Embodied (P/m\xB2)"] = Math.Round(outputMaxText["UBP13 Embodied (P/m\xB2)"] + item.UBP13Embodied, 2);
-                outputMaxText["UBP13 End of Life (P/m\xB2)"] = Math.Round(outputMaxText["UBP13 End of Life (P/m\xB2)"] + item.UBP13EoL, 2);
-                outputMaxText["PE Total Embodied (kWh oil-eq)"] = Math.Round(outputMaxText["PE Total Embodied (kWh oil-eq)"] + item.TotalEmbodied, 2);
-                outputMaxText["PE Total End of Life (kWh oil-eq)"] = Math.Round(outputMaxText["PE Total End of Life (kWh oil-eq)"] + item.TotalEoL, 2);
-                outputMaxText["PE Renewable Embodied (kWh oil-eq)"] = Math.Round(outputMaxText["PE Renewable Embodied (kWh oil-eq)"] + item.RenewableEmbodied, 2);
-                outputMaxText["PE Renewable End of Life (kWh oil-eq)"] = Math.Round(outputMaxText["PE Renewable End of Life (kWh oil-eq)"] + item.RenewableEoL, 2);
-                outputMaxText["PE Non Renewable Embodied (kWh oil-eq)"] = Math.Round(outputMaxText["PE Non Renewable Embodied (kWh oil-eq)"] + item.NonRenewableEmbodied, 2);
-                outputMaxText["PE Non Renewable End of Life (kWh oil-eq)"] = Math.Round(outputMaxText["PE Non Renewable End of Life (kWh oil-eq)"] + item.NonRenewableEoL, 2);
-                outputMaxText["Green House Gases Embodied (kg CO\x2082-eq/m\xB2)"] = Math.Round(outputMaxText["Green House Gases Embodied (kg CO\x2082-eq/m\xB2)"] + item.GHGEmbodied, 2);
-                outputMaxText["Green House Gases End of Life (kg CO\x2082-eq/m\xB2)"] = Math.Round(outputMaxText["Green House Gases End of Life (kg CO\x2082-eq/m\xB2)"] + item.GHGEoL, 2);
-                outputMaxText["U value (W/m2*K)"] = Math.Round(outputMaxText["U value (W/m2*K)"] + item.Uvalue, 4);
-            }
 
             var outputAvgText = new Dictionary<string, double>
             {
-                { "UBP13 Embodied (P/m\xB2)", 0d },
-                { "UBP13 End of Life (P/m\xB2)", 0d },
-                { "PE Total Embodied (kWh oil-eq)", 0d },
-                { "PE Total End of Life (kWh oil-eq)", 0d },
-                { "PE Renewable Embodied (kWh oil-eq)", 0d },
-                { "PE Renewable End of Life (kWh oil-eq)", 0d },
-                { "PE Non Renewable Embodied (kWh oil-eq)", 0d },
-                { "PE Non Renewable End of Life (kWh oil-eq)", 0d },
-                { "Green House Gases Embodied (kg CO\x2082-eq/m\xB2)", 0d },
-                { "Green House Gases End of Life (kg CO\x2082-eq/m\xB2)", 0d },
-                { "U value (W/m2*K)", 0 }
+                { "UBP13 Embodied (P/m\xB2)", Math.Round(outputAvg.UBP13Embodied, 2) },
+                { "UBP13 End of Life (P/m\xB2)", Math.Round(outputAvg.UBP13EoL, 2) },
+                { "PE Total Embodied (kWh oil-eq)", Math.Round(outputAvg.TotalEmbodied, 2) },
+                { "PE Total End of Life (kWh oil-eq)", Math.Round(outputAvg.TotalEoL, 2) },
+                { "PE Renewable Embodied (kWh oil-eq)", Math.Round(outputAvg.RenewableEmbodied, 2) },
+                { "PE Renewable End of Life (kWh oil-eq)", Math.Round(outputAvg.RenewableEoL, 2) },
+                { "PE Non Renewable Embodied (kWh oil-eq)", Math.Round(outputAvg.NonRenewableEmbodied, 2) },
+                { "PE Non Renewable End of Life (kWh oil-eq)", Math.Round(outputAvg.NonRenewableEoL, 2) },
+                { "Green House Gases Embodied (kg CO\x2082-eq)", Math.Round(outputAvg.GHGEmbodied, 2) },
+                { "Green House Gases End of Life (kg CO\x2082-eq)", Math.Round(outputAvg.GHGEoL, 2) },
+                { "U value (W/m2*K)", Math.Round(outputAvg.Uvalue, 4) }
             };
 
-            foreach (var item in resultsAvg)
-            {
-                outputAvgText["UBP13 Embodied (P/m\xB2)"] = Math.Round(outputAvgText["UBP13 Embodied (P/m\xB2)"] + item.UBP13Embodied, 2);
-                outputAvgText["UBP13 End of Life (P/m\xB2)"] = Math.Round(outputAvgText["UBP13 End of Life (P/m\xB2)"] + item.UBP13EoL, 2);
-                outputAvgText["PE Total Embodied (kWh oil-eq)"] = Math.Round(outputAvgText["PE Total Embodied (kWh oil-eq)"] + item.TotalEmbodied, 2);
-                outputAvgText["PE Total End of Life (kWh oil-eq)"] = Math.Round(outputAvgText["PE Total End of Life (kWh oil-eq)"] + item.TotalEoL, 2);
-                outputAvgText["PE Renewable Embodied (kWh oil-eq)"] = Math.Round(outputAvgText["PE Renewable Embodied (kWh oil-eq)"] + item.RenewableEmbodied, 2);
-                outputAvgText["PE Renewable End of Life (kWh oil-eq)"] = Math.Round(outputAvgText["PE Renewable End of Life (kWh oil-eq)"] + item.RenewableEoL, 2);
-                outputAvgText["PE Non Renewable Embodied (kWh oil-eq)"] = Math.Round(outputAvgText["PE Non Renewable Embodied (kWh oil-eq)"] + item.NonRenewableEmbodied, 2);
-                outputAvgText["PE Non Renewable End of Life (kWh oil-eq)"] = Math.Round(outputAvgText["PE Non Renewable End of Life (kWh oil-eq)"] + item.NonRenewableEoL, 2);
-                outputAvgText["Green House Gases Embodied (kg CO\x2082-eq/m\xB2)"] = Math.Round(outputAvgText["Green House Gases Embodied (kg CO\x2082-eq/m\xB2)"] + item.GHGEmbodied, 2);
-                outputAvgText["Green House Gases End of Life (kg CO\x2082-eq/m\xB2)"] = Math.Round(outputAvgText["Green House Gases End of Life (kg CO\x2082-eq/m\xB2)"] + item.GHGEoL, 2);
-                outputAvgText["U value (W/m2*K)"] = Math.Round(outputAvgText["U value (W/m2*K)"] + item.Uvalue, 4);
-            }
-
-            output.Add(outputAll);
+            var output = new List<BuildingLevelModel>();
             output.Add(outputMin);
             output.Add(outputMax);
             output.Add(outputAvg);

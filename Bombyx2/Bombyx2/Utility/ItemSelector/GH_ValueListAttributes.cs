@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace Bombyx2.Utility.ItemSelector
 {
-    public class GH_ValueListAttributes : GH_Attributes<ItemSelector>
+    public class GH_ValueListAttributes : GH_Attributes<GH_ValueItem>
     {
         public const int ItemHeight = 22;
         private const int ArrowRadius = 6;
@@ -42,7 +42,7 @@ namespace Bombyx2.Utility.ItemSelector
         private RectangleF ItemBounds { get; set; }
         private RectangleF NameBounds { get; set; }
 
-        public GH_ValueListAttributes(ItemSelector owner)
+        public GH_ValueListAttributes(GH_ValueItem owner)
           : base(owner)
         {
         }

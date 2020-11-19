@@ -62,8 +62,8 @@ namespace Bombyx2.GUI._02_ImpactLevel
                 { "PE Renewable End of Life * (density * thickness) (kWh oil-eq)", Math.Round(material[6] * AreaDensity, 2) },
                 { "PE Non Renewable Embodied * (density * thickness) (kWh oil-eq)", Math.Round(material[7] * AreaDensity, 2) },
                 { "PE Non Renewable End of Life * (density * thickness) (kWh oil-eq)", Math.Round(material[8] * AreaDensity, 2) },
-                { "Green House Gases Embodied * (density * thickness) (kg CO\x2082-eq/m\xB2)", Math.Round(material[9] * AreaDensity, 2) },
-                { "Green House Gases End of Life * (density * thickness) (kg CO\x2082-eq/m\xB2)", Math.Round(material[10] * AreaDensity, 2) },
+                { "Green House Gases Embodied * (density * thickness) (kg CO\x2082-eq)", Math.Round(material[9] * AreaDensity, 2) },
+                { "Green House Gases End of Life * (density * thickness) (kg CO\x2082-eq)", Math.Round(material[10] * AreaDensity, 2) },
                 { "R value = (thickness / thermal conductivity)", (double?)resistance ?? -1 }
             };
 

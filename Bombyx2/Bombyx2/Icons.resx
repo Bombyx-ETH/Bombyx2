@@ -121,6 +121,18 @@
   <data name="bombyxLogo" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\bombyxLogo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="brasilBuilding" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\brasilBuilding.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="brasilComponent" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\brasilComponent.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="brasilComponentList" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\brasilComponentList.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="brasilElement" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\brasilElement.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="btkComponent" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\btkComponent.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -174,6 +186,12 @@
   </data>
   <data name="kbobServiceGroups" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\kbobServiceGroups.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="kbobTransportMaterial" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\kbobTransportMaterial.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="kbobTransportPeople" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\kbobTransportPeople.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="specificComponent" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\specificComponent.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>

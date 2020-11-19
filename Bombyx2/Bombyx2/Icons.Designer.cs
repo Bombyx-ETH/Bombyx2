@@ -73,6 +73,46 @@ namespace Bombyx2 {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap brasilBuilding {
+            get {
+                object obj = ResourceManager.GetObject("brasilBuilding", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap brasilComponent {
+            get {
+                object obj = ResourceManager.GetObject("brasilComponent", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap brasilComponentList {
+            get {
+                object obj = ResourceManager.GetObject("brasilComponentList", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap brasilElement {
+            get {
+                object obj = ResourceManager.GetObject("brasilElement", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap btkComponent {
             get {
                 object obj = ResourceManager.GetObject("btkComponent", resourceCulture);
@@ -246,6 +286,26 @@ namespace Bombyx2 {
         internal static System.Drawing.Bitmap kbobServiceGroups {
             get {
                 object obj = ResourceManager.GetObject("kbobServiceGroups", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap kbobTransportMaterial {
+            get {
+                object obj = ResourceManager.GetObject("kbobTransportMaterial", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap kbobTransportPeople {
+            get {
+                object obj = ResourceManager.GetObject("kbobTransportPeople", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

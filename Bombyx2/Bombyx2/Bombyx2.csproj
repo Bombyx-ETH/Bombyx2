@@ -51,6 +51,7 @@
       <HintPath>..\..\..\..\..\Program Files\Rhino 6\Plug-ins\Grasshopper\Grasshopper.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="Rhino.UI, Version=6.27.20176.5000, Culture=neutral, PublicKeyToken=552281e97c755530, processorArchitecture=MSIL">
       <HintPath>..\packages\RhinoCommon.6.27.20176.5001\lib\net45\Rhino.UI.dll</HintPath>
     </Reference>
@@ -71,10 +72,12 @@
   <ItemGroup>
     <Compile Include="Bombyx2Icon.cs" />
     <Compile Include="Bombyx2Info.cs" />
+    <Compile Include="Data\Access\BrasilComponentsDataAccess.cs" />
     <Compile Include="Data\Access\BtkComponentsDataAccess.cs" />
     <Compile Include="Data\Access\BuildingLevelDataAccess.cs" />
     <Compile Include="Data\Access\Config.cs" />
     <Compile Include="Data\Access\KbobMaterialsDataAccess.cs" />
+    <Compile Include="Data\Models\BrasilComponentsModel.cs" />
     <Compile Include="Data\Models\BtkComponentMaterialModel.cs" />
     <Compile Include="Data\Models\BtkComponentModel.cs" />
     <Compile Include="Data\Models\BtkComponentWindowModel.cs" />
@@ -83,15 +86,22 @@
     <Compile Include="Data\Models\KbobEnergyModel.cs" />
     <Compile Include="Data\Models\KbobMaterialModel.cs" />
     <Compile Include="Data\Models\KbobServiceModel.cs" />
+    <Compile Include="Data\Models\KbobTransportModel.cs" />
     <Compile Include="GUI\00_MaterialLevel\Custom\CustomMaterial.cs" />
     <Compile Include="GUI\00_MaterialLevel\KBOB\KbobEnergy.cs" />
     <Compile Include="GUI\00_MaterialLevel\KBOB\KbobMaterial.cs" />
     <Compile Include="GUI\00_MaterialLevel\KBOB\KbobMaterialList.cs" />
     <Compile Include="GUI\00_MaterialLevel\KBOB\KbobService.cs" />
     <Compile Include="GUI\00_MaterialLevel\KBOB\KbobServicesList.cs" />
+    <Compile Include="GUI\00_MaterialLevel\KBOB\KbobTransportMaterial.cs" />
+    <Compile Include="GUI\00_MaterialLevel\KBOB\KbobTransportPeople.cs" />
+    <Compile Include="GUI\01_ComponentLevel\BrasilComponents\BrComponent.cs" />
+    <Compile Include="GUI\01_ComponentLevel\BrasilComponents\BrComponentList.cs" />
     <Compile Include="GUI\01_ComponentLevel\BtkComponent.cs" />
     <Compile Include="GUI\01_ComponentLevel\BtkComponentList.cs" />
     <Compile Include="GUI\01_ComponentLevel\BtkComponentWindow.cs" />
+    <Compile Include="GUI\02_ImpactLevel\BrasilImpact\BrasilBuilding.cs" />
+    <Compile Include="GUI\02_ImpactLevel\BrasilImpact\BrasilElement.cs" />
     <Compile Include="GUI\02_ImpactLevel\ImpactBuilding.cs" />
     <Compile Include="GUI\02_ImpactLevel\ImpactComponent.cs" />
     <Compile Include="GUI\02_ImpactLevel\ImpactElement.cs" />
@@ -107,9 +117,9 @@
       <DependentUpon>Icons.resx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utility\ItemSelector\GH_ValueItem.cs" />
     <Compile Include="Utility\ItemSelector\GH_ValueListAttributes.cs" />
     <Compile Include="Utility\ItemSelector\GH_ValueListItem.cs" />
-    <Compile Include="Utility\ItemSelector\ItemSelector.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Data\Access\SQLScripts\CreateBtkComponent.sql" />
@@ -131,9 +141,17 @@
     <Content Include="MaterialsDB.db">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <None Include="Resources\brasilComponent.png" />
+    <None Include="Resources\brasilComponentList.png" />
+    <None Include="Resources\brasilElement.png" />
+    <None Include="Resources\brasilBuilding.png" />
     <Content Include="Resources\btkComponent.png" />
     <Content Include="Resources\btkComponentGroups.png" />
     <Content Include="Resources\btkWindowComponent.png" />
+    <Content Include="Resources\kbobTransportMaterial.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <None Include="Resources\kbobTransportPeople.png" />
     <None Include="Resources\specificComponent.png" />
     <None Include="Resources\elementInput.png" />
     <None Include="Resources\buildingInput.png" />

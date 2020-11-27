@@ -21,7 +21,7 @@ namespace Bombyx2.Utility.ItemSelector
         private bool m_hidden;
 
         public GH_ValueItem()
-          : base((IGH_InstanceDescription)new GH_InstanceDescription("Item Selector",
+          : base((IGH_InstanceDescription)new GH_InstanceDescription("",
                                                                      "",
                                                                      "Item selection component",
                                                                      "Bombyx 2",

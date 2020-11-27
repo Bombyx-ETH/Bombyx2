@@ -61,7 +61,7 @@ namespace Bombyx2.Data.Access
         {
             using (IDbConnection conn = new SQLiteConnection(Config.LoadConnectionString()))
             {
-                var output = conn.Query<string>("SELECT IdKbob || ': ' || NameGerman FROM KbobEnergy", new DynamicParameters());
+                var output = conn.Query<string>("SELECT IdKbob || ': ' || NameEnglish FROM KbobEnergy", new DynamicParameters());
                 return output.ToList();
             }
         }
@@ -86,7 +86,7 @@ namespace Bombyx2.Data.Access
             using (IDbConnection conn = new SQLiteConnection(Config.LoadConnectionString()))
             {
                 var parameter = new { idkbob = param };
-                var query = "SELECT IdKbob || ': ' || NameGerman FROM KbobServices WHERE IdKbob like @idkbob";
+                var query = "SELECT IdKbob || ': ' || NameEnglish FROM KbobServices WHERE IdKbob like @idkbob";
                 var output = conn.Query<string>(query, parameter);
                 return output.ToList();
             }
@@ -105,11 +105,13 @@ namespace Bombyx2.Data.Access
 
         #region Transport
 
-        public static List<KbobTransportModel> GetTransportMaterial()
+        public static List<KbobTransportModel> GetTransport(string param)
         {
+            var type = param == "material" ? "'62%'" : "'63%'";
+
             using (IDbConnection conn = new SQLiteConnection(Config.LoadConnectionString()))
             {
-                var output = conn.Query<KbobTransportModel>("SELECT * FROM KbobTransport WHERE IdKbob LIKE '62%'", new DynamicParameters());
+                var output = conn.Query<KbobTransportModel>("SELECT * FROM KbobTransport WHERE IdKbob LIKE " + type, new DynamicParameters());
                 return output.ToList();
             }
         }

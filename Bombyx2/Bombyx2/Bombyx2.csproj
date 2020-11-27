@@ -87,7 +87,6 @@
     <Compile Include="Data\Models\KbobMaterialModel.cs" />
     <Compile Include="Data\Models\KbobServiceModel.cs" />
     <Compile Include="Data\Models\KbobTransportModel.cs" />
-    <Compile Include="GUI\00_MaterialLevel\Custom\CustomMaterial.cs" />
     <Compile Include="GUI\00_MaterialLevel\KBOB\KbobEnergy.cs" />
     <Compile Include="GUI\00_MaterialLevel\KBOB\KbobMaterial.cs" />
     <Compile Include="GUI\00_MaterialLevel\KBOB\KbobMaterialList.cs" />
@@ -201,7 +200,9 @@
       <LastGenOutput>Icons.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="GUI\00_MaterialLevel\Custom\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -109,7 +109,7 @@ namespace Bombyx2.GUI._00_MaterialLevel.KBOB
 
             foreach (var item in KbobTransports)
             {
-                if (item.NameGerman.Equals(transport))
+                if (item.NameEnglish.Equals(transport))
                 {
                     output["UBP Operation"] = results["UBPOperation"] = Math.Round(item.UBPOperation * peopleDistanceTrips, 2);
                     output["UBP Vehicle and Infrastrcture"] = results["UBPFahrInfrastr"] = Math.Round(item.UBPFahrInfrastr * peopleDistanceTrips, 2);

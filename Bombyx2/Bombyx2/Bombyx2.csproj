@@ -94,6 +94,7 @@
     <Compile Include="GUI\00_MaterialLevel\KBOB\KbobServicesList.cs" />
     <Compile Include="GUI\00_MaterialLevel\KBOB\KbobTransportMaterial.cs" />
     <Compile Include="GUI\00_MaterialLevel\KBOB\KbobTransportPeople.cs" />
+    <Compile Include="GUI\00_MaterialLevel\KBOB\MaterialStart.cs" />
     <Compile Include="GUI\01_ComponentLevel\BrasilComponents\BrComponent.cs" />
     <Compile Include="GUI\01_ComponentLevel\BrasilComponents\BrComponentList.cs" />
     <Compile Include="GUI\01_ComponentLevel\BtkComponent.cs" />
@@ -110,6 +111,7 @@
     <Compile Include="GUI\10_BuildingLevel\BuildingOutput.cs" />
     <Compile Include="GUI\10_BuildingLevel\ElementInput.cs" />
     <Compile Include="GUI\10_BuildingLevel\SpecificComponent.cs" />
+    <Compile Include="GUI\Common\GenericParameter.cs" />
     <Compile Include="Icons.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

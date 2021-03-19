@@ -105,17 +105,8 @@ namespace Bombyx2.GUI._00_MaterialLevel.KBOB
             doc.DeselectAll();
         }
 
-        protected override Bitmap Icon
-        {
-            get
-            {
-                return Icons.kbobMaterialGroups;
-            }
-        }
+        protected override Bitmap Icon => Icons.kbobMaterialGroups;
 
-        public override Guid ComponentGuid
-        {
-            get { return new Guid("f76ba9a8-65fd-4686-9611-97d65227c35c"); }
-        }
+        public override Guid ComponentGuid => new Guid("f76ba9a8-65fd-4686-9611-97d65227c35c");
     }
 }

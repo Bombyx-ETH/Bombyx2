@@ -52,11 +52,11 @@
       <Private>False</Private>
     </Reference>
     <Reference Include="Microsoft.VisualBasic" />
-    <Reference Include="Rhino.UI, Version=6.27.20176.5000, Culture=neutral, PublicKeyToken=552281e97c755530, processorArchitecture=MSIL">
-      <HintPath>..\packages\RhinoCommon.6.27.20176.5001\lib\net45\Rhino.UI.dll</HintPath>
+    <Reference Include="Rhino.UI">
+      <HintPath>..\..\..\..\..\Program Files\Rhino 6\System\Rhino.UI.dll</HintPath>
     </Reference>
-    <Reference Include="RhinoCommon, Version=6.27.20176.5000, Culture=neutral, PublicKeyToken=552281e97c755530, processorArchitecture=MSIL">
-      <HintPath>..\packages\RhinoCommon.6.27.20176.5001\lib\net45\RhinoCommon.dll</HintPath>
+    <Reference Include="RhinoCommon">
+      <HintPath>..\..\..\..\..\Program Files\Rhino 6\System\RhinoCommon.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -94,7 +94,6 @@
     <Compile Include="GUI\00_MaterialLevel\KBOB\KbobServicesList.cs" />
     <Compile Include="GUI\00_MaterialLevel\KBOB\KbobTransportMaterial.cs" />
     <Compile Include="GUI\00_MaterialLevel\KBOB\KbobTransportPeople.cs" />
-    <Compile Include="GUI\00_MaterialLevel\KBOB\MaterialStart.cs" />
     <Compile Include="GUI\01_ComponentLevel\BrasilComponents\BrComponent.cs" />
     <Compile Include="GUI\01_ComponentLevel\BrasilComponents\BrComponentList.cs" />
     <Compile Include="GUI\01_ComponentLevel\BtkComponent.cs" />

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Linq;
 using Bombyx2.Data.Access;
 using Bombyx2.Data.Models;
 using Grasshopper.Kernel;
@@ -282,6 +283,9 @@ namespace Bombyx2.GUI._10_BuildingLevel
             var outputMin = new BuildingLevelModel();
             var outputMax = new BuildingLevelModel();
             var outputAvg = new BuildingLevelModel();
+            var uValMin = new List<double>();
+            var uValMax = new List<double>();
+            var uValAvg = new List<double>();
 
             foreach (var item in resultsMin)
             {
@@ -295,7 +299,8 @@ namespace Bombyx2.GUI._10_BuildingLevel
                 outputMin.NonRenewableEoL += (item.NonRenewableEoL * area);
                 outputMin.GHGEmbodied += (item.GHGEmbodied * area);
                 outputMin.GHGEoL += (item.GHGEoL * area);
-                outputMin.Uvalue += (item.Uvalue * area);
+                outputMin.Uvalue = 0;
+                uValMin.Add(item.Uvalue);
             }
 
             foreach (var item in resultsMax)
@@ -310,7 +315,8 @@ namespace Bombyx2.GUI._10_BuildingLevel
                 outputMax.NonRenewableEoL += (item.NonRenewableEoL * area);
                 outputMax.GHGEmbodied += (item.GHGEmbodied * area);
                 outputMax.GHGEoL += (item.GHGEoL * area);
-                outputMax.Uvalue += (item.Uvalue * area);
+                outputMax.Uvalue = 0;
+                uValMax.Add(item.Uvalue);
             }        
 
             foreach (var item in resultsAvg)
@@ -325,8 +331,13 @@ namespace Bombyx2.GUI._10_BuildingLevel
                 outputAvg.NonRenewableEoL += (item.NonRenewableEoL * area);
                 outputAvg.GHGEmbodied += (item.GHGEmbodied * area);
                 outputAvg.GHGEoL += (item.GHGEoL * area);
-                outputAvg.Uvalue += (item.Uvalue * area);
+                outputAvg.Uvalue = 0;
+                uValAvg.Add(item.Uvalue);
             }
+
+            var avgMinU = uValMin.Count > 0 ? uValMin.Average() : 0.0;
+            var avgMaxU = uValMax.Count > 0 ? uValMax.Average() : 0.0;
+            var avgAvgU = uValAvg.Count > 0 ? uValAvg.Average() : 0.0;
 
             var outputMinText = new Dictionary<string, double>
             {
@@ -340,7 +351,7 @@ namespace Bombyx2.GUI._10_BuildingLevel
                 { "PE Non Renewable End of Life (kWh oil-eq)", Math.Round(outputMin.NonRenewableEoL, 2) },
                 { "Green House Gases Embodied (kg CO\x2082-eq)", Math.Round(outputMin.GHGEmbodied, 2) },
                 { "Green House Gases End of Life (kg CO\x2082-eq)", Math.Round(outputMin.GHGEoL, 2) },
-                { "U value (W/m2*K)", Math.Round(outputMin.Uvalue, 4) }
+                { "U value (W/m2*K)", Math.Round(avgMinU, 4) }
             };
 
             var outputMaxText = new Dictionary<string, double>
@@ -355,7 +366,7 @@ namespace Bombyx2.GUI._10_BuildingLevel
                 { "PE Non Renewable End of Life (kWh oil-eq)", Math.Round(outputMax.NonRenewableEoL, 2) },
                 { "Green House Gases Embodied (kg CO\x2082-eq)", Math.Round(outputMax.GHGEmbodied, 2) },
                 { "Green House Gases End of Life (kg CO\x2082-eq)", Math.Round(outputMax.GHGEoL, 2) },
-                { "U value (W/m2*K)", Math.Round(outputMax.Uvalue, 4) }
+                { "U value (W/m2*K)", Math.Round(avgMaxU, 4) }
             };
 
             var outputAvgText = new Dictionary<string, double>
@@ -370,7 +381,7 @@ namespace Bombyx2.GUI._10_BuildingLevel
                 { "PE Non Renewable End of Life (kWh oil-eq)", Math.Round(outputAvg.NonRenewableEoL, 2) },
                 { "Green House Gases Embodied (kg CO\x2082-eq)", Math.Round(outputAvg.GHGEmbodied, 2) },
                 { "Green House Gases End of Life (kg CO\x2082-eq)", Math.Round(outputAvg.GHGEoL, 2) },
-                { "U value (W/m2*K)", Math.Round(outputAvg.Uvalue, 4) }
+                { "U value (W/m2*K)", Math.Round(avgAvgU, 4) }
             };
 
             var output = new List<BuildingLevelModel>();

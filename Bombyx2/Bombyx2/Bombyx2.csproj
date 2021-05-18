@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.CodeAnalysis.Analyzers.3.3.2\build\Microsoft.CodeAnalysis.Analyzers.props" Condition="Exists('..\packages\Microsoft.CodeAnalysis.Analyzers.3.3.2\build\Microsoft.CodeAnalysis.Analyzers.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -87,29 +88,30 @@
     <Compile Include="Data\Models\KbobMaterialModel.cs" />
     <Compile Include="Data\Models\KbobServiceModel.cs" />
     <Compile Include="Data\Models\KbobTransportModel.cs" />
-    <Compile Include="GUI\00_MaterialLevel\KBOB\KbobEnergy.cs" />
-    <Compile Include="GUI\00_MaterialLevel\KBOB\KbobMaterial.cs" />
-    <Compile Include="GUI\00_MaterialLevel\KBOB\KbobMaterialList.cs" />
-    <Compile Include="GUI\00_MaterialLevel\KBOB\KbobService.cs" />
-    <Compile Include="GUI\00_MaterialLevel\KBOB\KbobServicesList.cs" />
-    <Compile Include="GUI\00_MaterialLevel\KBOB\KbobTransportMaterial.cs" />
-    <Compile Include="GUI\00_MaterialLevel\KBOB\KbobTransportPeople.cs" />
-    <Compile Include="GUI\01_ComponentLevel\BrasilComponents\BrComponent.cs" />
-    <Compile Include="GUI\01_ComponentLevel\BrasilComponents\BrComponentList.cs" />
-    <Compile Include="GUI\01_ComponentLevel\BtkComponent.cs" />
-    <Compile Include="GUI\01_ComponentLevel\BtkComponentList.cs" />
-    <Compile Include="GUI\01_ComponentLevel\BtkComponentWindow.cs" />
-    <Compile Include="GUI\02_ImpactLevel\BrasilImpact\BrasilBuilding.cs" />
-    <Compile Include="GUI\02_ImpactLevel\BrasilImpact\BrasilElement.cs" />
-    <Compile Include="GUI\02_ImpactLevel\ImpactBuilding.cs" />
-    <Compile Include="GUI\02_ImpactLevel\ImpactComponent.cs" />
-    <Compile Include="GUI\02_ImpactLevel\ImpactElement.cs" />
-    <Compile Include="GUI\02_ImpactLevel\ImpactLayer.cs" />
-    <Compile Include="GUI\02_ImpactLevel\ImpactWindow.cs" />
-    <Compile Include="GUI\10_BuildingLevel\BuildingInput.cs" />
-    <Compile Include="GUI\10_BuildingLevel\BuildingOutput.cs" />
-    <Compile Include="GUI\10_BuildingLevel\ElementInput.cs" />
-    <Compile Include="GUI\10_BuildingLevel\SpecificComponent.cs" />
+    <Compile Include="Data\Models\KbobWindowGlazingModel.cs" />
+    <Compile Include="GUI\00_Database\EnergyCarrier.cs" />
+    <Compile Include="GUI\00_Database\Material.cs" />
+    <Compile Include="GUI\00_Database\MaterialGroups.cs" />
+    <Compile Include="GUI\00_Database\MaterialTransport.cs" />
+    <Compile Include="GUI\00_Database\PeopleTransport.cs" />
+    <Compile Include="GUI\00_Database\ServiceGroups.cs" />
+    <Compile Include="GUI\00_Database\Services.cs" />
+    <Compile Include="GUI\01_Bottom-up\ImpactBuilding.cs" />
+    <Compile Include="GUI\01_Bottom-up\ImpactComponent.cs" />
+    <Compile Include="GUI\01_Bottom-up\ImpactElement.cs" />
+    <Compile Include="GUI\01_Bottom-up\ImpactLayer.cs" />
+    <Compile Include="GUI\01_Bottom-up\ImpactWindow.cs" />
+    <Compile Include="GUI\Brazil\BrComponent.cs" />
+    <Compile Include="GUI\Brazil\BrComponentList.cs" />
+    <Compile Include="GUI\02_Bottom-up-component\BtkComponent.cs" />
+    <Compile Include="GUI\02_Bottom-up-component\BtkComponentList.cs" />
+    <Compile Include="GUI\02_Bottom-up-component\BtkComponentWindow.cs" />
+    <Compile Include="GUI\Brazil\BrasilBuilding.cs" />
+    <Compile Include="GUI\Brazil\BrasilElement.cs" />
+    <Compile Include="GUI\03_Top-down\BuildingInput.cs" />
+    <Compile Include="GUI\03_Top-down\BuildingOutput.cs" />
+    <Compile Include="GUI\03_Top-down\ElementInput.cs" />
+    <Compile Include="GUI\03_Top-down\SpecificComponent.cs" />
     <Compile Include="GUI\Common\GenericParameter.cs" />
     <Compile Include="Icons.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -141,6 +143,8 @@
     <Content Include="MaterialsDB.db">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Resources\heatingDemand.png" />
+    <Content Include="Resources\window.png" />
     <None Include="Resources\brasilComponent.png" />
     <None Include="Resources\brasilComponentList.png" />
     <None Include="Resources\brasilElement.png" />
@@ -202,7 +206,11 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="GUI\00_MaterialLevel\Custom\" />
+    <Folder Include="GUI\04_HeatingDemand\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Analyzer Include="..\packages\Microsoft.CodeAnalysis.Analyzers.3.3.2\analyzers\dotnet\cs\Microsoft.CodeAnalysis.Analyzers.dll" />
+    <Analyzer Include="..\packages\Microsoft.CodeAnalysis.Analyzers.3.3.2\analyzers\dotnet\cs\Microsoft.CodeAnalysis.CSharp.Analyzers.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
@@ -232,6 +240,9 @@ Erase "$(TargetPath)"</PostBuildEvent>
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\System.Data.SQLite.Core.1.0.112.1\build\net40\System.Data.SQLite.Core.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\System.Data.SQLite.Core.1.0.112.1\build\net40\System.Data.SQLite.Core.targets'))" />
     <Error Condition="!Exists('..\packages\RhinoCommon.6.27.20176.5001\build\net45\RhinoCommon.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\RhinoCommon.6.27.20176.5001\build\net45\RhinoCommon.targets'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.CodeAnalysis.Analyzers.3.3.2\build\Microsoft.CodeAnalysis.Analyzers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeAnalysis.Analyzers.3.3.2\build\Microsoft.CodeAnalysis.Analyzers.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.CodeAnalysis.Analyzers.3.3.2\build\Microsoft.CodeAnalysis.Analyzers.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeAnalysis.Analyzers.3.3.2\build\Microsoft.CodeAnalysis.Analyzers.targets'))" />
   </Target>
   <Import Project="..\packages\RhinoCommon.6.27.20176.5001\build\net45\RhinoCommon.targets" Condition="Exists('..\packages\RhinoCommon.6.27.20176.5001\build\net45\RhinoCommon.targets')" />
+  <Import Project="..\packages\Microsoft.CodeAnalysis.Analyzers.3.3.2\build\Microsoft.CodeAnalysis.Analyzers.targets" Condition="Exists('..\packages\Microsoft.CodeAnalysis.Analyzers.3.3.2\build\Microsoft.CodeAnalysis.Analyzers.targets')" />
 </Project>

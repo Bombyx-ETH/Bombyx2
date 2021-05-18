@@ -183,6 +183,16 @@ namespace Bombyx2 {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap heatingDemand {
+            get {
+                object obj = ResourceManager.GetObject("heatingDemand", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap impactBuilding {
             get {
                 object obj = ResourceManager.GetObject("impactBuilding", resourceCulture);
@@ -316,6 +326,16 @@ namespace Bombyx2 {
         internal static System.Drawing.Bitmap specificComponent {
             get {
                 object obj = ResourceManager.GetObject("specificComponent", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap window {
+            get {
+                object obj = ResourceManager.GetObject("window", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

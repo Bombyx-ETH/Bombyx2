@@ -7,7 +7,7 @@ using System.Linq;
 
 namespace Bombyx2.Data.Access
 {
-    public class KbobMaterialsDataAccess
+    public static class KbobMaterialsDataAccess
     {
         #region Material
 
@@ -39,6 +39,46 @@ namespace Bombyx2.Data.Access
             {
                 var output = conn.Query<KbobMaterialModel>("SELECT * FROM KbobMaterials", new DynamicParameters());
                 return output.ToList();
+            }
+        }
+
+        public static List<KbobWindowGlazingModel> GetKbobWindowGlazingList()
+        {
+            using (IDbConnection conn = new SQLiteConnection(Config.LoadConnectionString()))
+            {
+                var output = conn.Query<KbobWindowGlazingModel>("SELECT * FROM KbobWindowGlazing", new DynamicParameters());
+                return output.ToList();
+            }
+        }
+
+        public static KbobWindowGlazingModel GetKbobWindowGlazing(string param)
+        {
+            using (IDbConnection conn = new SQLiteConnection(Config.LoadConnectionString()))
+            {
+                var parameter = new { idkbob = param };
+                var query = "SELECT * FROM KbobWindowGlazing WHERE IdKbob = @idkbob";
+                var output = conn.QuerySingle<KbobWindowGlazingModel>(query, parameter);
+                return output;
+            }
+        }
+
+        public static List<KbobMaterialModel> GetKbobWindowFramesList()
+        {
+            using (IDbConnection conn = new SQLiteConnection(Config.LoadConnectionString()))
+            {
+                var output = conn.Query<KbobMaterialModel>("SELECT * FROM KbobMaterials WHERE NameEnglish LIKE '%window frame%'", new DynamicParameters());
+                return output.ToList();
+            }
+        }
+
+        public static KbobMaterialModel GetKbobWindowFrames(string param)
+        {
+            using (IDbConnection conn = new SQLiteConnection(Config.LoadConnectionString()))
+            {
+                var parameter = new { idkbob = param };
+                var query = "SELECT * FROM KbobMaterials WHERE NameEnglish LIKE '%window frame%' AND IdKbob = @idkbob";
+                var output = conn.QuerySingle<KbobMaterialModel>(query, parameter);
+                return output;
             }
         }
 

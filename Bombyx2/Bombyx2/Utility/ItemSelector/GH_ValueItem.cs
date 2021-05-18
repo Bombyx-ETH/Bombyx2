@@ -21,11 +21,11 @@ namespace Bombyx2.Utility.ItemSelector
         private bool m_hidden;
 
         public GH_ValueItem()
-          : base((IGH_InstanceDescription)new GH_InstanceDescription("",
+          : base((IGH_InstanceDescription)new GH_InstanceDescription("Item selector",
                                                                      "",
                                                                      "Item selection component",
                                                                      "Bombyx 2",
-                                                                     "Utilities"))
+                                                                     "0: Database"))
         {
             collectedData = new GH_Structure<IGH_Goo>();
             m_listMode = GH_ValueListMode.DropDown;

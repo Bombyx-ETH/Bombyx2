@@ -16,7 +16,7 @@ namespace Bombyx2.Data.Access
             using (IDbConnection conn = new SQLiteConnection(Config.LoadConnectionString()))
             {
                 var parameter = new { idkbob = param };
-                var query = "SELECT * FROM KbobMaterials WHERE IdKbob = @idkbob";
+                var query = "SELECT * FROM KbobMaterials WHERE IdKbob = @idkbob order by IdKbob DESC";
                 var output = conn.QuerySingle<KbobMaterialModel>(query, parameter);
                 return output;
             }
@@ -27,7 +27,7 @@ namespace Bombyx2.Data.Access
             using (IDbConnection conn = new SQLiteConnection(Config.LoadConnectionString()))
             {
                 var parameter = new { idkbob = param };
-                var query = "SELECT IdKbob || ': ' || NameEnglish FROM KbobMaterials WHERE IdKbob like @idkbob";
+                var query = "SELECT IdKbob || ': ' || NameEnglish FROM KbobMaterials WHERE IdKbob like @idkbob order by IdKbob DESC";
                 var output = conn.Query<string>(query, parameter);
                 return output.ToList();
             }

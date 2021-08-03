@@ -41,6 +41,7 @@ namespace Bombyx2.GUI._00_Database
             bool contains = groupsToSkip.Contains(kbobid[0], StringComparer.OrdinalIgnoreCase);
             if (contains)
             {
+                Message = "Bombyx v" + Config.Version;
                 Message += "\nLayer not needed.";
             }
             else

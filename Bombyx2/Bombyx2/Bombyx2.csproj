@@ -144,12 +144,15 @@
     <Content Include="Data\Access\SQLScripts\InsertKbobMaterials.sql" />
     <Content Include="Data\Access\SQLScripts\CreateKbobEnergy.sql" />
     <Content Include="Data\Access\SQLScripts\InsertKbobServices.sql" />
-    <Content Include="MaterialsDB.db">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="Resources\heatingDemand.png" />
     <Content Include="Resources\window.png" />
     <None Include="app.config" />
+    <None Include="MaterialsDB.db">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="MaterialsDB_208.db">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Resources\brasilComponent.png" />
     <None Include="Resources\brasilComponentList.png" />
     <None Include="Resources\brasilElement.png" />

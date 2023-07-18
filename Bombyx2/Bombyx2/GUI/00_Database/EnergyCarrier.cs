@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using static Rhino.Render.ChangeQueue.Light;
 
 namespace Bombyx2.GUI._00_Database
 {
@@ -15,6 +16,7 @@ namespace Bombyx2.GUI._00_Database
         IGH_Component Component;
 
         private string[] EnergyList;
+        private int reset_counter;
 
         public EnergyCarrier()
           : base("Energy carrier",
@@ -33,6 +35,7 @@ namespace Bombyx2.GUI._00_Database
             pManager[0].Optional = true;
             pManager.AddTextParameter("Selected energy carrier", "Energy\ncarrier", "Selected energy carrier", GH_ParamAccess.item);
             pManager[1].Optional = true;
+            reset_counter = 0;
         }
 
         protected override void RegisterOutputParams(GH_OutputParamManager pManager)
@@ -71,7 +74,11 @@ namespace Bombyx2.GUI._00_Database
                 { "UBP (P/m\xB2 a)", Math.Round(energy.UBP * demandSum, 2) }
             };
 
-            ExpireSolution(true);
+            if (reset_counter == 0)     // 2.0.9 Pedram: Was the problem. Set it such that it only 
+            {                           // happens once to reset the component after the inputs are 
+                ExpireSolution(true);   // connected to prevent the initial tree confusion.
+                reset_counter = 1;     
+            }                           
 
             var outputValues = output.Values.ToList();
 

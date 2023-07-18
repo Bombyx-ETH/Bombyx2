@@ -214,7 +214,8 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="GUI\04_HeatingDemand\" />
+    <Folder Include="GUI\05_Integration\" />
+    <Folder Include="GUI\06_Compositions\" />
   </ItemGroup>
   <ItemGroup>
     <Analyzer Include="..\packages\Microsoft.CodeAnalysis.Analyzers.3.3.2\analyzers\dotnet\cs\Microsoft.CodeAnalysis.Analyzers.dll" />

@@ -10,6 +10,10 @@ using Grasshopper.Kernel.Parameters;
 
 namespace Bombyx2.GUI.Common
 {
+
+    [Obsolete] // 2.0.9 Pedram: Set to obsolete so prev users
+               // know their <Data> component is the duplicate
+               // and it doesn't show in the GH Primitives tab.
     public class GenericParameter : Param_GenericObject, IDisposable
     {
         private const string ParamAccessKey = "ParamAccess";

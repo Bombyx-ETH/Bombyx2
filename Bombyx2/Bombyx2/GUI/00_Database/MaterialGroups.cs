@@ -72,7 +72,7 @@ namespace Bombyx2.GUI._00_Database
 
             var newParam = group.Split(':');
             var output = KbobMaterialsDataAccess.GetKbobMaterialsList(newParam[0] + "%");
-
+            output.Sort();
             DA.SetDataList(0, output);
         }
 

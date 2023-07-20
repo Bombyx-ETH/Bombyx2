@@ -105,6 +105,8 @@
     <Compile Include="GUI\01_Bottom-up\ImpactElement.cs" />
     <Compile Include="GUI\01_Bottom-up\ImpactLayer.cs" />
     <Compile Include="GUI\01_Bottom-up\ImpactWindow.cs" />
+    <Compile Include="GUI\05_Integration\Carrier.cs" />
+    <Compile Include="GUI\05_Integration\InstanceSubclasses.cs" />
     <Compile Include="GUI\Brazil\BrComponent.cs" />
     <Compile Include="GUI\Brazil\BrComponentList.cs" />
     <Compile Include="GUI\02_Bottom-up-component\BtkComponent.cs" />

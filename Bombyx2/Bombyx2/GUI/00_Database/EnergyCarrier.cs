@@ -31,17 +31,17 @@ namespace Bombyx2.GUI._00_Database
 
         protected override void RegisterInputParams(GH_InputParamManager pManager)
         {
-            pManager.AddNumberParameter("Energy demand", "Energy\ndemand", "Energy demand", GH_ParamAccess.list);
+            pManager.AddNumberParameter("Energy demand", "Demand", "Energy demand", GH_ParamAccess.list);
             pManager[0].Optional = true;
-            pManager.AddTextParameter("Selected energy carrier", "Energy\ncarrier", "Selected energy carrier", GH_ParamAccess.item);
+            pManager.AddTextParameter("Selected energy carrier", "Carrier", "Selected energy carrier", GH_ParamAccess.item);
             pManager[1].Optional = true;
             reset_counter = 0;
         }
 
         protected override void RegisterOutputParams(GH_OutputParamManager pManager)
         {
-            pManager.AddTextParameter("Energy properties (text)", "Energy\nproperties (text)", "Energy properties (text)", GH_ParamAccess.list);
-            pManager.AddNumberParameter("Energy properties (values)", "Energy\nproperties (values)", "Energy properties (values)", GH_ParamAccess.list);
+            pManager.AddTextParameter("Energy properties (text)", "Properties (text)", "Energy properties (text)", GH_ParamAccess.list);
+            pManager.AddNumberParameter("Energy properties (values)", "Properties (values)", "Energy properties (values)", GH_ParamAccess.list);
         }
 
         protected override void SolveInstance(IGH_DataAccess DA)

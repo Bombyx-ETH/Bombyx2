@@ -8,10 +8,10 @@ https://www.food4rhino.com/app/bombyx
 
 ### Requirements and installation:
 
-Requires: https://www.rhino3d.com/download/archive/rhino-for-windows/6/latest
+Requires: https://www.rhino3d.com/download/
 
 Installation:
-1. download and install [Rhino 6 for Windows](https://www.rhino3d.com/download/archive/rhino-for-windows/6/latest)
+1. download and install [Rhino 7](https://www.rhino3d.com/download/)
 2. download Bombyx from [Food4Rhino](https://www.food4rhino.com/app/bombyx])
 3. open the Bombyx zip file then select Bombyx2.0.x folder and copy it (ctrl+c)
 4. in the address bar of your windows explorer type: %appdata% and hit enter <br/> ![image](https://user-images.githubusercontent.com/19927980/114411140-39b86c80-9bac-11eb-9213-cc460cb73b27.png)
@@ -27,7 +27,7 @@ coming soon to a github near you
 coming soon to a github near you
 
 ### Examples:
-Example files porvided on [Food4Rhino](https://www.food4rhino.com/app/bombyx) contain different scenarios like top-down and bottom-up approaches, both with operational energy demand, and few other simple examples.
+Example files provided on [Food4Rhino](https://www.food4rhino.com/app/bombyx) contain different scenarios like top-down and bottom-up approaches, both with operational energy demand, and few other simple examples.
 
 ### Future development plans:
 1. Volumetric design stage
@@ -40,4 +40,4 @@ Example files porvided on [Food4Rhino](https://www.food4rhino.com/app/bombyx) co
 Sometimes, item selector can get bugged and fastest fix is to use an item selector from [Human](https://www.food4rhino.com/app/human) addon.
 
 ### Credits:
-Special thanks goes to prof. dr. [Guillaume Habert](https://www.researchgate.net/profile/Guillaume-Habert) for making the project possible, dr. [Alexander Hollberg](https://www.researchgate.net/profile/Alexander-Hollberg) for starting the early project design, phd student [Alina Galimshina](https://www.researchgate.net/profile/Alina-Galimshina) for making sure that calculations, units and data are in order, and [Saso Basic](https://www.researchgate.net/profile/Saso-Basic) for putting the code together.
+Special thanks goes to Prof. Dr. [Guillaume Habert](https://www.researchgate.net/profile/Guillaume-Habert) for making the project possible, Dr. [Alexander Hollberg](https://www.researchgate.net/profile/Alexander-Hollberg) for starting the early project design, Dr. [Alina Galimshina](https://www.researchgate.net/profile/Alina-Galimshina) for making sure that calculations, units and data are in order, and [Saso Basic](https://www.researchgate.net/profile/Saso-Basic) for putting the code together.

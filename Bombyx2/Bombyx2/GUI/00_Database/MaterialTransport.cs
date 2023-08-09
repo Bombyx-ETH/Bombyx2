@@ -77,21 +77,21 @@ namespace Bombyx2.GUI._00_Database
 
             var averageTruck = new Dictionary<string, double>
             {
-                { "UBPOperation", (percent > 0 && percent < 100) ? KbobTransports[12].UBPOperation * minorDistance : 0 },
+                { "UBPOperation", (percent > 0 && percent <= 100) ? KbobTransports[12].UBPOperation * minorDistance : 0 },
                 { "none1", 0 },
-                { "UBPFahrInfrastr", (percent > 0 && percent < 100) ? KbobTransports[12].UBPFahrInfrastr * minorDistance : 0 },
-                { "TotalOperation", (percent > 0 && percent < 100) ? KbobTransports[12].TotalOperation * minorDistance : 0 },
+                { "UBPFahrInfrastr", (percent > 0 && percent <= 100) ? KbobTransports[12].UBPFahrInfrastr * minorDistance : 0 },
+                { "TotalOperation", (percent > 0 && percent <= 100) ? KbobTransports[12].TotalOperation * minorDistance : 0 },
                 { "none2", 0 },
-                { "TotalFahrInfrastr", (percent > 0 && percent < 100) ? KbobTransports[12].TotalFahrInfrastr * minorDistance : 0 },
-                { "REOperation", (percent > 0 && percent < 100) ? KbobTransports[12].REOperation * minorDistance : 0 },
+                { "TotalFahrInfrastr", (percent > 0 && percent <= 100) ? KbobTransports[12].TotalFahrInfrastr * minorDistance : 0 },
+                { "REOperation", (percent > 0 && percent <= 100) ? KbobTransports[12].REOperation * minorDistance : 0 },
                 { "none3", 0 },
-                { "REFahrInfrastr", (percent > 0 && percent < 100) ? KbobTransports[12].REFahrInfrastr * minorDistance : 0 },
-                { "NEOperation", (percent > 0 && percent < 100) ? KbobTransports[12].NEOperation * minorDistance : 0 },
+                { "REFahrInfrastr", (percent > 0 && percent <= 100) ? KbobTransports[12].REFahrInfrastr * minorDistance : 0 },
+                { "NEOperation", (percent > 0 && percent <= 100) ? KbobTransports[12].NEOperation * minorDistance : 0 },
                 { "none4", 0 },
-                { "NEFahrInfrastr", (percent > 0 && percent < 100) ? KbobTransports[12].NEFahrInfrastr * minorDistance : 0 },
-                { "GHGOperation", (percent > 0 && percent < 100) ? KbobTransports[12].GHGOperation * minorDistance : 0 },
+                { "NEFahrInfrastr", (percent > 0 && percent <= 100) ? KbobTransports[12].NEFahrInfrastr * minorDistance : 0 },
+                { "GHGOperation", (percent > 0 && percent <= 100) ? KbobTransports[12].GHGOperation * minorDistance : 0 },
                 { "none5", 0 },
-                { "GHGFahrInfrastr", (percent > 0 && percent < 100) ? KbobTransports[12].GHGFahrInfrastr * minorDistance : 0 },
+                { "GHGFahrInfrastr", (percent > 0 && percent <= 100) ? KbobTransports[12].GHGFahrInfrastr * minorDistance : 0 },
                 { "none6", 0 }
             };
 

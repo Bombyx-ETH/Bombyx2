@@ -64,7 +64,7 @@ namespace Bombyx2.GUI._01_Bottom_up
             if (!DA.GetData(2, ref area)) { return; }
 
             var valueSets = component.Select((x, i) => new { Index = i, Value = x })
-                                     .GroupBy(x => x.Index / 16)
+                                     .GroupBy(x => x.Index / (16 + 1)) // +1 for BiogenicCarbon
                                      .Select(x => x.Select(v => v.Value).ToList())
                                      .ToList();
 
@@ -85,7 +85,8 @@ namespace Bombyx2.GUI._01_Bottom_up
                 { "Green House Gasses Embodied (kg CO\x2082-eq)", 0 },
                 { "Green House Gasses Replacements (kg CO\x2082-eq)", 0 },
                 { "Green House Gasses End of Life (kg CO\x2082-eq)", 0 },
-                { "U value", 0 }
+                { "U value", 0 },
+                { "Biogenic Carbon Storage (kg CO₂-eq)", 0 }
             };
 
             foreach (var item in valueSets)
@@ -106,6 +107,7 @@ namespace Bombyx2.GUI._01_Bottom_up
                 results["Green House Gasses Replacements (kg CO\x2082-eq)"] += item[13];
                 results["Green House Gasses End of Life (kg CO\x2082-eq)"] += item[14];
                 results["U value"] += item[15];
+                results["Biogenic Carbon Storage (kg CO₂-eq)"] += item[16];
             }
 
             results["UBP13 Embodied (P)"] = Math.Round(results["UBP13 Embodied (P)"] * area, 2);
@@ -124,6 +126,7 @@ namespace Bombyx2.GUI._01_Bottom_up
             results["Green House Gasses Replacements (kg CO\x2082-eq)"] = Math.Round(results["Green House Gasses Replacements (kg CO\x2082-eq)"] * area, 2);
             results["Green House Gasses End of Life (kg CO\x2082-eq)"] = Math.Round(results["Green House Gasses End of Life (kg CO\x2082-eq)"] * area, 2);
             results["U value"] = Math.Round(1 / results["U value"], 4);
+            results["Biogenic Carbon Storage (kg CO₂-eq)"] = Math.Round(results["Biogenic Carbon Storage (kg CO₂-eq)"] * area, 2);
 
             var resultValues = results.Values.ToList();
 

@@ -21,6 +21,7 @@
         public double NonRenewableEoL { get; set; }
         public double GHGEmbodied { get; set; }
         public double GHGEoL { get; set; }
-        public double Uvalue { get; set; }
+        public double? Uvalue { get; set; }
+        public double? BiogenicCarbon {  get; set; }
     }
 }

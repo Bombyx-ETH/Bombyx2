@@ -44,6 +44,7 @@
     </Reference>
     <Reference Include="GH_IO, Version=7.20.22193.9001, Culture=neutral, PublicKeyToken=6a29997d2e6b4f97, processorArchitecture=MSIL">
       <HintPath>..\packages\Grasshopper.7.20.22193.9001\lib\net48\GH_IO.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="GH_Util">
       <HintPath>C:\Program Files\Rhino 7\Plug-ins\Grasshopper\GH_Util.dll</HintPath>
@@ -51,6 +52,7 @@
     </Reference>
     <Reference Include="Grasshopper, Version=7.20.22193.9001, Culture=neutral, PublicKeyToken=dda4f5ec2cd80803, processorArchitecture=MSIL">
       <HintPath>..\packages\Grasshopper.7.20.22193.9001\lib\net48\Grasshopper.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="Rhino.UI, Version=7.20.22193.9001, Culture=neutral, PublicKeyToken=552281e97c755530, processorArchitecture=MSIL">
@@ -58,6 +60,7 @@
     </Reference>
     <Reference Include="RhinoCommon, Version=7.20.22193.9001, Culture=neutral, PublicKeyToken=552281e97c755530, processorArchitecture=MSIL">
       <HintPath>..\packages\RhinoCommon.7.20.22193.9001\lib\net48\RhinoCommon.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -101,8 +104,6 @@
     <Compile Include="GUI\01_Bottom-up\ImpactElement.cs" />
     <Compile Include="GUI\01_Bottom-up\ImpactLayer.cs" />
     <Compile Include="GUI\01_Bottom-up\ImpactWindow.cs" />
-    <Compile Include="GUI\05_Integration\Carrier.cs" />
-    <Compile Include="GUI\05_Integration\InstanceSubclasses.cs" />
     <Compile Include="GUI\Brazil\BrComponent.cs" />
     <Compile Include="GUI\Brazil\BrComponentList.cs" />
     <Compile Include="GUI\02_Bottom-up-component\BtkComponent.cs" />

@@ -33,6 +33,7 @@ namespace Bombyx2.GUI._01_Bottom_up
             pManager.AddNumberParameter("PE Renewable", "PE Renewable (kWh oil-eq a)", "PE Renewable (kWh oil-eq a)", GH_ParamAccess.item);
             pManager.AddNumberParameter("PE Non-Renewable", "PE Non-Renewable (kWh oil-eq a)", "PE Non-Renewable (kWh oil-eq a)", GH_ParamAccess.item);
             pManager.AddNumberParameter("UBP impact", "UBP (P/m\xB2 a)", "UBP (P/m\xB2 a)", GH_ParamAccess.item);
+            pManager.AddNumberParameter("Biogenic Carbon", "Biogenic Carbon Storage (kg CO₂-eq)", "Biogenic Carbon Storage (kg CO₂-eq)", GH_ParamAccess.item);
             pManager.AddTextParameter("LCA factors (text)", "LCA factors (text)", "Building Properties (text)", GH_ParamAccess.item);
             pManager.AddNumberParameter("LCA factors (values)", "LCA factors (values)", "Building Properties (values)", GH_ParamAccess.item);
         }
@@ -49,7 +50,7 @@ namespace Bombyx2.GUI._01_Bottom_up
             var rspNFA = RSP * NFA;
 
             var valueSets = element.Select((x, i) => new { Index = i, Value = x })
-                                   .GroupBy(x => x.Index / 16)
+                                   .GroupBy(x => x.Index / (16 + 1)) // +1 for BiogenicCarbon
                                    .Select(x => x.Select(v => v.Value).ToList())
                                    .ToList();
 
@@ -69,8 +70,9 @@ namespace Bombyx2.GUI._01_Bottom_up
                 { "PE Non Renewable End of Life (kWh oil-eq a)", 0 },
                 { "Green House Gasses Embodied (kg CO\x2082-eq/m\xB2 a)", 0 },
                 { "Green House Gasses Replacements (kg CO\x2082-eq/m\xB2 a)", 0 },
-                { "Green House Gasses End of Life (kg CO\x2082-eq/m\xB2 a)", 0 }
+                { "Green House Gasses End of Life (kg CO\x2082-eq/m\xB2 a)", 0 },
                 //{ "U value", 0 }
+                { "Biogenic Carbon Storage (kg CO₂-eq)", 0 }
             };
 
             foreach (var item in valueSets)
@@ -91,6 +93,7 @@ namespace Bombyx2.GUI._01_Bottom_up
                 results["Green House Gasses Replacements (kg CO\x2082-eq/m\xB2 a)"] += item[13];
                 results["Green House Gasses End of Life (kg CO\x2082-eq/m\xB2 a)"] += item[14];
                 //results["U value"] += item[15];
+                results["Biogenic Carbon Storage (kg CO₂-eq)"] += item[16];
             }
 
             results["UBP13 Embodied (P/m\xB2 a)"] = Math.Round(results["UBP13 Embodied (P/m\xB2 a)"] / rspNFA, 2);
@@ -109,6 +112,7 @@ namespace Bombyx2.GUI._01_Bottom_up
             results["Green House Gasses Replacements (kg CO\x2082-eq/m\xB2 a)"] = Math.Round(results["Green House Gasses Replacements (kg CO\x2082-eq/m\xB2 a)"] / rspNFA, 2);
             results["Green House Gasses End of Life (kg CO\x2082-eq/m\xB2 a)"] = Math.Round(results["Green House Gasses End of Life (kg CO\x2082-eq/m\xB2 a)"] / rspNFA, 2);
             //results["U value"] = Math.Round(results["U value"], 4);
+            results["Biogenic Carbon Storage (kg CO₂-eq)"] = Math.Round(results["Biogenic Carbon Storage (kg CO₂-eq)"], 2);
 
             var gwp = Math.Round((results["Green House Gasses Embodied (kg CO\x2082-eq/m\xB2 a)"] +
                                   results["Green House Gasses Replacements (kg CO\x2082-eq/m\xB2 a)"] +
@@ -125,17 +129,19 @@ namespace Bombyx2.GUI._01_Bottom_up
             var nonrenew = Math.Round((results["PE Non Renewable Embodied (kWh oil-eq a)"] +
                                        results["PE Non Renewable Replacements (kWh oil-eq a)"] +
                                        results["PE Non Renewable End of Life (kWh oil-eq a)"]), 4);
+            var biocarbon = Math.Round(results["Biogenic Carbon Storage (kg CO₂-eq)"], 2);
 
             DA.SetData(0, gwp);
             DA.SetData(1, total);
             DA.SetData(2, renew);
             DA.SetData(3, nonrenew);
             DA.SetData(4, ubp);
+            DA.SetData(5, biocarbon);
 
             var resultValues = results.Values.ToList();
 
-            DA.SetDataList(5, results);
-            DA.SetDataList(6, resultValues);
+            DA.SetDataList(6, results);
+            DA.SetDataList(7, resultValues);
         }
 
         protected override System.Drawing.Bitmap Icon => Icons.impactBuilding;

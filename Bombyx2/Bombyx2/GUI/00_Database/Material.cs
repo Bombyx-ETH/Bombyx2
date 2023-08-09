@@ -62,7 +62,8 @@ namespace Bombyx2.GUI._00_Database
                 { "PE Non Renewable End of Life (kWh oil-eq/" + material.DensityUnit + ")", Math.Round(material.NonRenewableEoL, 2) },
                 { "Green House Gases Embodied (kg CO\x2082-eq/" + material.DensityUnit + ")", Math.Round(material.GHGEmbodied, 2) },
                 { "Green House Gases End of Life (kg CO\x2082-eq/" + material.DensityUnit + ")", Math.Round(material.GHGEoL, 2) },
-                { "Thermal Conductivity (W/m*K)", material.ThermalCond ?? -1d }
+                { "Thermal Conductivity (W/m*K)", material.ThermalCond ?? -1d },
+                { "Biogenic Carbon Storage (kg CO\x2082-eq/" + material.DensityUnit + ")", Math.Round((material.BiogenicCarbon ?? 0d) * 3.67, 2) }
             };
 
             var outputValues = output.Values.ToList();

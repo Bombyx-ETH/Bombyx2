@@ -66,7 +66,8 @@ namespace Bombyx2.GUI._01_Bottom_up
                 { "PE Non Renewable End of Life * (density * thickness) (kWh oil-eq/m\xB2)", Math.Round(material[8] * AreaDensity, 2) },
                 { "Green House Gases Embodied * (density * thickness) (kg CO\x2082-eq/m\xB2)", Math.Round(material[9] * AreaDensity, 2) },
                 { "Green House Gases End of Life * (density * thickness) (kg CO\x2082-eq/m\xB2)", Math.Round(material[10] * AreaDensity, 2) },
-                { "R value = (thickness / thermal conductivity) (m2*K/W)", (double?)Math.Round(resistance, 2) ?? -1 }
+                { "R value = (thickness / thermal conductivity) (m2*K/W)", (double?)Math.Round(resistance, 2) ?? -1 },
+                { "Biogenic Carbon Storage * (density * thickness) (kg CO₂-eq/m²)", material[12] * AreaDensity }
             };
 
             var outputValues = output.Values.ToList();

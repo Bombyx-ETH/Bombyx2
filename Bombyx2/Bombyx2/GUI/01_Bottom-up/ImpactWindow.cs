@@ -27,6 +27,7 @@ namespace Bombyx2.GUI._01_Bottom_up
         public double GHGRep { get; set; }
         public double GHGEol { get; set; }
         public double UValue { get; set; }
+        public double BiogenicCarbon { get; set; }
     }
 
     public class ImpactWindow : GH_Component
@@ -161,7 +162,8 @@ namespace Bombyx2.GUI._01_Bottom_up
                 GHGEmb = frame.GHGEmbodied * frameArea,
                 GHGRep = (frame.GHGEmbodied + frame.GHGEoL) * repNum * frameArea,
                 GHGEol = frame.GHGEoL * frameArea,
-                UValue = 1 / (double)frame.ThermalCond * frameArea
+                UValue = 1 / (frame.ThermalCond ?? 0.8) * frameArea,
+                BiogenicCarbon = (frame.BiogenicCarbon ?? 0) * frameArea
             };
 
             var windowGlazing = new WindowModel
@@ -181,7 +183,8 @@ namespace Bombyx2.GUI._01_Bottom_up
                 GHGEmb = filling.GHGEmbodied * fillingArea,
                 GHGRep = (filling.GHGEmbodied + filling.GHGEoL) * repNum * fillingArea,
                 GHGEol = filling.GHGEoL * fillingArea,
-                UValue = filling.Uvalue * fillingArea
+                UValue = (filling.Uvalue ?? 0.8) * fillingArea,
+                BiogenicCarbon = (filling.BiogenicCarbon ?? 0) * fillingArea
             };
             
             var frameDict = new Dictionary<string, double>
@@ -201,7 +204,8 @@ namespace Bombyx2.GUI._01_Bottom_up
                 { "Green House Gasses Embodied (kg CO\x2082-eq)", Math.Round(frame.GHGEmbodied * frameArea, 2) },
                 { "Green House Gasses Replacements (kg CO\x2082-eq)", Math.Round(((frame.GHGEmbodied + frame.GHGEoL) * repNum) * frameArea, 2) },
                 { "Green House Gasses End of Life (kg CO\x2082-eq)", Math.Round(frame.GHGEoL * frameArea, 2) },
-                { "U value: (1/Rf)*area(filling)", Math.Round(1 / (double)frame.ThermalCond, 4)  * frameArea }
+                { "U value: (1/Rf)*area(filling)", Math.Round(1 / (frame.ThermalCond ?? 0.8), 4)  * frameArea },
+                { "Biogenic Carbon Storage (kg CO₂-eq)", (frame.BiogenicCarbon ?? 0) * frameArea }
             };
 
             var fillingDict = new Dictionary<string, double>
@@ -221,7 +225,8 @@ namespace Bombyx2.GUI._01_Bottom_up
                 { "Green House Gasses Embodied (kg CO\x2082-eq)", filling.GHGEmbodied * fillingArea },
                 { "Green House Gasses Replacements (kg CO\x2082-eq)", ((filling.GHGEmbodied + filling.GHGEoL) * repNum) * fillingArea },
                 { "Green House Gasses End of Life (kg CO\x2082-eq)", filling.GHGEoL * fillingArea },
-                { "U value: (1/Rg)*area(glasing)", filling.Uvalue * fillingArea }
+                { "U value: (1/Rg)*area(glasing)", (filling.Uvalue ?? 0.8) * fillingArea },
+                { "Biogenic Carbon Storage (kg CO₂-eq)", (filling.BiogenicCarbon ?? 0) * fillingArea }
             };
             
             var window = new Dictionary<string, double>
@@ -241,7 +246,8 @@ namespace Bombyx2.GUI._01_Bottom_up
                 { "Green House Gasses Embodied (kg CO\x2082-eq)", Math.Round(windowFrame.GHGEmb + windowGlazing.GHGEmb, 2) },
                 { "Green House Gasses Replacements (kg CO\x2082-eq)", Math.Round(windowFrame.GHGRep + windowGlazing.GHGRep, 2) },
                 { "Green House Gasses End of Life (kg CO\x2082-eq)", Math.Round(windowFrame.GHGEol + windowGlazing.GHGEol, 2) },
-                { "U value(W/m2,K): (Uf+Ug)/area", Math.Round((windowFrame.UValue + windowGlazing.UValue) / area, 4) }
+                { "U value(W/m2,K): (Uf+Ug)/area", Math.Round((windowFrame.UValue + windowGlazing.UValue) / area, 4) },
+                { "Biogenic Carbon Storage (kg CO₂-eq)", Math.Round(windowFrame.BiogenicCarbon + windowGlazing.BiogenicCarbon, 2) }
             };
 
             var resultValues = window.Values.ToList();

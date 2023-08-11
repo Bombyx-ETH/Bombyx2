@@ -100,7 +100,7 @@ namespace Bombyx2.GUI._01_Bottom_up
                 results["Green House Gasses Replacements (kg CO\x2082-eq/m²)"] += ((item[9] + item[10]) * repNum);
                 results["Green House Gasses End of Life (kg CO\x2082-eq/m²)"] += item[10];
                 results["R value"] = Math.Round(results["R value"] + item[11], 4);
-                results["Biogenic Carbon Storage (kg CO₂-eq/m²)"] += item[12];
+                results["Biogenic Carbon Storage (kg CO₂-eq/m²)"] += item[12] * (repNum + 1);
             }
 
             var resultValues = results.Values.ToList();

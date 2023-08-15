@@ -81,7 +81,8 @@ namespace Bombyx2.GUI._00_Database
                 { "Green House Gases Embodied (kg CO\x2082-eq/m\xB2 a)", service.GHGEmbodied * area },
                 { "Green House Gasses Replacements (kg CO\x2082-eq/m\xB2)", (service.GHGEmbodied + service.GHGEoL) * area * repNum },
                 { "Green House Gases End of Life (kg CO\x2082-eq/m\xB2 a)", service.GHGEoL * area },
-                { "U value", 0 }
+                { "U value", 0 },
+                { "Biogenic Carbon Storage (kg CO₂-eq/m²)", 0}
             };
 
             var outputValues = output.Values.ToList();

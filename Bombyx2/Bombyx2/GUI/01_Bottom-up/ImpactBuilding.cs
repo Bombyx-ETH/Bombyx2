@@ -53,11 +53,6 @@ namespace Bombyx2.GUI._01_Bottom_up
                 "UBP (P/m² a)", 
                 GH_ParamAccess.item);
 
-            pManager.AddNumberParameter("Biogenic Carbon", 
-                "Biogenic Carbon Storage (kg CO₂-eq)", 
-                "Biogenic Carbon Storage (kg CO₂-eq)", 
-                GH_ParamAccess.item);
-
             pManager.AddTextParameter("LCA factors (text)", 
                 "LCA factors (text)", 
                 "Building Properties (text)", 
@@ -67,6 +62,11 @@ namespace Bombyx2.GUI._01_Bottom_up
                 "LCA factors (values)", 
                 "Building Properties (values)", 
                 GH_ParamAccess.item);
+
+            pManager.AddNumberParameter("Biogenic Carbon",
+            "Biogenic Carbon Storage (kg CO₂-eq/m² a)",
+            "Biogenic Carbon Storage (kg CO₂-eq/m² a)",
+            GH_ParamAccess.item);
         }
 
         protected override void SolveInstance(IGH_DataAccess DA)
@@ -167,12 +167,13 @@ namespace Bombyx2.GUI._01_Bottom_up
             DA.SetData(2, renew);
             DA.SetData(3, nonrenew);
             DA.SetData(4, ubp);
-            DA.SetData(5, biocarbon);
 
             var resultValues = results.Values.ToList();
 
-            DA.SetDataList(6, results);
-            DA.SetDataList(7, resultValues);
+            DA.SetDataList(5, results);
+            DA.SetDataList(6, resultValues);
+
+            DA.SetData(7, biocarbon);
         }
 
         protected override System.Drawing.Bitmap Icon => Icons.impactBuilding;

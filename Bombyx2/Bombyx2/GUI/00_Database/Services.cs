@@ -9,9 +9,9 @@ namespace Bombyx2.GUI._00_Database
     public class Services : GH_Component
     {
         public Services()
-          : base("Building Services",
-                 "Building Services",
-                 "Returns selected KBOB building services from database",
+          : base("4: Building Systems",
+                 "Building Systems",
+                 "Returns selected KBOB building systems from the database",
                  "Bombyx 2",
                  "0: Database")
         {
@@ -20,16 +20,16 @@ namespace Bombyx2.GUI._00_Database
 
         protected override void RegisterInputParams(GH_InputParamManager pManager)
         {
-            pManager.AddTextParameter("Selected service", "Service", "Selected service from materials list", GH_ParamAccess.item);
-            pManager.AddNumberParameter("Energy reference area (square meters)", "ERA (m\xB2)", "energy reference area", GH_ParamAccess.item);
+            pManager.AddTextParameter("Selected system", "System", "Selected system from systems list", GH_ParamAccess.item);
+            pManager.AddNumberParameter("System Sizing", "Sizing", "The sizing for the system, measured in the ERA (m²), surface area (m²), pieces, or other units.", GH_ParamAccess.item);
             pManager.AddIntegerParameter("Reference study period", "RSP (years)", "Reference study period", GH_ParamAccess.item);
             pManager.AddIntegerParameter("Reference service life", "RSL (years)", "Reference service life", GH_ParamAccess.item);
         }
 
         protected override void RegisterOutputParams(GH_OutputParamManager pManager)
         {
-            pManager.AddTextParameter("Service properties (text)", "Service\nproperties (text)", "Material properties (text)", GH_ParamAccess.list);
-            pManager.AddNumberParameter("Service properties (values)", "Service\nproperties (values)", "Material properties (values)", GH_ParamAccess.list);
+            pManager.AddTextParameter("System properties (text)", "System\nproperties (text)", "System properties (text)", GH_ParamAccess.list);
+            pManager.AddNumberParameter("System properties (values)", "System\nproperties (values)", "System properties (values)", GH_ParamAccess.list);
         }
 
         protected override void SolveInstance(IGH_DataAccess DA)
@@ -60,11 +60,12 @@ namespace Bombyx2.GUI._00_Database
 
             var newParam = input.Split(':');
             var service = KbobMaterialsDataAccess.GetKbobService(newParam[0]);
+
             var output = new Dictionary<string, double>
             {
-                { "UBP13 Embodied (P/m\xB2 a)", service.UBP13Embodied * area },
-                { "UBP13 Replacements (P/m\xB2)", (service.UBP13Embodied+service.UBP13EoL) * area * repNum},
-                { "UBP13 End of Life (P/m\xB2 a)", service.UBP13EoL * area },
+                { "UBP13 Embodied (P)", service.UBP13Embodied * area },
+                { "UBP13 Replacements (P)", (service.UBP13Embodied+service.UBP13EoL) * area * repNum},
+                { "UBP13 End of Life (P)", service.UBP13EoL * area },
 
                 { "PE Total Embodied (kWh oil-eq)", service.TotalEmbodied * area },
                 { "PE Total Replacements (kWh oil-eq)", (service.TotalEmbodied + service.TotalEoL) * area * repNum },
@@ -78,11 +79,11 @@ namespace Bombyx2.GUI._00_Database
                 { "PE Non Renewable Replacements (kWh oil-eq)", (service.NonRenewableEmbodied + service.NonRenewableEoL) * area * repNum },
                 { "PE Non Renewable End of Life (kWh oil-eq)", service.NonRenewableEoL * area },
 
-                { "Green House Gases Embodied (kg CO\x2082-eq/m\xB2 a)", service.GHGEmbodied * area },
-                { "Green House Gasses Replacements (kg CO\x2082-eq/m\xB2)", (service.GHGEmbodied + service.GHGEoL) * area * repNum },
-                { "Green House Gases End of Life (kg CO\x2082-eq/m\xB2 a)", service.GHGEoL * area },
+                { "Green House Gases Embodied (kg CO₂-eq)", service.GHGEmbodied * area },
+                { "Green House Gasses Replacements (kg CO₂-eq)", (service.GHGEmbodied + service.GHGEoL) * area * repNum },
+                { "Green House Gases End of Life (kg CO₂-eq)", service.GHGEoL * area },
                 { "U value", 0 },
-                { "Biogenic Carbon Storage (kg CO₂-eq/m²)", 0}
+                { "Biogenic Carbon Storage (kg CO₂-eq)", 0}
             };
 
             var outputValues = output.Values.ToList();

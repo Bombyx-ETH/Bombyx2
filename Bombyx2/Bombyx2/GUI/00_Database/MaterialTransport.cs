@@ -17,7 +17,7 @@ namespace Bombyx2.GUI._00_Database
         private List<KbobTransportModel> KbobTransports = new List<KbobTransportModel>();
 
         public MaterialTransport()
-          : base("Transport Material",
+          : base("6: Transport Material",
                  "Transport Material",
                  "Returns selected KBOB material transport details from database.",
                  "Bombyx 2",
@@ -112,7 +112,8 @@ namespace Bombyx2.GUI._00_Database
                 { "GHGOperation", 0 },
                 { "none5", 0 },
                 { "GHGFahrInfrastr", 0 },
-                { "none6", 0 }
+                { "none6", 0 },
+                { "Biogenic Carbon Storage (kg CO₂-eq/m²)", 0 }
             };
 
             var output = new Dictionary<string, double>
@@ -126,7 +127,8 @@ namespace Bombyx2.GUI._00_Database
                 { "Non Renewable Operation (kWh oil-eq)", 0 },
                 { "Non Renewable Vehicle and Infrastrcture (kWh oil-eq)", 0 },
                 { "GHG Operation (kg CO2-eq)", 0 },
-                { "GHG Vehicle and Infrastrcture (kg CO2-eq)", 0 }
+                { "GHG Vehicle and Infrastrcture (kg CO2-eq)", 0 },
+                { "Biogenic Carbon Storage (kg CO₂-eq/m²)", 0}
             };
 
             foreach (var item in KbobTransports)

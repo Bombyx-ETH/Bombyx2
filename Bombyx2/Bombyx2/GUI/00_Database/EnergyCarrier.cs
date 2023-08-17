@@ -19,7 +19,7 @@ namespace Bombyx2.GUI._00_Database
         private int reset_counter;
 
         public EnergyCarrier()
-          : base("Energy carrier",
+          : base("5: Energy carrier",
                  "Energy carrier",
                  "Returns selected KBOB energy from database",
                  "Bombyx 2",

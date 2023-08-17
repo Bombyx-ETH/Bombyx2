@@ -56,16 +56,16 @@ namespace Bombyx2.GUI._01_Bottom_up
             var output = new Dictionary<string, double>
             {
                 { "Density (kg/m\xB3)", (double?)material[0] ?? -1 },
-                { "UBP13 Embodied * (density * thickness) (P/m\xB2)", Math.Round(material[1] * AreaDensity, 2) },
-                { "UBP13 End of Life * (density * thickness) (P/m\xB2)", Math.Round(material[2] * AreaDensity, 2) },
-                { "PE Total Embodied * (density * thickness) (kWh oil-eq/m\xB2)", Math.Round(material[3] * AreaDensity, 2) },
-                { "PE Total End of Life * (density * thickness) (kWh oil-eq/m\xB2)", Math.Round(material[4] * AreaDensity, 2) },
-                { "PE Renewable Embodied * (density * thickness) (kWh oil-eq/m\xB2)", Math.Round(material[5] * AreaDensity, 2) },
-                { "PE Renewable End of Life * (density * thickness) (kWh oil-eq/m\xB2)", Math.Round(material[6] * AreaDensity, 2) },
-                { "PE Non Renewable Embodied * (density * thickness) (kWh oil-eq/m\xB2)", Math.Round(material[7] * AreaDensity, 2) },
-                { "PE Non Renewable End of Life * (density * thickness) (kWh oil-eq/m\xB2)", Math.Round(material[8] * AreaDensity, 2) },
-                { "Green House Gases Embodied * (density * thickness) (kg CO\x2082-eq/m\xB2)", Math.Round(material[9] * AreaDensity, 2) },
-                { "Green House Gases End of Life * (density * thickness) (kg CO\x2082-eq/m\xB2)", Math.Round(material[10] * AreaDensity, 2) },
+                { "UBP13 Embodied * (density * thickness) (P/m²)", Math.Round(material[1] * AreaDensity, 2) },
+                { "UBP13 End of Life * (density * thickness) (P/m²)", Math.Round(material[2] * AreaDensity, 2) },
+                { "PE Total Embodied * (density * thickness) (kWh oil-eq/m²)", Math.Round(material[3] * AreaDensity, 2) },
+                { "PE Total End of Life * (density * thickness) (kWh oil-eq/m²)", Math.Round(material[4] * AreaDensity, 2) },
+                { "PE Renewable Embodied * (density * thickness) (kWh oil-eq/m²)", Math.Round(material[5] * AreaDensity, 2) },
+                { "PE Renewable End of Life * (density * thickness) (kWh oil-eq/m²)", Math.Round(material[6] * AreaDensity, 2) },
+                { "PE Non Renewable Embodied * (density * thickness) (kWh oil-eq/m²)", Math.Round(material[7] * AreaDensity, 2) },
+                { "PE Non Renewable End of Life * (density * thickness) (kWh oil-eq/m²)", Math.Round(material[8] * AreaDensity, 2) },
+                { "Green House Gases Embodied * (density * thickness) (kg CO₂-eq/m²)", Math.Round(material[9] * AreaDensity, 2) },
+                { "Green House Gases End of Life * (density * thickness) (kg CO₂-eq/m²)", Math.Round(material[10] * AreaDensity, 2) },
                 { "R value = (thickness / thermal conductivity) (m2*K/W)", (double?)Math.Round(resistance, 2) ?? -1 },
                 { "Biogenic Carbon Storage * (density * thickness) (kg CO₂-eq/m²)", material[12] * AreaDensity }
             };

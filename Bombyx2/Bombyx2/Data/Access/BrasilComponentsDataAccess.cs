@@ -11,7 +11,7 @@ namespace Bombyx2.Data.Access
     {
         public static List<string> GetBrasilComponentsList(string param)
         {
-            using (IDbConnection conn = new SQLiteConnection(Config.LoadConnectionString()))
+            using (IDbConnection conn = new SQLiteConnection(Config.LoadConnectionString(), true))
             {
                 var parameter = new { code = param };
                 var query = "SELECT Code || ' - ' || DescriptionBrasil FROM BrasilComponents WHERE IDElement LIKE @code";
@@ -22,7 +22,7 @@ namespace Bombyx2.Data.Access
 
         public static List<BrasilComponentsModel> GetBrasilComponents(string param)
         {
-            using (IDbConnection conn = new SQLiteConnection(Config.LoadConnectionString()))
+            using (IDbConnection conn = new SQLiteConnection(Config.LoadConnectionString(), true))
             {
                 var parameter = new { code = param };
                 var query = "SELECT bm.NameBrasil, cm.Amount, cm.Unit, bm.ResourcesConsumMin, bm.ResourcesConsumMax, " +

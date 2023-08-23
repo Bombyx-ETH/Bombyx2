@@ -13,7 +13,7 @@ namespace Bombyx2.Data.Access
 
         public static KbobMaterialModel GetKbobMaterial(string param)
         {
-            using (IDbConnection conn = new SQLiteConnection(Config.LoadConnectionString()))
+            using (IDbConnection conn = new SQLiteConnection(Config.LoadConnectionString(), true))
             {
                 var parameter = new { idkbob = param };
                 var query = "SELECT * FROM KbobMaterials WHERE IdKbob = @idkbob order by IdKbob DESC";
@@ -24,7 +24,7 @@ namespace Bombyx2.Data.Access
 
         public static List<string> GetKbobMaterialsList(string param)
         {
-            using (IDbConnection conn = new SQLiteConnection(Config.LoadConnectionString()))
+            using (IDbConnection conn = new SQLiteConnection(Config.LoadConnectionString(), true))
             {
                 var parameter = new { idkbob = param };
                 var query = "SELECT IdKbob || ': ' || NameEnglish FROM KbobMaterials WHERE IdKbob like @idkbob order by IdKbob DESC";
@@ -35,7 +35,7 @@ namespace Bombyx2.Data.Access
 
         public static List<KbobMaterialModel> GetAllKbobMaterials()
         {
-            using (IDbConnection conn = new SQLiteConnection(Config.LoadConnectionString()))
+            using (IDbConnection conn = new SQLiteConnection(Config.LoadConnectionString(), true))
             {
                 var output = conn.Query<KbobMaterialModel>("SELECT * FROM KbobMaterials", new DynamicParameters());
                 return output.ToList();
@@ -44,7 +44,7 @@ namespace Bombyx2.Data.Access
 
         public static List<KbobWindowGlazingModel> GetKbobWindowGlazingList()
         {
-            using (IDbConnection conn = new SQLiteConnection(Config.LoadConnectionString()))
+            using (IDbConnection conn = new SQLiteConnection(Config.LoadConnectionString(), true))
             {
                 var output = conn.Query<KbobWindowGlazingModel>("SELECT * FROM KbobWindowGlazing", new DynamicParameters());
                 return output.ToList();
@@ -53,7 +53,7 @@ namespace Bombyx2.Data.Access
 
         public static KbobWindowGlazingModel GetKbobWindowGlazing(string param)
         {
-            using (IDbConnection conn = new SQLiteConnection(Config.LoadConnectionString()))
+            using (IDbConnection conn = new SQLiteConnection(Config.LoadConnectionString(), true))
             {
                 var parameter = new { idkbob = param };
                 var query = "SELECT * FROM KbobWindowGlazing WHERE IdKbob = @idkbob";
@@ -64,7 +64,7 @@ namespace Bombyx2.Data.Access
 
         public static List<KbobMaterialModel> GetKbobWindowFramesList()
         {
-            using (IDbConnection conn = new SQLiteConnection(Config.LoadConnectionString()))
+            using (IDbConnection conn = new SQLiteConnection(Config.LoadConnectionString(), true))
             {
                 var output = conn.Query<KbobMaterialModel>("SELECT * FROM KbobMaterials WHERE NameEnglish LIKE '%window frame%'", new DynamicParameters());
                 return output.ToList();
@@ -73,7 +73,7 @@ namespace Bombyx2.Data.Access
 
         public static KbobMaterialModel GetKbobWindowFrames(string param)
         {
-            using (IDbConnection conn = new SQLiteConnection(Config.LoadConnectionString()))
+            using (IDbConnection conn = new SQLiteConnection(Config.LoadConnectionString(), true))
             {
                 var parameter = new { idkbob = param };
                 var query = "SELECT * FROM KbobMaterials WHERE NameEnglish LIKE '%window frame%' AND IdKbob = @idkbob";
@@ -88,7 +88,7 @@ namespace Bombyx2.Data.Access
 
         public static KbobEnergyModel GetKbobEnergy(string param)
         {
-            using (IDbConnection conn = new SQLiteConnection(Config.LoadConnectionString()))
+            using (IDbConnection conn = new SQLiteConnection(Config.LoadConnectionString(), true))
             {
                 var parameter = new { idkbob = param };
                 var query = "SELECT * FROM KbobEnergy WHERE IdKbob = @idkbob";
@@ -99,7 +99,7 @@ namespace Bombyx2.Data.Access
 
         public static List<string> GetKbobEnergyList()
         {
-            using (IDbConnection conn = new SQLiteConnection(Config.LoadConnectionString()))
+            using (IDbConnection conn = new SQLiteConnection(Config.LoadConnectionString(), true))
             {
                 var output = conn.Query<string>("SELECT IdKbob || ': ' || NameEnglish FROM KbobEnergy", new DynamicParameters());
                 return output.ToList();
@@ -112,7 +112,7 @@ namespace Bombyx2.Data.Access
 
         public static KbobServiceModel GetKbobService(string param)
         {
-            using (IDbConnection conn = new SQLiteConnection(Config.LoadConnectionString()))
+            using (IDbConnection conn = new SQLiteConnection(Config.LoadConnectionString(), true))
             {
                 var parameter = new { idkbob = param };
                 var query = "SELECT * FROM KbobServices WHERE IdKbob = @idkbob";
@@ -123,7 +123,7 @@ namespace Bombyx2.Data.Access
 
         public static List<string> GetKbobServicesList(string param)
         {
-            using (IDbConnection conn = new SQLiteConnection(Config.LoadConnectionString()))
+            using (IDbConnection conn = new SQLiteConnection(Config.LoadConnectionString(), true))
             {
                 var parameter = new { idkbob = param };
                 var query = "SELECT IdKbob || ': ' || NameEnglish FROM KbobServices WHERE IdKbob like @idkbob";
@@ -134,7 +134,7 @@ namespace Bombyx2.Data.Access
 
         public static List<KbobServiceModel> GetAllKbobServices()
         {
-            using (IDbConnection conn = new SQLiteConnection(Config.LoadConnectionString()))
+            using (IDbConnection conn = new SQLiteConnection(Config.LoadConnectionString(), true))
             {
                 var output = conn.Query<KbobServiceModel>("SELECT * FROM KbobServices", new DynamicParameters());
                 return output.ToList();
@@ -149,7 +149,7 @@ namespace Bombyx2.Data.Access
         {
             var type = param == "material" ? "'62%'" : "'63%'";
 
-            using (IDbConnection conn = new SQLiteConnection(Config.LoadConnectionString()))
+            using (IDbConnection conn = new SQLiteConnection(Config.LoadConnectionString(), true))
             {
                 var output = conn.Query<KbobTransportModel>("SELECT * FROM KbobTransport WHERE IdKbob LIKE " + type, new DynamicParameters());
                 return output.ToList();

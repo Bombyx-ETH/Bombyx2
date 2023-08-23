@@ -39,27 +39,28 @@
     <Reference Include="Dapper, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Dapper.2.0.35\lib\net461\Dapper.dll</HintPath>
     </Reference>
-    <Reference Include="Eto, Version=2.7.0.0, Culture=neutral, PublicKeyToken=552281e97c755530, processorArchitecture=MSIL">
-      <HintPath>..\packages\RhinoCommon.7.20.22193.9001\lib\net48\Eto.dll</HintPath>
+    <Reference Include="Eto, Version=2.6.0.0, Culture=neutral, PublicKeyToken=552281e97c755530, processorArchitecture=MSIL">
+      <HintPath>..\packages\RhinoCommon.7.9.21222.15001\lib\net48\Eto.dll</HintPath>
     </Reference>
-    <Reference Include="GH_IO, Version=7.20.22193.9001, Culture=neutral, PublicKeyToken=6a29997d2e6b4f97, processorArchitecture=MSIL">
-      <HintPath>..\packages\Grasshopper.7.20.22193.9001\lib\net48\GH_IO.dll</HintPath>
-      <Private>False</Private>
+    <Reference Include="GH_IO, Version=7.9.21222.15000, Culture=neutral, PublicKeyToken=6a29997d2e6b4f97, processorArchitecture=MSIL">
+      <HintPath>..\packages\Grasshopper.7.9.21222.15001\lib\net48\GH_IO.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="GH_Util">
       <HintPath>C:\Program Files\Rhino 7\Plug-ins\Grasshopper\GH_Util.dll</HintPath>
-      <Private>False</Private>
+      <Private>True</Private>
     </Reference>
-    <Reference Include="Grasshopper, Version=7.20.22193.9001, Culture=neutral, PublicKeyToken=dda4f5ec2cd80803, processorArchitecture=MSIL">
-      <HintPath>..\packages\Grasshopper.7.20.22193.9001\lib\net48\Grasshopper.dll</HintPath>
+    <Reference Include="Grasshopper, Version=7.9.21222.15000, Culture=neutral, PublicKeyToken=dda4f5ec2cd80803, processorArchitecture=MSIL">
+      <HintPath>..\packages\Grasshopper.7.9.21222.15001\lib\net48\Grasshopper.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Microsoft.VisualBasic" />
-    <Reference Include="Rhino.UI, Version=7.20.22193.9001, Culture=neutral, PublicKeyToken=552281e97c755530, processorArchitecture=MSIL">
-      <HintPath>..\packages\RhinoCommon.7.20.22193.9001\lib\net48\Rhino.UI.dll</HintPath>
+    <Reference Include="Rhino.UI, Version=7.9.21222.15000, Culture=neutral, PublicKeyToken=552281e97c755530, processorArchitecture=MSIL">
+      <HintPath>..\packages\RhinoCommon.7.9.21222.15001\lib\net48\Rhino.UI.dll</HintPath>
+      <Private>False</Private>
     </Reference>
-    <Reference Include="RhinoCommon, Version=7.20.22193.9001, Culture=neutral, PublicKeyToken=552281e97c755530, processorArchitecture=MSIL">
-      <HintPath>..\packages\RhinoCommon.7.20.22193.9001\lib\net48\RhinoCommon.dll</HintPath>
+    <Reference Include="RhinoCommon, Version=7.9.21222.15000, Culture=neutral, PublicKeyToken=552281e97c755530, processorArchitecture=MSIL">
+      <HintPath>..\packages\RhinoCommon.7.9.21222.15001\lib\net48\RhinoCommon.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="System" />
@@ -245,11 +246,11 @@ Erase "$(TargetPath)"</PostBuildEvent>
     <Error Condition="!Exists('..\packages\Microsoft.CodeAnalysis.Analyzers.3.3.2\build\Microsoft.CodeAnalysis.Analyzers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeAnalysis.Analyzers.3.3.2\build\Microsoft.CodeAnalysis.Analyzers.props'))" />
     <Error Condition="!Exists('..\packages\Microsoft.CodeAnalysis.Analyzers.3.3.2\build\Microsoft.CodeAnalysis.Analyzers.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeAnalysis.Analyzers.3.3.2\build\Microsoft.CodeAnalysis.Analyzers.targets'))" />
     <Error Condition="!Exists('..\packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.118.0\build\net46\Stub.System.Data.SQLite.Core.NetFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.118.0\build\net46\Stub.System.Data.SQLite.Core.NetFramework.targets'))" />
-    <Error Condition="!Exists('..\packages\RhinoCommon.7.20.22193.9001\build\net48\RhinoCommon.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\RhinoCommon.7.20.22193.9001\build\net48\RhinoCommon.targets'))" />
-    <Error Condition="!Exists('..\packages\Grasshopper.7.20.22193.9001\build\net48\Grasshopper.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Grasshopper.7.20.22193.9001\build\net48\Grasshopper.targets'))" />
+    <Error Condition="!Exists('..\packages\RhinoCommon.7.9.21222.15001\build\RhinoCommon.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\RhinoCommon.7.9.21222.15001\build\RhinoCommon.targets'))" />
+    <Error Condition="!Exists('..\packages\Grasshopper.7.9.21222.15001\build\Grasshopper.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Grasshopper.7.9.21222.15001\build\Grasshopper.targets'))" />
   </Target>
   <Import Project="..\packages\Microsoft.CodeAnalysis.Analyzers.3.3.2\build\Microsoft.CodeAnalysis.Analyzers.targets" Condition="Exists('..\packages\Microsoft.CodeAnalysis.Analyzers.3.3.2\build\Microsoft.CodeAnalysis.Analyzers.targets')" />
   <Import Project="..\packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.118.0\build\net46\Stub.System.Data.SQLite.Core.NetFramework.targets" Condition="Exists('..\packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.118.0\build\net46\Stub.System.Data.SQLite.Core.NetFramework.targets')" />
-  <Import Project="..\packages\RhinoCommon.7.20.22193.9001\build\net48\RhinoCommon.targets" Condition="Exists('..\packages\RhinoCommon.7.20.22193.9001\build\net48\RhinoCommon.targets')" />
-  <Import Project="..\packages\Grasshopper.7.20.22193.9001\build\net48\Grasshopper.targets" Condition="Exists('..\packages\Grasshopper.7.20.22193.9001\build\net48\Grasshopper.targets')" />
+  <Import Project="..\packages\RhinoCommon.7.9.21222.15001\build\RhinoCommon.targets" Condition="Exists('..\packages\RhinoCommon.7.9.21222.15001\build\RhinoCommon.targets')" />
+  <Import Project="..\packages\Grasshopper.7.9.21222.15001\build\Grasshopper.targets" Condition="Exists('..\packages\Grasshopper.7.9.21222.15001\build\Grasshopper.targets')" />
 </Project>

@@ -70,7 +70,7 @@ namespace Bombyx2.GUI._01_Bottom_up
             pManager[1].Optional = true;
             pManager.AddTextParameter("Glazing material", "Glazing material", "Glazing material", GH_ParamAccess.item);
             pManager[2].Optional = true;
-            pManager.AddNumberParameter("Frame percentage", "Frame percentage", "Value", GH_ParamAccess.item);
+            pManager.AddNumberParameter("Frame percentage", "Frame percentage", "The percentage of the total area covered by the window frame (e.g. 30). Default is 0.", GH_ParamAccess.item);
             pManager[3].Optional = true;
             pManager.AddIntegerParameter("Reference study period", "RSP (years)", "Manual input", GH_ParamAccess.item);
             pManager[4].Optional = true;

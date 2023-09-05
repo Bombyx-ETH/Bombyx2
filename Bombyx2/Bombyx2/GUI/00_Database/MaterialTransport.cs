@@ -33,7 +33,7 @@ namespace Bombyx2.GUI._00_Database
             pManager.AddNumberParameter("Mass", "Mass (t)", "Mass in metric tonnes", GH_ParamAccess.item);
             pManager.AddTextParameter("Transport type", "Transport type", "Select the type of transport", GH_ParamAccess.item);
             pManager[2].Optional = true;
-            pManager.AddNumberParameter("Truck percentage", "Truck (%)", "Truck percentage", GH_ParamAccess.item);
+            pManager.AddNumberParameter("Truck percentage", "Truck (%)", "Truck percentage (e.g. 30). Default is 0.", GH_ParamAccess.item, 0d);
             pManager[3].Optional = true;
         }
 

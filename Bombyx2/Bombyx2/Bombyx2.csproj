@@ -22,7 +22,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>C:\Users\Pedram Mirabian\AppData\Roaming\Grasshopper\Libraries\Bombyx2.0.9\</OutputPath>
+    <OutputPath>C:\Users\Pedram Mirabian\AppData\Roaming\Grasshopper\Libraries\Bombyx2.1.0\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisIgnoreBuiltInRules>false</CodeAnalysisIgnoreBuiltInRules>

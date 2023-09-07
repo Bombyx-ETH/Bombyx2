@@ -7,7 +7,7 @@ namespace Bombyx2.Data.Access
 {
     public static class Config
     {
-        public static readonly string Version = "2.0.9";
+        public static readonly string Version = "2.1.0";
         //private static string DBlocation = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\Grasshopper\\Libraries\\Bombyx" + Version + "\\";
 
         public static Guid BombyxGuid = new Guid("5af956a8-f831-4691-9d71-621053263843");

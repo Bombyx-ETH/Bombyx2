@@ -28,8 +28,8 @@ namespace Bombyx2.GUI._00_Database
 
         protected override void RegisterOutputParams(GH_OutputParamManager pManager)
         {
-            pManager.AddTextParameter("System properties (text)", "System\nproperties (text)", "System properties (text)", GH_ParamAccess.list);
-            pManager.AddNumberParameter("System properties (values)", "System\nproperties (values)", "System properties (values)", GH_ParamAccess.list);
+            pManager.AddTextParameter("System properties (text)", "System properties (text)", "System properties (text)", GH_ParamAccess.list);
+            pManager.AddNumberParameter("System properties (values)", "System properties (values)", "System properties (values)", GH_ParamAccess.list);
         }
 
         protected override void SolveInstance(IGH_DataAccess DA)

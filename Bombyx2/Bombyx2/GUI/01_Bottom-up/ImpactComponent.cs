@@ -20,7 +20,7 @@ namespace Bombyx2.GUI._01_Bottom_up
 
         protected override void RegisterInputParams(GH_InputParamManager pManager)
         {
-            pManager.AddNumberParameter("Layer properties", "Layer\nproperties", "List of layer properties", GH_ParamAccess.list);
+            pManager.AddNumberParameter("Layer properties", "Layer properties", "List of layer properties", GH_ParamAccess.list);
             pManager.AddIntegerParameter("Reference study period", "RSP (years)", "Reference study period", GH_ParamAccess.item);
             pManager.AddIntegerParameter("Reference service life", "RSL (years)", "Reference service life", GH_ParamAccess.item);
         }

@@ -20,13 +20,13 @@ namespace Bombyx2.GUI._01_Bottom_up
 
         protected override void RegisterInputParams(GH_InputParamManager pManager)
         {
-            pManager.AddNumberParameter("Material", "Material\nproperties", "Material properties", GH_ParamAccess.list);
+            pManager.AddNumberParameter("Material", "Material properties", "Material properties", GH_ParamAccess.list);
             pManager.AddNumberParameter("Thickness (meters)", "Thickness (m)", "Number value", GH_ParamAccess.item);
         }
 
         protected override void RegisterOutputParams(GH_OutputParamManager pManager)
         {
-            pManager.AddTextParameter("Layer properties (text)", "Layer\nproperties (text)", "Layer property (text)", GH_ParamAccess.list);
+            pManager.AddTextParameter("Layer properties (text)", "Layer properties (text)", "Layer property (text)", GH_ParamAccess.list);
             pManager.AddNumberParameter("Layer properties (values)", "Layer properties (values)", "Layer properties (values)", GH_ParamAccess.list);
         }
 

@@ -27,7 +27,7 @@ namespace Bombyx2.GUI._01_Bottom_up
 
         protected override void RegisterInputParams(GH_InputParamManager pManager)
         {
-            pManager.AddNumberParameter("Component properties", "Component\nproperties", "List of component properties", GH_ParamAccess.list);
+            pManager.AddNumberParameter("Component properties", "Component properties", "List of component properties", GH_ParamAccess.list);
             pManager[0].DataMapping = GH_DataMapping.Flatten;
             pManager.AddTextParameter("Thermal resistivity", "Thermal resistivity", "By selecting element's Thermal resistivity, air resistance will be added to the U value.", GH_ParamAccess.item);
             pManager[1].Optional = true;

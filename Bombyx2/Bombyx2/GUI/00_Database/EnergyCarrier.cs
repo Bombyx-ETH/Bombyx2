@@ -66,12 +66,12 @@ namespace Bombyx2.GUI._00_Database
             var energy = KbobMaterialsDataAccess.GetKbobEnergy(newParam[0]);
             var output = new Dictionary<string, double>
             {
-                { "Global warming potential (kg CO\x2082-eq/m\xB2 a)", Math.Round(energy.GHG * demandSum, 2) },
-                { "PE Total (kWh oil-eq/m\xB2 a)", Math.Round(energy.PeTotal * demandSum, 2) },
-                { "PE Renewable (kWh oil-eq/m\xB2 a)", Math.Round(energy.PeRenewable * demandSum, 2) },
-                { "PE Non Renewable (kWh oil-eq/m\xB2 a)", Math.Round(energy.PeNonRenewable * demandSum, 2) },
-                { "PE Renewable at Location (kWh oil-eq/m\xB2 a)", Math.Round(energy.PePeRenewableAtLocation * demandSum, 2) },
-                { "UBP (P/m\xB2 a)", Math.Round(energy.UBP * demandSum, 2) }
+                { "Global warming potential (kg CO\x2082-eq/a)", Math.Round(energy.GHG * demandSum, 2) },
+                { "PE Total (kWh oil-eq/a)", Math.Round(energy.PeTotal * demandSum, 2) },
+                { "PE Renewable (kWh oil-eq/a)", Math.Round(energy.PeRenewable * demandSum, 2) },
+                { "PE Non Renewable (kWh oil-eq/a)", Math.Round(energy.PeNonRenewable * demandSum, 2) },
+                { "PE Renewable at Location (kWh oil-eq/a)", Math.Round(energy.PePeRenewableAtLocation * demandSum, 2) },
+                { "UBP (P/a)", Math.Round(energy.UBP * demandSum, 2) }
             };
 
             if (reset_counter == 0)     // 2.0.9 Pedram: Was the problem. Set it such that it only 

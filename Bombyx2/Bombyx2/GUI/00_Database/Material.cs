@@ -25,8 +25,8 @@ namespace Bombyx2.GUI._00_Database
 
         protected override void RegisterOutputParams(GH_OutputParamManager pManager)
         {
-            pManager.AddTextParameter("Material properties (text)", "Material\nproperties (text)", "Material properties (text)", GH_ParamAccess.list);
-            pManager.AddNumberParameter("Material properties (values)", "Material\nproperties (values)", "Material properties (values)", GH_ParamAccess.list);
+            pManager.AddTextParameter("Material properties (text)", "Properties (text)", "Material properties (text)", GH_ParamAccess.list);
+            pManager.AddNumberParameter("Material properties (values)", "Properties (values)", "Material properties (values)", GH_ParamAccess.list);
         }
 
         protected override void SolveInstance(IGH_DataAccess DA)

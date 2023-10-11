@@ -38,9 +38,9 @@ namespace Bombyx2.GUI._01_Bottom_up
             if (!DA.GetData(1, ref thickness)) { return; }
 
             double AreaDensity;
-            if (material[1] == 0)
+            if (material[0] == 0)
             {
-                AreaDensity = thickness;
+                AreaDensity = 1;
             }
             else
             {

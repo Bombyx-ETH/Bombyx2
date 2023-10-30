@@ -19,7 +19,7 @@ namespace Bombyx2.GUI._00_Database
         private int reset_counter;
 
         public EnergyCarrier()
-          : base("5: Energy carrier",
+          : base("0.5: Energy carrier",
                  "Energy carrier",
                  "Returns selected KBOB energy from database",
                  "Bombyx 2",
@@ -66,12 +66,12 @@ namespace Bombyx2.GUI._00_Database
             var energy = KbobMaterialsDataAccess.GetKbobEnergy(newParam[0]);
             var output = new Dictionary<string, double>
             {
-                { "Global warming potential (kg CO\x2082-eq/a)", Math.Round(energy.GHG * demandSum, 2) },
-                { "PE Total (kWh oil-eq/a)", Math.Round(energy.PeTotal * demandSum, 2) },
-                { "PE Renewable (kWh oil-eq/a)", Math.Round(energy.PeRenewable * demandSum, 2) },
-                { "PE Non Renewable (kWh oil-eq/a)", Math.Round(energy.PeNonRenewable * demandSum, 2) },
-                { "PE Renewable at Location (kWh oil-eq/a)", Math.Round(energy.PePeRenewableAtLocation * demandSum, 2) },
-                { "UBP (P/a)", Math.Round(energy.UBP * demandSum, 2) }
+                { "Global warming potential (kg CO\x2082-eq/a)", Math.Round(energy.GHG * demandSum, 3) },
+                { "PE Total (kWh oil-eq/a)", Math.Round(energy.PeTotal * demandSum, 3) },
+                { "PE Renewable (kWh oil-eq/a)", Math.Round(energy.PeRenewable * demandSum, 3) },
+                { "PE Non Renewable (kWh oil-eq/a)", Math.Round(energy.PeNonRenewable * demandSum, 3) },
+                { "PE Renewable at Location (kWh oil-eq/a)", Math.Round(energy.PePeRenewableAtLocation * demandSum, 3) },
+                { "UBP (P/a)", Math.Round(energy.UBP * demandSum, 3) }
             };
 
             if (reset_counter == 0)     // 2.0.9 Pedram: Was the problem. Set it such that it only 

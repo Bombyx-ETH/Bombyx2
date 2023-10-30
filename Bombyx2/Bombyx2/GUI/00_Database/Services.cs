@@ -9,7 +9,7 @@ namespace Bombyx2.GUI._00_Database
     public class Services : GH_Component
     {
         public Services()
-          : base("4: Building Systems",
+          : base("0.4: Building Systems",
                  "Building Systems",
                  "Returns selected KBOB building systems from the database",
                  "Bombyx 2",

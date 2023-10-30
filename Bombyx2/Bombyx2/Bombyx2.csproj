@@ -102,6 +102,7 @@
     <Compile Include="GUI\00_Database\Services.cs" />
     <Compile Include="GUI\01_Bottom-up\ImpactBuilding.cs" />
     <Compile Include="GUI\01_Bottom-up\ImpactComponent.cs" />
+    <Compile Include="GUI\01_Bottom-up\ImpactVolume.cs" />
     <Compile Include="GUI\01_Bottom-up\ImpactElement.cs" />
     <Compile Include="GUI\01_Bottom-up\ImpactLayer.cs" />
     <Compile Include="GUI\01_Bottom-up\ImpactWindow.cs" />

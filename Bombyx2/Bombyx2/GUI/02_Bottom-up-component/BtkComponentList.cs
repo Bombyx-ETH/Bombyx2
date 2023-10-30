@@ -15,7 +15,7 @@ namespace Bombyx2.GUI._01_ComponentLevel
         private string[] ComponentList;
 
         public BtkComponentList()
-          : base("1: Component Groups",
+          : base("2.1: Component Groups",
                  "Component Groups",
                  "Returns list of Bauteilkatalog component groups from database.",
                  "Bombyx 2",

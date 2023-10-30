@@ -19,7 +19,7 @@ namespace Bombyx2.GUI._00_Database
             "34: Electrical systems" };
 
         public ServiceGroups()
-          : base("3: Systems Groups",
+          : base("0.3: Systems Groups",
                  "Systems Groups",
                  "Returns the list of building systems from the KBOB database",
                  "Bombyx 2",

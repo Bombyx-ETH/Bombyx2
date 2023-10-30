@@ -9,7 +9,7 @@ namespace Bombyx2.GUI._01_ComponentLevel
     public class BtkComponentWindow : GH_Component
     {
         public BtkComponentWindow()
-          : base("3: Window Component",
+          : base("2.3: Window Component",
                  "Window component",
                  "Returns Bauteilkatalog window component from database.",
                  "Bombyx 2",

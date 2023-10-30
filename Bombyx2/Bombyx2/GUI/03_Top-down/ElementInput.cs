@@ -103,7 +103,7 @@ namespace Bombyx2.GUI._10_BuildingLevel
                                                   "Foundation" };
 
         public ElementInput()
-          : base("2: Element Input",
+          : base("3.2: Element Input",
                  "Element input",
                  "Select element for building level",
                  "Bombyx 2",

@@ -9,7 +9,7 @@ namespace Bombyx2.GUI._00_Database
     public class Material : GH_Component
     {
         public Material()
-          : base("2: Material",
+          : base("0.2: Material",
                  "Material",
                  "Returns selected KBOB material details from database",
                  "Bombyx 2",
@@ -52,18 +52,18 @@ namespace Bombyx2.GUI._00_Database
             var output = new Dictionary<string, double>
             {
                 { contains ? "Area-mass, Layer not needed (kg/m2)" : "Density (kg/m3)", material.Density ?? 0d },
-                { "UBP13 Embodied (P/" + material.DensityUnit + ")", Math.Round(material.UBP13Embodied, 2) },
-                { "UBP13 End of Life (P/" + material.DensityUnit + ")", Math.Round(material.UBP13EoL, 2) },
-                { "PE Total Embodied (kWh oil-eq/" + material.DensityUnit + ")", Math.Round(material.TotalEmbodied, 2) },
-                { "PE Total End of Life (kWh oil-eq/" + material.DensityUnit + ")", Math.Round(material.TotalEoL, 2) },
-                { "PE Renewable Embodied (kWh oil-eq/" + material.DensityUnit + ")", Math.Round(material.RenewableEmbodied, 2) },
-                { "PE Renewable End of Life (kWh oil-eq/" + material.DensityUnit + ")", Math.Round(material.RenewableEoL, 2) },
-                { "PE Non Renewable Embodied (kWh oil-eq/" + material.DensityUnit + ")", Math.Round(material.NonRenewableEmbodied, 2) },
-                { "PE Non Renewable End of Life (kWh oil-eq/" + material.DensityUnit + ")", Math.Round(material.NonRenewableEoL, 2) },
-                { "Green House Gases Embodied (kg CO\x2082-eq/" + material.DensityUnit + ")", Math.Round(material.GHGEmbodied, 2) },
-                { "Green House Gases End of Life (kg CO\x2082-eq/" + material.DensityUnit + ")", Math.Round(material.GHGEoL, 2) },
+                { "UBP13 Embodied (P/" + material.DensityUnit + ")", Math.Round(material.UBP13Embodied, 3) },
+                { "UBP13 End of Life (P/" + material.DensityUnit + ")", Math.Round(material.UBP13EoL, 3) },
+                { "PE Total Embodied (kWh oil-eq/" + material.DensityUnit + ")", Math.Round(material.TotalEmbodied, 3) },
+                { "PE Total End of Life (kWh oil-eq/" + material.DensityUnit + ")", Math.Round(material.TotalEoL, 3) },
+                { "PE Renewable Embodied (kWh oil-eq/" + material.DensityUnit + ")", Math.Round(material.RenewableEmbodied, 3) },
+                { "PE Renewable End of Life (kWh oil-eq/" + material.DensityUnit + ")", Math.Round(material.RenewableEoL, 3) },
+                { "PE Non Renewable Embodied (kWh oil-eq/" + material.DensityUnit + ")", Math.Round(material.NonRenewableEmbodied, 3) },
+                { "PE Non Renewable End of Life (kWh oil-eq/" + material.DensityUnit + ")", Math.Round(material.NonRenewableEoL, 3) },
+                { "Green House Gases Embodied (kg CO\x2082-eq/" + material.DensityUnit + ")", Math.Round(material.GHGEmbodied, 3) },
+                { "Green House Gases End of Life (kg CO\x2082-eq/" + material.DensityUnit + ")", Math.Round(material.GHGEoL, 3) },
                 { "Thermal Conductivity (W/m*K)", material.ThermalCond ?? -1d },
-                { "Biogenic Carbon Storage (kg CO\x2082-eq/" + material.DensityUnit + ")", Math.Round((material.BiogenicCarbon ?? 0d) * 3.67, 2) }
+                { "Biogenic Carbon Storage (kg CO\x2082-eq/" + material.DensityUnit + ")", Math.Round((material.BiogenicCarbon ?? 0d) * 3.67, 3) }
             };
 
             var outputValues = output.Values.ToList();

@@ -9,7 +9,7 @@ namespace Bombyx2.GUI._01_Bottom_up
     public class ImpactComponent : GH_Component
     {
         public ImpactComponent()
-          : base("2: Component impact",
+          : base("1.2: Component impact",
                  "Component impact",
                  "Calculates impacts of PE, GWP, UBP",
                  "Bombyx 2",

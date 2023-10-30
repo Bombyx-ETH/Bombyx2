@@ -23,7 +23,7 @@ namespace Bombyx2.Data.Access
 
         public static BuildingLevelModel GetComponentsForBuilding(string element, string component, List<string> inputs, string type)
         {
-            using (IDbConnection conn = new SQLiteConnection(Config.LoadConnectionString()))
+            using (IDbConnection conn = new SQLiteConnection(Config.LoadConnectionString(), true))
             {
                 var query = "";
 
@@ -134,7 +134,7 @@ namespace Bombyx2.Data.Access
 
         public static List<BuildingLevelModel> GetAllComponentsForBuilding(string element, List<string> inputs, double area)
         {
-            using (IDbConnection conn = new SQLiteConnection(Config.LoadConnectionString()))
+            using (IDbConnection conn = new SQLiteConnection(Config.LoadConnectionString(), true))
             {
                 var query = "SELECT ec.eBKP as eBKP, ec.ComponentID as ComponentID, ec.ComponentTitle as ComponentTitle, " +
                             "CASE WHEN eBKP = 'E 3.1' AND km.IdKbob IN('05.001', '05.009', '05.010', '05.002', '05.011', '05.003', '05.012', '05.013', '05.014', '05.015', '05.016') " +
@@ -211,7 +211,7 @@ namespace Bombyx2.Data.Access
 
         public static List<string> GetComponentsForElement(string comp, List<string> inputs)
         {
-            using (IDbConnection conn = new SQLiteConnection(Config.LoadConnectionString()))
+            using (IDbConnection conn = new SQLiteConnection(Config.LoadConnectionString(), true))
             {
                 var query = "SELECT DISTINCT ec.eBKP || ': ' || ec.ComponentTitle " +
                             "FROM EcoKompositComponents ec " +
@@ -233,7 +233,7 @@ namespace Bombyx2.Data.Access
 
         public static BuildingLevelModel GetSpecificForBuilding(string ebkp, string name)
         {
-            using (IDbConnection conn = new SQLiteConnection(Config.LoadConnectionString()))
+            using (IDbConnection conn = new SQLiteConnection(Config.LoadConnectionString(), true))
             {
                 var query = "SELECT ec.eBKP as eBKP, ec.ComponentID as ComponentID, ec.ComponentTitle as ComponentTitle, " +
                             "CASE WHEN eBKP = 'E 3.1' AND km.IdKbob IN('05.001', '05.009', '05.010', '05.002', '05.011', '05.003', '05.012', '05.013', '05.014', '05.015', '05.016') " +

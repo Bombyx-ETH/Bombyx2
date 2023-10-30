@@ -13,7 +13,7 @@ namespace Bombyx2.Data.Access
 
         public static List<BtkComponentMaterialModel> GetBtkComponent(string param)
         {
-            using (IDbConnection conn = new SQLiteConnection(Config.LoadConnectionString()))
+            using (IDbConnection conn = new SQLiteConnection(Config.LoadConnectionString(), true))
             {
                 var parameter = new { code = param };
                 var query = "SELECT bk.SortCode, mat.Ubp13Embodied * bk.Percentage / 100 as Ubp13Embodied, mat.Ubp13EoL * bk.Percentage / 100 as Ubp13EoL, " +
@@ -36,7 +36,7 @@ namespace Bombyx2.Data.Access
 
         public static List<string> GetBtkComponentsGroups()
         {
-            using (IDbConnection conn = new SQLiteConnection(Config.LoadConnectionString()))
+            using (IDbConnection conn = new SQLiteConnection(Config.LoadConnectionString(), true))
             {
                 var query = "SELECT DISTINCT ComponentCode || ': ' || CategoryEnglish FROM BtkComponent WHERE ComponentCode NOT IN('B6.2', 'D1', 'D7', 'D8', 'D5.2', 'D5.4') " +
                             "UNION " +
@@ -48,7 +48,7 @@ namespace Bombyx2.Data.Access
 
         public static List<string> GetBtkComponentsList(string param)
         {
-            using (IDbConnection conn = new SQLiteConnection(Config.LoadConnectionString()))
+            using (IDbConnection conn = new SQLiteConnection(Config.LoadConnectionString(), true))
             {
                 var parameter = new { code = param };
                 var query = "";
@@ -72,7 +72,7 @@ namespace Bombyx2.Data.Access
 
         public static List<BtkComponentWindowModel> GetBtkWindowComponent(string param)
         {
-            using (IDbConnection conn = new SQLiteConnection(Config.LoadConnectionString()))
+            using (IDbConnection conn = new SQLiteConnection(Config.LoadConnectionString(), true))
             {
                 var parameter = new { code = param };
                 var query = "SELECT bkw.SortCode, mat.NameEnglish, mat.NameGerman, mat.NameFrench, mat.Ubp13Embodied * bkw.FramePercentage / 100 as Ubp13Embodied, " +

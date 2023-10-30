@@ -17,7 +17,7 @@ namespace Bombyx2.GUI._10_BuildingLevel
         private string[] STRUCTUAL_VALUES = new string[] { "Concrete", "Masonry", "Timber", "Steel" };
 
         public BuildingInput()
-          : base("1: Building Input",
+          : base("3.1: Building Input",
                  "Building input",
                  "Select inputs for building level",
                  "Bombyx 2",

@@ -10,6 +10,10 @@ using Grasshopper.Kernel.Parameters;
 
 namespace Bombyx2.GUI.Common
 {
+
+    [Obsolete] // 2.0.9 Pedram: Set to obsolete so prev users
+               // know their <Data> component is the duplicate
+               // and it doesn't show in the GH Primitives tab.
     public class GenericParameter : Param_GenericObject, IDisposable
     {
         private const string ParamAccessKey = "ParamAccess";
@@ -43,6 +47,7 @@ namespace Bombyx2.GUI.Common
         {
             ClearData();
         }
+        public override GH_Exposure Exposure => GH_Exposure.hidden;
 
         public override Guid ComponentGuid => new Guid("ff9faf9b-fda6-4bd0-9e6e-04c850c7d962");
     }

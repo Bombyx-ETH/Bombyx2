@@ -17,7 +17,7 @@ namespace Bombyx2.GUI._00_Database
         private List<KbobTransportModel> KbobTransports = new List<KbobTransportModel>();
 
         public MaterialTransport()
-          : base("Transport Material",
+          : base("0.6: Transport Material",
                  "Transport Material",
                  "Returns selected KBOB material transport details from database.",
                  "Bombyx 2",
@@ -33,7 +33,7 @@ namespace Bombyx2.GUI._00_Database
             pManager.AddNumberParameter("Mass", "Mass (t)", "Mass in metric tonnes", GH_ParamAccess.item);
             pManager.AddTextParameter("Transport type", "Transport type", "Select the type of transport", GH_ParamAccess.item);
             pManager[2].Optional = true;
-            pManager.AddNumberParameter("Truck percentage", "Truck (%)", "Truck percentage", GH_ParamAccess.item);
+            pManager.AddNumberParameter("Truck percentage", "Truck (%)", "Truck percentage (e.g. 30). Default is 0.", GH_ParamAccess.item, 0d);
             pManager[3].Optional = true;
         }
 
@@ -77,21 +77,21 @@ namespace Bombyx2.GUI._00_Database
 
             var averageTruck = new Dictionary<string, double>
             {
-                { "UBPOperation", (percent > 0 && percent < 100) ? KbobTransports[12].UBPOperation * minorDistance : 0 },
+                { "UBPOperation", (percent > 0 && percent <= 100) ? KbobTransports[12].UBPOperation * minorDistance : 0 },
                 { "none1", 0 },
-                { "UBPFahrInfrastr", (percent > 0 && percent < 100) ? KbobTransports[12].UBPFahrInfrastr * minorDistance : 0 },
-                { "TotalOperation", (percent > 0 && percent < 100) ? KbobTransports[12].TotalOperation * minorDistance : 0 },
+                { "UBPFahrInfrastr", (percent > 0 && percent <= 100) ? KbobTransports[12].UBPFahrInfrastr * minorDistance : 0 },
+                { "TotalOperation", (percent > 0 && percent <= 100) ? KbobTransports[12].TotalOperation * minorDistance : 0 },
                 { "none2", 0 },
-                { "TotalFahrInfrastr", (percent > 0 && percent < 100) ? KbobTransports[12].TotalFahrInfrastr * minorDistance : 0 },
-                { "REOperation", (percent > 0 && percent < 100) ? KbobTransports[12].REOperation * minorDistance : 0 },
+                { "TotalFahrInfrastr", (percent > 0 && percent <= 100) ? KbobTransports[12].TotalFahrInfrastr * minorDistance : 0 },
+                { "REOperation", (percent > 0 && percent <= 100) ? KbobTransports[12].REOperation * minorDistance : 0 },
                 { "none3", 0 },
-                { "REFahrInfrastr", (percent > 0 && percent < 100) ? KbobTransports[12].REFahrInfrastr * minorDistance : 0 },
-                { "NEOperation", (percent > 0 && percent < 100) ? KbobTransports[12].NEOperation * minorDistance : 0 },
+                { "REFahrInfrastr", (percent > 0 && percent <= 100) ? KbobTransports[12].REFahrInfrastr * minorDistance : 0 },
+                { "NEOperation", (percent > 0 && percent <= 100) ? KbobTransports[12].NEOperation * minorDistance : 0 },
                 { "none4", 0 },
-                { "NEFahrInfrastr", (percent > 0 && percent < 100) ? KbobTransports[12].NEFahrInfrastr * minorDistance : 0 },
-                { "GHGOperation", (percent > 0 && percent < 100) ? KbobTransports[12].GHGOperation * minorDistance : 0 },
+                { "NEFahrInfrastr", (percent > 0 && percent <= 100) ? KbobTransports[12].NEFahrInfrastr * minorDistance : 0 },
+                { "GHGOperation", (percent > 0 && percent <= 100) ? KbobTransports[12].GHGOperation * minorDistance : 0 },
                 { "none5", 0 },
-                { "GHGFahrInfrastr", (percent > 0 && percent < 100) ? KbobTransports[12].GHGFahrInfrastr * minorDistance : 0 },
+                { "GHGFahrInfrastr", (percent > 0 && percent <= 100) ? KbobTransports[12].GHGFahrInfrastr * minorDistance : 0 },
                 { "none6", 0 }
             };
 
@@ -112,7 +112,8 @@ namespace Bombyx2.GUI._00_Database
                 { "GHGOperation", 0 },
                 { "none5", 0 },
                 { "GHGFahrInfrastr", 0 },
-                { "none6", 0 }
+                { "none6", 0 },
+                { "Biogenic Carbon Storage (kg CO₂-eq/m²)", 0 }
             };
 
             var output = new Dictionary<string, double>
@@ -126,23 +127,24 @@ namespace Bombyx2.GUI._00_Database
                 { "Non Renewable Operation (kWh oil-eq)", 0 },
                 { "Non Renewable Vehicle and Infrastrcture (kWh oil-eq)", 0 },
                 { "GHG Operation (kg CO2-eq)", 0 },
-                { "GHG Vehicle and Infrastrcture (kg CO2-eq)", 0 }
+                { "GHG Vehicle and Infrastrcture (kg CO2-eq)", 0 },
+                { "Biogenic Carbon Storage (kg CO₂-eq/m²)", 0}
             };
 
             foreach (var item in KbobTransports)
             {
                 if (item.NameEnglish.Equals(transport))
                 {
-                    output["UBP Operation"] = results["UBPOperation"] = Math.Round((item.UBPOperation * majorDistance) + averageTruck["UBPOperation"], 2);
-                    output["UBP Vehicle and Infrastrcture"] = results["UBPFahrInfrastr"] = Math.Round((item.UBPFahrInfrastr * majorDistance) + averageTruck["UBPFahrInfrastr"], 2);
-                    output["Total Operation (kWh oil-eq)"] = results["TotalOperation"] = Math.Round((item.TotalOperation * majorDistance) + averageTruck["TotalOperation"], 2);
-                    output["Total Vehicle and Infrastrcture (kWh oil-eq)"] = results["TotalFahrInfrastr"] = Math.Round((item.TotalFahrInfrastr * majorDistance) + averageTruck["TotalFahrInfrastr"], 2);
-                    output["Renewable Operation (kWh oil-eq)"] = results["REOperation"] = Math.Round((item.REOperation * majorDistance) + averageTruck["REOperation"], 2);
-                    output["Renewable Vehicle and Infrastrcture (kWh oil-eq)"] = results["REFahrInfrastr"] = Math.Round((item.REFahrInfrastr * majorDistance) + averageTruck["REFahrInfrastr"], 2);
-                    output["Non Renewable Operation (kWh oil-eq)"] = results["NEOperation"] = Math.Round((item.NEOperation * majorDistance) + averageTruck["NEOperation"], 2);
-                    output["Non Renewable Vehicle and Infrastrcture (kWh oil-eq)"] = results["NEFahrInfrastr"] = Math.Round((item.NEFahrInfrastr * majorDistance) + averageTruck["NEFahrInfrastr"], 2);
-                    output["GHG Operation (kg CO2-eq)"] = results["GHGOperation"] = Math.Round((item.GHGOperation * majorDistance) + averageTruck["GHGOperation"], 2);
-                    output["GHG Vehicle and Infrastrcture (kg CO2-eq)"] = results["GHGFahrInfrastr"] = Math.Round((item.GHGFahrInfrastr * majorDistance) + averageTruck["GHGFahrInfrastr"], 2);
+                    output["UBP Operation"] = results["UBPOperation"] = Math.Round((item.UBPOperation * majorDistance) + averageTruck["UBPOperation"], 3);
+                    output["UBP Vehicle and Infrastrcture"] = results["UBPFahrInfrastr"] = Math.Round((item.UBPFahrInfrastr * majorDistance) + averageTruck["UBPFahrInfrastr"], 3);
+                    output["Total Operation (kWh oil-eq)"] = results["TotalOperation"] = Math.Round((item.TotalOperation * majorDistance) + averageTruck["TotalOperation"], 3);
+                    output["Total Vehicle and Infrastrcture (kWh oil-eq)"] = results["TotalFahrInfrastr"] = Math.Round((item.TotalFahrInfrastr * majorDistance) + averageTruck["TotalFahrInfrastr"], 3);
+                    output["Renewable Operation (kWh oil-eq)"] = results["REOperation"] = Math.Round((item.REOperation * majorDistance) + averageTruck["REOperation"], 3);
+                    output["Renewable Vehicle and Infrastrcture (kWh oil-eq)"] = results["REFahrInfrastr"] = Math.Round((item.REFahrInfrastr * majorDistance) + averageTruck["REFahrInfrastr"], 3);
+                    output["Non Renewable Operation (kWh oil-eq)"] = results["NEOperation"] = Math.Round((item.NEOperation * majorDistance) + averageTruck["NEOperation"], 3);
+                    output["Non Renewable Vehicle and Infrastrcture (kWh oil-eq)"] = results["NEFahrInfrastr"] = Math.Round((item.NEFahrInfrastr * majorDistance) + averageTruck["NEFahrInfrastr"], 3);
+                    output["GHG Operation (kg CO2-eq)"] = results["GHGOperation"] = Math.Round((item.GHGOperation * majorDistance) + averageTruck["GHGOperation"], 3);
+                    output["GHG Vehicle and Infrastrcture (kg CO2-eq)"] = results["GHGFahrInfrastr"] = Math.Round((item.GHGFahrInfrastr * majorDistance) + averageTruck["GHGFahrInfrastr"], 3);
                 }
             }
 

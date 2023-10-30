@@ -11,7 +11,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Bombyx2</RootNamespace>
     <AssemblyName>Bombyx2</AssemblyName>
-    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <TargetFrameworkProfile />
@@ -22,7 +22,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\</OutputPath>
+    <OutputPath>C:\Users\Pedram Mirabian\AppData\Roaming\Grasshopper\Libraries\Bombyx2.1.0\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisIgnoreBuiltInRules>false</CodeAnalysisIgnoreBuiltInRules>
@@ -30,7 +30,7 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>bin\</OutputPath>
+    <OutputPath>C:\Users\Pedram Mirabian\AppData\Roaming\Grasshopper\Libraries\Bombyx2.0.9\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -39,31 +39,35 @@
     <Reference Include="Dapper, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Dapper.2.0.35\lib\net461\Dapper.dll</HintPath>
     </Reference>
-    <Reference Include="Eto, Version=2.5.0.0, Culture=neutral, PublicKeyToken=552281e97c755530, processorArchitecture=MSIL">
-      <HintPath>..\packages\RhinoCommon.6.27.20176.5001\lib\net45\Eto.dll</HintPath>
+    <Reference Include="Eto, Version=2.6.0.0, Culture=neutral, PublicKeyToken=552281e97c755530, processorArchitecture=MSIL">
+      <HintPath>..\packages\RhinoCommon.7.9.21222.15001\lib\net48\Eto.dll</HintPath>
     </Reference>
-    <Reference Include="GH_IO">
-      <HintPath>..\..\..\..\..\Program Files\Rhino 6\Plug-ins\Grasshopper\GH_IO.dll</HintPath>
+    <Reference Include="GH_IO, Version=7.9.21222.15000, Culture=neutral, PublicKeyToken=6a29997d2e6b4f97, processorArchitecture=MSIL">
+      <HintPath>..\packages\Grasshopper.7.9.21222.15001\lib\net48\GH_IO.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="GH_Util">
-      <HintPath>..\..\..\..\..\Program Files\Rhino 6\Plug-ins\Grasshopper\GH_Util.dll</HintPath>
+      <HintPath>C:\Program Files\Rhino 7\Plug-ins\Grasshopper\GH_Util.dll</HintPath>
+      <Private>True</Private>
     </Reference>
-    <Reference Include="Grasshopper">
-      <HintPath>..\..\..\..\..\Program Files\Rhino 6\Plug-ins\Grasshopper\Grasshopper.dll</HintPath>
+    <Reference Include="Grasshopper, Version=7.9.21222.15000, Culture=neutral, PublicKeyToken=dda4f5ec2cd80803, processorArchitecture=MSIL">
+      <HintPath>..\packages\Grasshopper.7.9.21222.15001\lib\net48\Grasshopper.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Microsoft.VisualBasic" />
-    <Reference Include="Rhino.UI">
-      <HintPath>..\..\..\..\..\Program Files\Rhino 6\System\Rhino.UI.dll</HintPath>
+    <Reference Include="Rhino.UI, Version=7.9.21222.15000, Culture=neutral, PublicKeyToken=552281e97c755530, processorArchitecture=MSIL">
+      <HintPath>..\packages\RhinoCommon.7.9.21222.15001\lib\net48\Rhino.UI.dll</HintPath>
+      <Private>False</Private>
     </Reference>
-    <Reference Include="RhinoCommon">
-      <HintPath>..\..\..\..\..\Program Files\Rhino 6\System\RhinoCommon.dll</HintPath>
+    <Reference Include="RhinoCommon, Version=7.9.21222.15000, Culture=neutral, PublicKeyToken=552281e97c755530, processorArchitecture=MSIL">
+      <HintPath>..\packages\RhinoCommon.7.9.21222.15001\lib\net48\RhinoCommon.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Data.SQLite, Version=1.0.112.1, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Data.SQLite.Core.1.0.112.1\lib\net40\System.Data.SQLite.dll</HintPath>
+    <Reference Include="System.Data.SQLite.Mac, Version=1.0.104.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Data.SQLite.Mac.1.0.104.2\lib\net45\System.Data.SQLite.Mac.dll</HintPath>
     </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="System.Xml.Linq" />
@@ -98,6 +102,7 @@
     <Compile Include="GUI\00_Database\Services.cs" />
     <Compile Include="GUI\01_Bottom-up\ImpactBuilding.cs" />
     <Compile Include="GUI\01_Bottom-up\ImpactComponent.cs" />
+    <Compile Include="GUI\01_Bottom-up\ImpactVolume.cs" />
     <Compile Include="GUI\01_Bottom-up\ImpactElement.cs" />
     <Compile Include="GUI\01_Bottom-up\ImpactLayer.cs" />
     <Compile Include="GUI\01_Bottom-up\ImpactWindow.cs" />
@@ -140,11 +145,19 @@
     <Content Include="Data\Access\SQLScripts\InsertKbobMaterials.sql" />
     <Content Include="Data\Access\SQLScripts\CreateKbobEnergy.sql" />
     <Content Include="Data\Access\SQLScripts\InsertKbobServices.sql" />
-    <Content Include="MaterialsDB.db">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="Resources\heatingDemand.png" />
     <Content Include="Resources\window.png" />
+    <Content Include="sqlite3.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <None Include="app.config" />
+    <None Include="libsqlite3.dylib" />
+    <None Include="MaterialsDB.db">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="MaterialsDB_208.db">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Resources\brasilComponent.png" />
     <None Include="Resources\brasilComponentList.png" />
     <None Include="Resources\brasilElement.png" />
@@ -205,9 +218,7 @@
       <LastGenOutput>Icons.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="GUI\04_HeatingDemand\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Analyzer Include="..\packages\Microsoft.CodeAnalysis.Analyzers.3.3.2\analyzers\dotnet\cs\Microsoft.CodeAnalysis.Analyzers.dll" />
     <Analyzer Include="..\packages\Microsoft.CodeAnalysis.Analyzers.3.3.2\analyzers\dotnet\cs\Microsoft.CodeAnalysis.CSharp.Analyzers.dll" />
@@ -233,16 +244,16 @@ Erase "$(TargetPath)"</PostBuildEvent>
     </StartArguments>
     <StartAction>Program</StartAction>
   </PropertyGroup>
-  <Import Project="..\packages\System.Data.SQLite.Core.1.0.112.1\build\net40\System.Data.SQLite.Core.targets" Condition="Exists('..\packages\System.Data.SQLite.Core.1.0.112.1\build\net40\System.Data.SQLite.Core.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
-    <Error Condition="!Exists('..\packages\System.Data.SQLite.Core.1.0.112.1\build\net40\System.Data.SQLite.Core.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\System.Data.SQLite.Core.1.0.112.1\build\net40\System.Data.SQLite.Core.targets'))" />
-    <Error Condition="!Exists('..\packages\RhinoCommon.6.27.20176.5001\build\net45\RhinoCommon.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\RhinoCommon.6.27.20176.5001\build\net45\RhinoCommon.targets'))" />
     <Error Condition="!Exists('..\packages\Microsoft.CodeAnalysis.Analyzers.3.3.2\build\Microsoft.CodeAnalysis.Analyzers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeAnalysis.Analyzers.3.3.2\build\Microsoft.CodeAnalysis.Analyzers.props'))" />
     <Error Condition="!Exists('..\packages\Microsoft.CodeAnalysis.Analyzers.3.3.2\build\Microsoft.CodeAnalysis.Analyzers.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeAnalysis.Analyzers.3.3.2\build\Microsoft.CodeAnalysis.Analyzers.targets'))" />
+    <Error Condition="!Exists('..\packages\RhinoCommon.7.9.21222.15001\build\RhinoCommon.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\RhinoCommon.7.9.21222.15001\build\RhinoCommon.targets'))" />
+    <Error Condition="!Exists('..\packages\Grasshopper.7.9.21222.15001\build\Grasshopper.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Grasshopper.7.9.21222.15001\build\Grasshopper.targets'))" />
   </Target>
-  <Import Project="..\packages\RhinoCommon.6.27.20176.5001\build\net45\RhinoCommon.targets" Condition="Exists('..\packages\RhinoCommon.6.27.20176.5001\build\net45\RhinoCommon.targets')" />
   <Import Project="..\packages\Microsoft.CodeAnalysis.Analyzers.3.3.2\build\Microsoft.CodeAnalysis.Analyzers.targets" Condition="Exists('..\packages\Microsoft.CodeAnalysis.Analyzers.3.3.2\build\Microsoft.CodeAnalysis.Analyzers.targets')" />
+  <Import Project="..\packages\RhinoCommon.7.9.21222.15001\build\RhinoCommon.targets" Condition="Exists('..\packages\RhinoCommon.7.9.21222.15001\build\RhinoCommon.targets')" />
+  <Import Project="..\packages\Grasshopper.7.9.21222.15001\build\Grasshopper.targets" Condition="Exists('..\packages\Grasshopper.7.9.21222.15001\build\Grasshopper.targets')" />
 </Project>

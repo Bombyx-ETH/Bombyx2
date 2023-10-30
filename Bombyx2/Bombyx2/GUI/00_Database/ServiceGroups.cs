@@ -19,9 +19,9 @@ namespace Bombyx2.GUI._00_Database
             "34: Electrical systems" };
 
         public ServiceGroups()
-          : base("KBOB Building Services Groups",
-                 "Services Groups",
-                 "Returns KBOB list of building services from database",
+          : base("0.3: Systems Groups",
+                 "Systems Groups",
+                 "Returns the list of building systems from the KBOB database",
                  "Bombyx 2",
                  "0: Database")
         {
@@ -32,13 +32,13 @@ namespace Bombyx2.GUI._00_Database
         {
             pManager.AddBooleanParameter("Activate (Button)", "Activate (Button)", "Connect a Button to the first \ninput parameter(Activate) and \nclick it to show inputs.", GH_ParamAccess.item);
             pManager[0].Optional = true;
-            pManager.AddTextParameter("Services groups", "Services groups", "Services groups", GH_ParamAccess.item);
+            pManager.AddTextParameter("Systems groups", "Systems groups", "Systems groups", GH_ParamAccess.item);
             pManager[1].Optional = true;
         }
 
         protected override void RegisterOutputParams(GH_OutputParamManager pManager)
         {
-            pManager.AddTextParameter("Services", "Services", "Services", GH_ParamAccess.list);
+            pManager.AddTextParameter("Systems", "Systems", "Systems", GH_ParamAccess.list);
         }
 
         protected override void SolveInstance(IGH_DataAccess DA)
@@ -52,7 +52,7 @@ namespace Bombyx2.GUI._00_Database
 
             if (input && Params.Input[1].SourceCount == 0)
             {
-                CreateSelectionList(ServicesList, "Services groups", 1, 200, 70);
+                CreateSelectionList(ServicesList, "Systems groups", 1, 200, 70);
             }
 
             if (!DA.GetData(1, ref group)) { return; }

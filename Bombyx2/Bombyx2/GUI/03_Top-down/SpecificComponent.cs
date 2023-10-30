@@ -15,7 +15,7 @@ namespace Bombyx2.GUI._10_BuildingLevel
         IGH_Component Component;
 
         public SpecificComponent()
-          : base("4: Specific component",
+          : base("3.4: Specific component",
                  "Specific component",
                  "Select a specific component for the element",
                  "Bombyx 2",

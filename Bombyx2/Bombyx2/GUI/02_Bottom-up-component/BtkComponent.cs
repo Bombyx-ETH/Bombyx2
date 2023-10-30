@@ -9,7 +9,7 @@ namespace Bombyx2.GUI._01_ComponentLevel
     public class BtkComponent : GH_Component
     {
         public BtkComponent()
-          : base("2: Component",
+          : base("2.2: Component",
                  "Component",
                  "Returns Bauteilkatalog component from database.",
                  "Bombyx 2",

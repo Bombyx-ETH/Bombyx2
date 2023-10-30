@@ -22,5 +22,6 @@
         public double GHGEmbodied { get; set; }
         public double GHGEoL { get; set; }
         public double? ThermalCond { get; set; }
+        public double? BiogenicCarbon { get; set; }
     }
 }

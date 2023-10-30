@@ -10,7 +10,7 @@ namespace Bombyx2.GUI._10_BuildingLevel
     public class BuildingOutput : GH_Component
     {
         public BuildingOutput()
-          : base("3: Building Output",
+          : base("3.3: Building Output",
                  "Building output",
                  "Results on a building level",
                  "Bombyx 2",

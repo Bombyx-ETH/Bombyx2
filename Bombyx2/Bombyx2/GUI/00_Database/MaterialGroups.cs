@@ -32,7 +32,7 @@ namespace Bombyx2.GUI._00_Database
             "00: Preparatory works" };
 
         public MaterialGroups()
-          : base("1: Material Groups",
+          : base("0.1: Material Groups",
                  "Material Groups",
                  "Returns KBOB material groups from the database.",
                  "Bombyx 2",
@@ -72,7 +72,7 @@ namespace Bombyx2.GUI._00_Database
 
             var newParam = group.Split(':');
             var output = KbobMaterialsDataAccess.GetKbobMaterialsList(newParam[0] + "%");
-
+            output.Sort();
             DA.SetDataList(0, output);
         }
 

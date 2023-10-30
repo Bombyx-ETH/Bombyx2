@@ -27,6 +27,7 @@ namespace Bombyx2.GUI._01_Bottom_up
         public double GHGRep { get; set; }
         public double GHGEol { get; set; }
         public double UValue { get; set; }
+        public double BiogenicCarbon { get; set; }
     }
 
     public class ImpactWindow : GH_Component
@@ -40,7 +41,7 @@ namespace Bombyx2.GUI._01_Bottom_up
         private List<string> glazingNames = new List<string>();
 
         public ImpactWindow()
-          : base("4: Window impact",
+          : base("1.4: Window impact",
                  "Window impact",
                  "Calculates impacts of PE, GWP, UBP",
                  "Bombyx 2",
@@ -69,7 +70,7 @@ namespace Bombyx2.GUI._01_Bottom_up
             pManager[1].Optional = true;
             pManager.AddTextParameter("Glazing material", "Glazing material", "Glazing material", GH_ParamAccess.item);
             pManager[2].Optional = true;
-            pManager.AddNumberParameter("Frame percentage", "Frame percentage", "Value", GH_ParamAccess.item);
+            pManager.AddNumberParameter("Frame percentage", "Frame percentage", "The percentage of the total area covered by the window frame (e.g. 30). Default is 0.", GH_ParamAccess.item, 0d);
             pManager[3].Optional = true;
             pManager.AddIntegerParameter("Reference study period", "RSP (years)", "Manual input", GH_ParamAccess.item);
             pManager[4].Optional = true;
@@ -161,7 +162,8 @@ namespace Bombyx2.GUI._01_Bottom_up
                 GHGEmb = frame.GHGEmbodied * frameArea,
                 GHGRep = (frame.GHGEmbodied + frame.GHGEoL) * repNum * frameArea,
                 GHGEol = frame.GHGEoL * frameArea,
-                UValue = 1 / (double)frame.ThermalCond * frameArea
+                UValue = 1 / (frame.ThermalCond ?? 0.8) * frameArea,
+                BiogenicCarbon = (frame.BiogenicCarbon ?? 0) * frameArea
             };
 
             var windowGlazing = new WindowModel
@@ -181,27 +183,29 @@ namespace Bombyx2.GUI._01_Bottom_up
                 GHGEmb = filling.GHGEmbodied * fillingArea,
                 GHGRep = (filling.GHGEmbodied + filling.GHGEoL) * repNum * fillingArea,
                 GHGEol = filling.GHGEoL * fillingArea,
-                UValue = filling.Uvalue * fillingArea
+                UValue = (filling.Uvalue ?? 0.8) * fillingArea,
+                BiogenicCarbon = (filling.BiogenicCarbon ?? 0) * fillingArea
             };
             
             var frameDict = new Dictionary<string, double>
             {
-                { "UBP13 Embodied (P)", Math.Round(frame.UBP13Embodied * frameArea, 2) },
-                { "UBP13 Replacements (P)", Math.Round(((frame.UBP13Embodied + frame.UBP13EoL) * repNum) * frameArea, 2) },
-                { "UBP13 End of Life (P)", Math.Round(frame.UBP13EoL * frameArea, 2) },
-                { "Total Embodied (kWh oil-eq)", Math.Round(frame.TotalEmbodied * frameArea, 2) },
-                { "Total Replacements (kWh oil-eq)", Math.Round(((frame.TotalEmbodied + frame.TotalEoL) * repNum) * frameArea, 2) },
-                { "Total End of Life (kWh oil-eq)", Math.Round(frame.TotalEoL * frameArea, 2) },
-                { "Renewable Embodied (kWh oil-eq)", Math.Round(frame.RenewableEmbodied * frameArea, 2) },
-                { "Renewable Replacements (kWh oil-eq)", Math.Round(((frame.RenewableEmbodied + frame.RenewableEoL) * repNum) * frameArea, 2) },
-                { "Renewable End of Life (kWh oil-eq)", Math.Round(frame.RenewableEoL * frameArea, 2) },
-                { "Non Renewable Embodied (kWh oil-eq)", Math.Round(frame.NonRenewableEmbodied * frameArea, 2) },
-                { "Non Renewable Replacements (kWh oil-eq)", Math.Round(((frame.NonRenewableEmbodied + frame.NonRenewableEoL) * repNum) * frameArea, 2) },
-                { "Non Renewable End of Life (kWh oil-eq)", Math.Round(frame.NonRenewableEoL * frameArea, 2) },
-                { "Green House Gasses Embodied (kg CO\x2082-eq)", Math.Round(frame.GHGEmbodied * frameArea, 2) },
-                { "Green House Gasses Replacements (kg CO\x2082-eq)", Math.Round(((frame.GHGEmbodied + frame.GHGEoL) * repNum) * frameArea, 2) },
-                { "Green House Gasses End of Life (kg CO\x2082-eq)", Math.Round(frame.GHGEoL * frameArea, 2) },
-                { "U value: (1/Rf)*area(filling)", Math.Round(1 / (double)frame.ThermalCond, 4)  * frameArea }
+                { "UBP13 Embodied (P)", Math.Round(frame.UBP13Embodied * frameArea, 3) },
+                { "UBP13 Replacements (P)", Math.Round(((frame.UBP13Embodied + frame.UBP13EoL) * repNum) * frameArea, 3) },
+                { "UBP13 End of Life (P)", Math.Round(frame.UBP13EoL * frameArea, 3) },
+                { "Total Embodied (kWh oil-eq)", Math.Round(frame.TotalEmbodied * frameArea, 3) },
+                { "Total Replacements (kWh oil-eq)", Math.Round(((frame.TotalEmbodied + frame.TotalEoL) * repNum) * frameArea, 3) },
+                { "Total End of Life (kWh oil-eq)", Math.Round(frame.TotalEoL * frameArea, 3) },
+                { "Renewable Embodied (kWh oil-eq)", Math.Round(frame.RenewableEmbodied * frameArea, 3) },
+                { "Renewable Replacements (kWh oil-eq)", Math.Round(((frame.RenewableEmbodied + frame.RenewableEoL) * repNum) * frameArea, 3) },
+                { "Renewable End of Life (kWh oil-eq)", Math.Round(frame.RenewableEoL * frameArea, 3) },
+                { "Non Renewable Embodied (kWh oil-eq)", Math.Round(frame.NonRenewableEmbodied * frameArea, 3) },
+                { "Non Renewable Replacements (kWh oil-eq)", Math.Round(((frame.NonRenewableEmbodied + frame.NonRenewableEoL) * repNum) * frameArea, 3) },
+                { "Non Renewable End of Life (kWh oil-eq)", Math.Round(frame.NonRenewableEoL * frameArea, 3) },
+                { "Green House Gasses Embodied (kg CO\x2082-eq)", Math.Round(frame.GHGEmbodied * frameArea, 3) },
+                { "Green House Gasses Replacements (kg CO\x2082-eq)", Math.Round(((frame.GHGEmbodied + frame.GHGEoL) * repNum) * frameArea, 3) },
+                { "Green House Gasses End of Life (kg CO\x2082-eq)", Math.Round(frame.GHGEoL * frameArea, 3) },
+                { "U value: (1/Rf)*area(filling)", Math.Round(1 / (frame.ThermalCond ?? 0.8), 4)  * frameArea },
+                { "Biogenic Carbon Storage (kg CO₂-eq)", (frame.BiogenicCarbon ?? 0) * frameArea }
             };
 
             var fillingDict = new Dictionary<string, double>
@@ -221,27 +225,29 @@ namespace Bombyx2.GUI._01_Bottom_up
                 { "Green House Gasses Embodied (kg CO\x2082-eq)", filling.GHGEmbodied * fillingArea },
                 { "Green House Gasses Replacements (kg CO\x2082-eq)", ((filling.GHGEmbodied + filling.GHGEoL) * repNum) * fillingArea },
                 { "Green House Gasses End of Life (kg CO\x2082-eq)", filling.GHGEoL * fillingArea },
-                { "U value: (1/Rg)*area(glasing)", filling.Uvalue * fillingArea }
+                { "U value: (1/Rg)*area(glasing)", (filling.Uvalue ?? 0.8) * fillingArea },
+                { "Biogenic Carbon Storage (kg CO₂-eq)", (filling.BiogenicCarbon ?? 0) * fillingArea }
             };
             
             var window = new Dictionary<string, double>
             {
-                { "UBP13 Embodied (P)", Math.Round(windowFrame.UBP13Emb + windowGlazing.UBP13Emb, 2) },
-                { "UBP13 Replacements (P)", Math.Round(windowFrame.UBP13Rep + windowGlazing.UBP13Rep, 2) },
-                { "UBP13 End of Life (P)", Math.Round(windowFrame.UBP13Eol + windowGlazing.UBP13Eol, 2) },
-                { "Total Embodied (kWh oil-eq)", Math.Round(windowFrame.TotalEmb + windowGlazing.TotalEmb, 2) },
-                { "Total Replacements (kWh oil-eq)", Math.Round(windowFrame.TotalRep + windowGlazing.TotalRep, 2) },
-                { "Total End of Life (kWh oil-eq)", Math.Round(windowFrame.TotalEol + windowGlazing.TotalEol, 2) },
-                { "Renewable Embodied (kWh oil-eq)", Math.Round(windowFrame.RenewableEmb + windowGlazing.RenewableEmb, 2) },
-                { "Renewable Replacements (kWh oil-eq)", Math.Round(windowFrame.RenewableRep + windowGlazing.RenewableRep, 2) },
-                { "Renewable End of Life (kWh oil-eq)", Math.Round(windowFrame.RenewableEol + windowGlazing.RenewableEol, 2) },
-                { "Non Renewable Embodied (kWh oil-eq)", Math.Round(windowFrame.NonRenewableEmb + windowGlazing.NonRenewableEmb, 2) },
-                { "Non Renewable Replacements (kWh oil-eq)", Math.Round(windowFrame.NonRenewableRep + windowGlazing.NonRenewableRep, 2) },
-                { "Non Renewable End of Life (kWh oil-eq)", Math.Round(windowFrame.NonRenewableEol + windowGlazing.NonRenewableEol, 2) },
-                { "Green House Gasses Embodied (kg CO\x2082-eq)", Math.Round(windowFrame.GHGEmb + windowGlazing.GHGEmb, 2) },
-                { "Green House Gasses Replacements (kg CO\x2082-eq)", Math.Round(windowFrame.GHGRep + windowGlazing.GHGRep, 2) },
-                { "Green House Gasses End of Life (kg CO\x2082-eq)", Math.Round(windowFrame.GHGEol + windowGlazing.GHGEol, 2) },
-                { "U value(W/m2,K): (Uf+Ug)/area", Math.Round((windowFrame.UValue + windowGlazing.UValue) / area, 4) }
+                { "UBP13 Embodied (P)", Math.Round(windowFrame.UBP13Emb + windowGlazing.UBP13Emb, 3) },
+                { "UBP13 Replacements (P)", Math.Round(windowFrame.UBP13Rep + windowGlazing.UBP13Rep, 3) },
+                { "UBP13 End of Life (P)", Math.Round(windowFrame.UBP13Eol + windowGlazing.UBP13Eol, 3) },
+                { "Total Embodied (kWh oil-eq)", Math.Round(windowFrame.TotalEmb + windowGlazing.TotalEmb, 3) },
+                { "Total Replacements (kWh oil-eq)", Math.Round(windowFrame.TotalRep + windowGlazing.TotalRep, 3) },
+                { "Total End of Life (kWh oil-eq)", Math.Round(windowFrame.TotalEol + windowGlazing.TotalEol, 3) },
+                { "Renewable Embodied (kWh oil-eq)", Math.Round(windowFrame.RenewableEmb + windowGlazing.RenewableEmb, 3) },
+                { "Renewable Replacements (kWh oil-eq)", Math.Round(windowFrame.RenewableRep + windowGlazing.RenewableRep, 3) },
+                { "Renewable End of Life (kWh oil-eq)", Math.Round(windowFrame.RenewableEol + windowGlazing.RenewableEol, 3) },
+                { "Non Renewable Embodied (kWh oil-eq)", Math.Round(windowFrame.NonRenewableEmb + windowGlazing.NonRenewableEmb, 3) },
+                { "Non Renewable Replacements (kWh oil-eq)", Math.Round(windowFrame.NonRenewableRep + windowGlazing.NonRenewableRep, 3) },
+                { "Non Renewable End of Life (kWh oil-eq)", Math.Round(windowFrame.NonRenewableEol + windowGlazing.NonRenewableEol, 3) },
+                { "Green House Gasses Embodied (kg CO\x2082-eq)", Math.Round(windowFrame.GHGEmb + windowGlazing.GHGEmb, 3) },
+                { "Green House Gasses Replacements (kg CO\x2082-eq)", Math.Round(windowFrame.GHGRep + windowGlazing.GHGRep, 3) },
+                { "Green House Gasses End of Life (kg CO\x2082-eq)", Math.Round(windowFrame.GHGEol + windowGlazing.GHGEol, 3) },
+                { "U value(W/m2,K): (Uf+Ug)/area", Math.Round((windowFrame.UValue + windowGlazing.UValue) / area, 4) },
+                { "Biogenic Carbon Storage (kg CO₂-eq)", Math.Round(windowFrame.BiogenicCarbon + windowGlazing.BiogenicCarbon, 3) }
             };
 
             var resultValues = window.Values.ToList();

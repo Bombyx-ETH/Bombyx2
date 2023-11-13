@@ -18,5 +18,6 @@
         public double GHGEoL { get; set; }
         public double Uvalue { get; set; }
         public double Gvalue { get; set; }
+        public double BiogenicCarbon { get; set; }
     }
 }

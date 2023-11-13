@@ -80,6 +80,7 @@ namespace Bombyx2.GUI._01_Bottom_up
 
             var rspNFA = RSP * NFA;
 
+            if (element.Count != 16 + 1 ) { element.Add( 0d ); }
             var valueSets = element.Select((x, i) => new { Index = i, Value = x })
                                    .GroupBy(x => x.Index / (16 + 1)) // +1 for BiogenicCarbon
                                    .Select(x => x.Select(v => v.Value).ToList())

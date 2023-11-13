@@ -21,6 +21,7 @@ namespace Bombyx2.Data.Access
                             "mat.RenewableEmbodied * bk.Percentage / 100 as RenewableEmbodied, mat.RenewableEoL * bk.Percentage / 100 as RenewableEoL, " +
                             "mat.NonRenewableEmbodied * bk.Percentage / 100 as NonRenewableEmbodied, mat.NonRenewableEoL * bk.Percentage / 100 as NonRenewableEoL, " +
                             "mat.GHGEmbodied * bk.Percentage / 100 as GHGEmbodied, mat.GHGEoL * bk.Percentage / 100 as GHGEoL, " +
+                            "mat.BiogenicCarbon * bk.Percentage / 100 as BiogenicCarbon, " +
                             "CASE " +
                                 "WHEN bk.ThermalCond = 0.0 THEN 0.0 " +
                                 "ELSE bk.Thickness / bk.ThermalCond " +
@@ -80,7 +81,8 @@ namespace Bombyx2.Data.Access
                             "mat.TotalEoL * bkw.FramePercentage / 100 as TotalEoL, mat.RenewableEmbodied * bkw.FramePercentage / 100 as RenewableEmbodied, " +
                             "mat.RenewableEoL * bkw.FramePercentage / 100 as RenewableEoL, mat.NonRenewableEmbodied * bkw.FramePercentage / 100 as NonRenewableEmbodied, " +
                             "mat.NonRenewableEoL * bkw.FramePercentage / 100 as NonRenewableEoL, mat.GHGEmbodied * bkw.FramePercentage / 100 as GHGEmbodied, " +
-                            "mat.GHGEoL * bkw.FramePercentage / 100 as GHGEoL, bw.Uvalue, bw.Gvalue " +
+                            "mat.GHGEoL * bkw.FramePercentage / 100 as GHGEoL, bw.Uvalue, bw.Gvalue, " +
+                            "mat.BiogenicCarbon * bkw.FramePercentage / 100 as BiogenicCarbon " +
                             "FROM KbobMaterials mat " +
                             "LEFT JOIN BtkKbobWindow bkw " +
                             "ON mat.Id = bkw.IdKbob " +

@@ -14,5 +14,6 @@
         public double GHGEmbodied { get; set; }
         public double GHGEoL { get; set; }
         public double Resistance { get; set; }
+        public double BiogenicCarbon { get; set; }
     }
 }

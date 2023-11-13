@@ -76,7 +76,8 @@ namespace Bombyx2.GUI._01_ComponentLevel
                                  GHGEmbodiedSum = rowSum.Sum(x => x.GHGEmbodied),
                                  GHGRepSum = rowSum.Sum(x => (x.GHGEmbodied + x.GHGEoL) * repNum),
                                  GHGEoLEoLSum = rowSum.Sum(x => x.GHGEoL),
-                                 ResistanceSum = rowSum.Sum(x => x.Resistance)
+                                 ResistanceSum = rowSum.Sum(x => x.Resistance),
+                                 BiogenicCarbonSum = rowSum.Sum(x => x.BiogenicCarbon)
                              };
 
             var results = new Dictionary<string, double>
@@ -96,7 +97,8 @@ namespace Bombyx2.GUI._01_ComponentLevel
                 { "Green House Gasses Embodied (kg CO\x2082-eq/m\xB2)", 0 },
                 { "Green House Gasses Replacements (kg CO\x2082-eq/m\xB2)", 0 },
                 { "Green House Gasses End of Life (kg CO\x2082-eq/m\xB2)", 0 },
-                { "R value", 0 }
+                { "R value", 0 },
+                { "Biogenic Carbon Storage (kg CO₂-eq)/m²", 0 }
             };
 
             foreach (var item in sumResults)
@@ -117,6 +119,7 @@ namespace Bombyx2.GUI._01_ComponentLevel
                 results["Green House Gasses Replacements (kg CO\x2082-eq/m\xB2)"] += item.GHGRepSum;
                 results["Green House Gasses End of Life (kg CO\x2082-eq/m\xB2)"] += item.GHGEoLEoLSum;
                 results["R value"] += item.ResistanceSum;
+                results["Biogenic Carbon Storage (kg CO₂-eq)/m²"] += item.BiogenicCarbonSum;
             }
 
             var resultValues = results.Values.ToList();

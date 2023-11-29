@@ -51,6 +51,9 @@ namespace Bombyx2.GUI._01_Bottom_up
             var component = new List<double>();
             var funct = "";
             var area = 0d;
+            var R_ie = 0d;
+            var R_element = 0d;
+            var R_tot = 0d;
 
             if (!DA.GetDataList(0, component)) { return; }
 
@@ -110,6 +113,41 @@ namespace Bombyx2.GUI._01_Bottom_up
                 results["Biogenic Carbon Storage (kg CO₂-eq)"] += item[16];
             }
 
+            R_element = results["U value"];
+
+            switch (funct) // Based on SIA 180
+            {
+                case "Window":
+                    R_ie = 0d;
+                    break;
+                case "Internal wall":
+                    R_ie = 0.250;
+                    break;
+                case "External wall":
+                    R_ie = 0.165;
+                    break;
+                case "Roof":
+                    R_ie = 0.165;
+                    break;
+                case "Ceiling":
+                    R_ie = 0.292;
+                    break;
+                case "Floor":
+                    R_ie = 0.292;
+                    break;
+                case "Other":
+                    R_ie = 0d;
+                    break;
+                default:
+                    R_ie = 0d;
+                    break;
+            }
+
+            R_tot = R_element + R_ie;
+
+            var U_value = Math.Round(1 / R_tot,4);
+            if (R_element == 0) { U_value = 9999; }
+
             results["UBP13 Embodied (P)"] = Math.Round(results["UBP13 Embodied (P)"] * area, 3);
             results["UBP13 Replacements (P)"] = Math.Round(results["UBP13 Replacements (P)"] * area, 3);
             results["UBP13 End of Life (P)"] = Math.Round(results["UBP13 End of Life (P)"] * area, 3);
@@ -125,7 +163,7 @@ namespace Bombyx2.GUI._01_Bottom_up
             results["Green House Gasses Embodied (kg CO\x2082-eq)"] = Math.Round(results["Green House Gasses Embodied (kg CO\x2082-eq)"] * area, 3);
             results["Green House Gasses Replacements (kg CO\x2082-eq)"] = Math.Round(results["Green House Gasses Replacements (kg CO\x2082-eq)"] * area, 3);
             results["Green House Gasses End of Life (kg CO\x2082-eq)"] = Math.Round(results["Green House Gasses End of Life (kg CO\x2082-eq)"] * area, 3);
-            results["U value"] = Math.Round(1 / results["U value"], 4);
+            results["U value"] = U_value;
             results["Biogenic Carbon Storage (kg CO₂-eq)"] = Math.Round(results["Biogenic Carbon Storage (kg CO₂-eq)"] * area, 3);
 
             var resultValues = results.Values.ToList();
@@ -133,26 +171,30 @@ namespace Bombyx2.GUI._01_Bottom_up
             DA.SetDataList(0, results);
             DA.SetDataList(1, resultValues);
 
-            if (funct.Equals("Window"))
-            {
-                DA.SetData(2, 1 / results["U value"]);
-                DA.SetData(3, (1 / results["U value"]) * area);
-            }
-            else if (funct.Equals("Internal wall") || funct.Equals("External wall") || funct.Equals("Roof") || funct.Equals("Ceiling"))
-            {
-                DA.SetData(2, results["U value"] + 0.17);
-                DA.SetData(3, (results["U value"] + 0.17) * area);
-            }
-            else if (funct.Equals("Floor"))
-            {
-                DA.SetData(2, results["U value"] + 0.13);
-                DA.SetData(3, (results["U value"] + 0.13) * area);
-            }
-            else if (funct.Equals("Other"))
-            {
-                DA.SetData(2, results["U value"]);
-                DA.SetData(3, (results["U value"]) * area);
-            }
+            DA.SetData(2, U_value);
+            DA.SetData(3, U_value * area);
+
+
+            //if (funct.Equals("Window")) // Old version of calculations, incorrect models
+            //{
+            //    DA.SetData(2, 1 / results["U value"]);
+            //    DA.SetData(3, (1 / results["U value"]) * area);
+            //}
+            //else if (funct.Equals("Internal wall") || funct.Equals("External wall") || funct.Equals("Roof") || funct.Equals("Ceiling"))
+            //{
+            //    DA.SetData(2, results["U value"] + 0.17);
+            //    DA.SetData(3, (results["U value"] + 0.17) * area);
+            //}
+            //else if (funct.Equals("Floor"))
+            //{
+            //    DA.SetData(2, results["U value"] + 0.13);
+            //    DA.SetData(3, (results["U value"] + 0.13) * area);
+            //}
+            //else if (funct.Equals("Other"))
+            //{
+            //    DA.SetData(2, results["U value"]);
+            //    DA.SetData(3, (results["U value"]) * area);
+            //}
         }
 
         private void CreateSelectionList(string[] values, string nick, int inputParam, int offsetX, int offsetY)

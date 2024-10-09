@@ -66,7 +66,7 @@ namespace Bombyx2.Data.Access
         {
             using (IDbConnection conn = new SQLiteConnection(Config.LoadConnectionString(), true))
             {
-                var output = conn.Query<KbobMaterialModel>("SELECT * FROM KbobMaterials WHERE NameEnglish LIKE '%window frame%'", new DynamicParameters());
+                var output = conn.Query<KbobMaterialModel>("SELECT * FROM KbobMaterials WHERE NameEnglish LIKE '%Window frame%'", new DynamicParameters());
                 return output.ToList();
             }
         }

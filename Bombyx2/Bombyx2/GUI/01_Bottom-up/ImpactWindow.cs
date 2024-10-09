@@ -11,9 +11,9 @@ namespace Bombyx2.GUI._01_Bottom_up
 {
     internal class WindowModel
     {
-        public double UBP13Emb { get; set; }
-        public double UBP13Rep { get; set; }
-        public double UBP13Eol { get; set; }
+        public double UBPEmb { get; set; }
+        public double UBPRep { get; set; }
+        public double UBPEol { get; set; }
         public double TotalEmb { get; set; }
         public double TotalRep { get; set; }
         public double TotalEol { get; set; }
@@ -147,9 +147,9 @@ namespace Bombyx2.GUI._01_Bottom_up
 
             var windowFrame = new WindowModel
             {
-                UBP13Emb = frame.UBP13Embodied * frameArea,
-                UBP13Rep = (frame.UBP13Embodied + frame.UBP13EoL) * repNum * frameArea,
-                UBP13Eol = frame.UBP13EoL * frameArea,
+                UBPEmb = frame.UBPEmbodied * frameArea,
+                UBPRep = (frame.UBPEmbodied + frame.UBPEoL) * repNum * frameArea,
+                UBPEol = frame.UBPEoL * frameArea,
                 TotalEmb = frame.TotalEmbodied * frameArea,
                 TotalRep = (frame.TotalEmbodied + frame.TotalEoL) * repNum * frameArea,
                 TotalEol = frame.TotalEoL * frameArea,
@@ -168,9 +168,9 @@ namespace Bombyx2.GUI._01_Bottom_up
 
             var windowGlazing = new WindowModel
             {
-                UBP13Emb = filling.UBP13Embodied * fillingArea,
-                UBP13Rep = (filling.UBP13Embodied + filling.UBP13EoL) * repNum * fillingArea,
-                UBP13Eol = filling.UBP13EoL * fillingArea,
+                UBPEmb = filling.UBPEmbodied * fillingArea,
+                UBPRep = (filling.UBPEmbodied + filling.UBPEoL) * repNum * fillingArea,
+                UBPEol = filling.UBPEoL * fillingArea,
                 TotalEmb = filling.TotalEmbodied * fillingArea,
                 TotalRep = (filling.TotalEmbodied + filling.TotalEoL) * repNum * fillingArea,
                 TotalEol = filling.TotalEoL * fillingArea,
@@ -189,9 +189,9 @@ namespace Bombyx2.GUI._01_Bottom_up
             
             var frameDict = new Dictionary<string, double>
             {
-                { "UBP13 Embodied (P)", Math.Round(frame.UBP13Embodied * frameArea, 3) },
-                { "UBP13 Replacements (P)", Math.Round(((frame.UBP13Embodied + frame.UBP13EoL) * repNum) * frameArea, 3) },
-                { "UBP13 End of Life (P)", Math.Round(frame.UBP13EoL * frameArea, 3) },
+                { "UBP Embodied (P)", Math.Round(frame.UBPEmbodied * frameArea, 3) },
+                { "UBP Replacements (P)", Math.Round(((frame.UBPEmbodied + frame.UBPEoL) * repNum) * frameArea, 3) },
+                { "UBP End of Life (P)", Math.Round(frame.UBPEoL * frameArea, 3) },
                 { "Total Embodied (kWh oil-eq)", Math.Round(frame.TotalEmbodied * frameArea, 3) },
                 { "Total Replacements (kWh oil-eq)", Math.Round(((frame.TotalEmbodied + frame.TotalEoL) * repNum) * frameArea, 3) },
                 { "Total End of Life (kWh oil-eq)", Math.Round(frame.TotalEoL * frameArea, 3) },
@@ -210,9 +210,9 @@ namespace Bombyx2.GUI._01_Bottom_up
 
             var fillingDict = new Dictionary<string, double>
             {
-                { "UBP13 Embodied (P)", filling.UBP13Embodied * fillingArea },
-                { "UBP13 Replacements (P)", ((filling.UBP13Embodied + filling.UBP13EoL) * repNum) * fillingArea },
-                { "UBP13 End of Life (P)", filling.UBP13EoL * fillingArea },
+                { "UBP Embodied (P)", filling.UBPEmbodied * fillingArea },
+                { "UBP Replacements (P)", ((filling.UBPEmbodied + filling.UBPEoL) * repNum) * fillingArea },
+                { "UBP End of Life (P)", filling.UBPEoL * fillingArea },
                 { "Total Embodied (kWh oil-eq)", filling.TotalEmbodied * fillingArea },
                 { "Total Replacements (kWh oil-eq)", ((filling.TotalEmbodied + filling.TotalEoL) * repNum) * fillingArea },
                 { "Total End of Life (kWh oil-eq)", filling.TotalEoL * fillingArea },
@@ -231,9 +231,9 @@ namespace Bombyx2.GUI._01_Bottom_up
             
             var window = new Dictionary<string, double>
             {
-                { "UBP13 Embodied (P)", Math.Round(windowFrame.UBP13Emb + windowGlazing.UBP13Emb, 3) },
-                { "UBP13 Replacements (P)", Math.Round(windowFrame.UBP13Rep + windowGlazing.UBP13Rep, 3) },
-                { "UBP13 End of Life (P)", Math.Round(windowFrame.UBP13Eol + windowGlazing.UBP13Eol, 3) },
+                { "UBP Embodied (P)", Math.Round(windowFrame.UBPEmb + windowGlazing.UBPEmb, 3) },
+                { "UBP Replacements (P)", Math.Round(windowFrame.UBPRep + windowGlazing.UBPRep, 3) },
+                { "UBP End of Life (P)", Math.Round(windowFrame.UBPEol + windowGlazing.UBPEol, 3) },
                 { "Total Embodied (kWh oil-eq)", Math.Round(windowFrame.TotalEmb + windowGlazing.TotalEmb, 3) },
                 { "Total Replacements (kWh oil-eq)", Math.Round(windowFrame.TotalRep + windowGlazing.TotalRep, 3) },
                 { "Total End of Life (kWh oil-eq)", Math.Round(windowFrame.TotalEol + windowGlazing.TotalEol, 3) },

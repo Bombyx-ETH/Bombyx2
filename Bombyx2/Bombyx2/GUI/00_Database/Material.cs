@@ -52,8 +52,8 @@ namespace Bombyx2.GUI._00_Database
             var output = new Dictionary<string, double>
             {
                 { contains ? "Area-mass, Layer not needed (kg/m2)" : "Density (kg/m3)", material.Density ?? 0d },
-                { "UBP13 Embodied (P/" + material.DensityUnit + ")", Math.Round(material.UBP13Embodied, 3) },
-                { "UBP13 End of Life (P/" + material.DensityUnit + ")", Math.Round(material.UBP13EoL, 3) },
+                { "UBP Embodied (P/" + material.DensityUnit + ")", Math.Round(material.UBPEmbodied, 3) },
+                { "UBP End of Life (P/" + material.DensityUnit + ")", Math.Round(material.UBPEoL, 3) },
                 { "PE Total Embodied (kWh oil-eq/" + material.DensityUnit + ")", Math.Round(material.TotalEmbodied, 3) },
                 { "PE Total End of Life (kWh oil-eq/" + material.DensityUnit + ")", Math.Round(material.TotalEoL, 3) },
                 { "PE Renewable Embodied (kWh oil-eq/" + material.DensityUnit + ")", Math.Round(material.RenewableEmbodied, 3) },

@@ -127,7 +127,7 @@ namespace Bombyx2.GUI._10_BuildingLevel
                 peTotalSumSpecificRemain = remainingComponents.Average(tot1 => tot1.TotalEmbodied) + remainingComponents.Average(tot2 => tot2.TotalEoL);
                 peRenewableSumSpecificRemain = remainingComponents.Average(ren1 => ren1.RenewableEmbodied) + remainingComponents.Average(ren2 => ren2.RenewableEoL);
                 peNonRenewableSumSpecificRemain = remainingComponents.Average(non1 => non1.NonRenewableEmbodied) + remainingComponents.Average(non2 => non2.NonRenewableEoL);
-                UBPSumSpecificRemain = remainingComponents.Average(ubp1 => ubp1.UBP13Embodied) + remainingComponents.Average(ubp2 => ubp2.UBP13EoL);
+                UBPSumSpecificRemain = remainingComponents.Average(ubp1 => ubp1.UBPEmbodied) + remainingComponents.Average(ubp2 => ubp2.UBPEoL);
             }
 
             foreach (var list in splited)
@@ -136,19 +136,19 @@ namespace Bombyx2.GUI._10_BuildingLevel
                 peTotalSumMin += (list[0].TotalEmbodied + list[0].TotalEoL);
                 peRenewableSumMin += (list[0].RenewableEmbodied + list[0].RenewableEoL);
                 peNonRenewableSumMin += (list[0].NonRenewableEmbodied + list[0].NonRenewableEoL);
-                UBPSumMin += (list[0].UBP13Embodied + list[0].UBP13EoL);
+                UBPSumMin += (list[0].UBPEmbodied + list[0].UBPEoL);
 
                 ghgSumMax += (list[1].GHGEmbodied + list[1].GHGEoL);
                 peTotalSumMax += (list[1].TotalEmbodied + list[1].TotalEoL);
                 peRenewableSumMax += (list[1].RenewableEmbodied + list[1].RenewableEoL);
                 peNonRenewableSumMax += (list[1].NonRenewableEmbodied + list[1].NonRenewableEoL);
-                UBPSumMax += (list[1].UBP13Embodied + list[1].UBP13EoL);
+                UBPSumMax += (list[1].UBPEmbodied + list[1].UBPEoL);
 
                 ghgSumAvg += (list[2].GHGEmbodied + list[2].GHGEoL);
                 peTotalSumAvg += (list[2].TotalEmbodied + list[2].TotalEoL);
                 peRenewableSumAvg += (list[2].RenewableEmbodied + list[2].RenewableEoL);
                 peNonRenewableSumAvg += (list[2].NonRenewableEmbodied + list[2].NonRenewableEoL);
-                UBPSumAvg += (list[2].UBP13Embodied + list[2].UBP13EoL);
+                UBPSumAvg += (list[2].UBPEmbodied + list[2].UBPEoL);
             }
 
             foreach (var item in specificComponents)
@@ -157,7 +157,7 @@ namespace Bombyx2.GUI._10_BuildingLevel
                 peTotalSumSpecific += (item.TotalEmbodied + item.TotalEoL);
                 peRenewableSumSpecific += (item.RenewableEmbodied + item.RenewableEoL);
                 peNonRenewableSumSpecific += (item.NonRenewableEmbodied + item.NonRenewableEoL);
-                UBPSumSpecific += (item.UBP13Embodied + item.UBP13EoL);
+                UBPSumSpecific += (item.UBPEmbodied + item.UBPEoL);
             }
 
             var resultsMin = new Dictionary<string, double>

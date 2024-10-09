@@ -87,9 +87,9 @@ namespace Bombyx2.GUI._01_Bottom_up
 
             var results = new Dictionary<string, double>
             {
-                { "UBP13 Embodied (P/m² a)", 0 },
-                { "UBP13 Replacements (P/m² a)", 0 },
-                { "UBP13 End of Life (P/m² a)", 0 },
+                { "UBP Embodied (P/m² a)", 0 },
+                { "UBP Replacements (P/m² a)", 0 },
+                { "UBP End of Life (P/m² a)", 0 },
                 { "PE Total Embodied (kWh oil-eq/m² a)", 0 },
                 { "PE Total Replacements (kWh oil-eq/m² a)", 0 },
                 { "PE Total End of Life (kWh oil-eq/m² a)", 0 },
@@ -108,9 +108,9 @@ namespace Bombyx2.GUI._01_Bottom_up
 
             foreach (var item in valueSets)
             {
-                results["UBP13 Embodied (P/m² a)"] += item[0];
-                results["UBP13 Replacements (P/m² a)"] += item[1];
-                results["UBP13 End of Life (P/m² a)"] += item[2];
+                results["UBP Embodied (P/m² a)"] += item[0];
+                results["UBP Replacements (P/m² a)"] += item[1];
+                results["UBP End of Life (P/m² a)"] += item[2];
                 results["PE Total Embodied (kWh oil-eq/m² a)"] += item[3];
                 results["PE Total Replacements (kWh oil-eq/m² a)"] += item[4];
                 results["PE Total End of Life (kWh oil-eq/m² a)"] += item[5];
@@ -127,9 +127,9 @@ namespace Bombyx2.GUI._01_Bottom_up
                 results["Biogenic Carbon Storage (kg CO₂-eq/m² a)"] += item[16];
             }
 
-            results["UBP13 Embodied (P/m² a)"] = Math.Round(results["UBP13 Embodied (P/m² a)"] / rspNFA, 3);
-            results["UBP13 Replacements (P/m² a)"] = Math.Round(results["UBP13 Replacements (P/m² a)"] / rspNFA, 3);
-            results["UBP13 End of Life (P/m² a)"] = Math.Round(results["UBP13 End of Life (P/m² a)"] / rspNFA, 3);
+            results["UBP Embodied (P/m² a)"] = Math.Round(results["UBP Embodied (P/m² a)"] / rspNFA, 3);
+            results["UBP Replacements (P/m² a)"] = Math.Round(results["UBP Replacements (P/m² a)"] / rspNFA, 3);
+            results["UBP End of Life (P/m² a)"] = Math.Round(results["UBP End of Life (P/m² a)"] / rspNFA, 3);
             results["PE Total Embodied (kWh oil-eq/m² a)"] = Math.Round(results["PE Total Embodied (kWh oil-eq/m² a)"] / rspNFA, 3);
             results["PE Total Replacements (kWh oil-eq/m² a)"] = Math.Round(results["PE Total Replacements (kWh oil-eq/m² a)"] / rspNFA, 3);
             results["PE Total End of Life (kWh oil-eq/m² a)"] = Math.Round(results["PE Total End of Life (kWh oil-eq/m² a)"] / rspNFA, 3);
@@ -151,9 +151,9 @@ namespace Bombyx2.GUI._01_Bottom_up
             var total = Math.Round((results["PE Total Embodied (kWh oil-eq/m² a)"] +
                                     results["PE Total Replacements (kWh oil-eq/m² a)"] +
                                     results["PE Total End of Life (kWh oil-eq/m² a)"]), 4);
-            var ubp = Math.Round((results["UBP13 Embodied (P/m² a)"] +
-                                  results["UBP13 Replacements (P/m² a)"] +
-                                  results["UBP13 End of Life (P/m² a)"]), 4);
+            var ubp = Math.Round((results["UBP Embodied (P/m² a)"] +
+                                  results["UBP Replacements (P/m² a)"] +
+                                  results["UBP End of Life (P/m² a)"]), 4);
             var renew = Math.Round((results["PE Renewable Embodied (kWh oil-eq/m² a)"] +
                                     results["PE Renewable Replacements (kWh oil-eq/m² a)"] +
                                     results["PE Renewable End of Life (kWh oil-eq/m² a)"]), 4);

@@ -68,9 +68,9 @@ namespace Bombyx2.GUI._01_ComponentLevel
                              select new
                              {
                                  SortCodeGrp = rowSum.Key,
-                                 UBP13EmbodiedSum = rowSum.Sum(x => x.UBP13Embodied),
-                                 UBP13RepSum = rowSum.Sum(x => (x.UBP13Embodied + x.UBP13EoL) * repNum),
-                                 UBP13EoLSum = rowSum.Sum(x => x.UBP13EoL),
+                                 UBPEmbodiedSum = rowSum.Sum(x => x.UBPEmbodied),
+                                 UBPRepSum = rowSum.Sum(x => (x.UBPEmbodied + x.UBPEoL) * repNum),
+                                 UBPEoLSum = rowSum.Sum(x => x.UBPEoL),
                                  TotalEmbodiedSum = rowSum.Sum(x => x.TotalEmbodied),
                                  TotalRepSum = rowSum.Sum(x => (x.TotalEmbodied + x.TotalEoL) * repNum),
                                  TotalEoLSum = rowSum.Sum(x => x.TotalEoL),
@@ -87,9 +87,9 @@ namespace Bombyx2.GUI._01_ComponentLevel
 
             var results = new Dictionary<string, double>
             {
-                { "UBP13 Embodied (P/m\xB2)", 0 },
-                { "UBP13 Replacements (P/m\xB2)", 0 },
-                { "UBP13 End of Life (P/m\xB2)", 0 },
+                { "UBP Embodied (P/m\xB2)", 0 },
+                { "UBP Replacements (P/m\xB2)", 0 },
+                { "UBP End of Life (P/m\xB2)", 0 },
                 { "PE Total Embodied (kWh oil-eq)", 0 },
                 { "PE Total Replacements (kWh oil-eq)", 0 },
                 { "PE Total End of Life (kWh oil-eq)", 0 },
@@ -108,9 +108,9 @@ namespace Bombyx2.GUI._01_ComponentLevel
 
             foreach (var item in sumResults)
             {
-                results["UBP13 Embodied (P/m\xB2)"] += item.UBP13EmbodiedSum;
-                results["UBP13 Replacements (P/m\xB2)"] += (item.UBP13EmbodiedSum + item.UBP13EoLSum) * repNum;
-                results["UBP13 End of Life (P/m\xB2)"] += item.UBP13EoLSum;
+                results["UBP Embodied (P/m\xB2)"] += item.UBPEmbodiedSum;
+                results["UBP Replacements (P/m\xB2)"] += (item.UBPEmbodiedSum + item.UBPEoLSum) * repNum;
+                results["UBP End of Life (P/m\xB2)"] += item.UBPEoLSum;
                 results["PE Total Embodied (kWh oil-eq)"] += item.TotalEmbodiedSum;
                 results["PE Total Replacements (kWh oil-eq)"] += (item.TotalEmbodiedSum + item.TotalEoLSum) * repNum;
                 results["PE Total End of Life (kWh oil-eq)"] += item.TotalEoLSum;

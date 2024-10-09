@@ -35,7 +35,7 @@ namespace Bombyx2.Data.Access
                                         "THEN km.ThermalCond " +
                                         "ELSE 1 / (ec.Thickness / km.ThermalCond) " +
                                      "END) Uvalue, " +
-                                 "MIN(km.Ubp13Embodied) as UBP13Embodied, MIN(km.Ubp13EoL) as UBP13EoL, MIN(km.TotalEmbodied) as TotalEmbodied, MIN(km.TotalEoL) as TotalEoL, " +
+                                 "MIN(km.UBPEmbodied) as UBPEmbodied, MIN(km.UBPEoL) as UBPEoL, MIN(km.TotalEmbodied) as TotalEmbodied, MIN(km.TotalEoL) as TotalEoL, " +
                                  "MIN(km.RenewableEmbodied) as RenewableEmbodied, MIN(km.RenewableEoL) as RenewableEoL, MIN(km.NonRenewableEmbodied) as NonRenewableEmbodied, " +
                                  "MIN(km.NonRenewableEoL) as NonRenewableEoL, MIN(km.GHGEmbodied) as GHGEmbodied, MIN(km.GHGEoL) as GHGEoL ";
                         break;
@@ -46,7 +46,7 @@ namespace Bombyx2.Data.Access
                                         "THEN km.ThermalCond " +
                                         "ELSE 1 / (ec.Thickness / km.ThermalCond) " +
                                      "END) Uvalue, " +
-                                 "MAX(km.Ubp13Embodied) as UBP13Embodied, MAX(km.Ubp13EoL) as UBP13EoL, MAX(km.TotalEmbodied) as TotalEmbodied, MAX(km.TotalEoL) as TotalEoL, " +
+                                 "MAX(km.UBPEmbodied) as UBPEmbodied, MAX(km.UBPEoL) as UBPEoL, MAX(km.TotalEmbodied) as TotalEmbodied, MAX(km.TotalEoL) as TotalEoL, " +
                                  "MAX(km.RenewableEmbodied) as RenewableEmbodied, MAX(km.RenewableEoL) as RenewableEoL, MAX(km.NonRenewableEmbodied) as NonRenewableEmbodied, " +
                                  "MAX(km.NonRenewableEoL) as NonRenewableEoL, MAX(km.GHGEmbodied) as GHGEmbodied, MAX(km.GHGEoL) as GHGEoL ";
                         break;
@@ -57,7 +57,7 @@ namespace Bombyx2.Data.Access
                                         "THEN km.ThermalCond " +
                                         "ELSE 1 / (ec.Thickness / km.ThermalCond) " +
                                      "END) Uvalue, " +
-                                 "AVG(km.Ubp13Embodied) as UBP13Embodied, AVG(km.Ubp13EoL) as UBP13EoL, AVG(km.TotalEmbodied) as TotalEmbodied, AVG(km.TotalEoL) as TotalEoL, " +
+                                 "AVG(km.UBPEmbodied) as UBPEmbodied, AVG(km.UBPEoL) as UBPEoL, AVG(km.TotalEmbodied) as TotalEmbodied, AVG(km.TotalEoL) as TotalEoL, " +
                                  "AVG(km.RenewableEmbodied) as RenewableEmbodied, AVG(km.RenewableEoL) as RenewableEoL, AVG(km.NonRenewableEmbodied) as NonRenewableEmbodied, " +
                                  "AVG(km.NonRenewableEoL) as NonRenewableEoL, AVG(km.GHGEmbodied) as GHGEmbodied, AVG(km.GHGEoL) as GHGEoL ";
                         break;
@@ -141,7 +141,7 @@ namespace Bombyx2.Data.Access
                                 "THEN km.ThermalCond " +
                                 "ELSE 1 / (ec.Thickness / km.ThermalCond) " +
                             "END Uvalue, " +
-                            "km.Ubp13Embodied * " + area + " as UBP13Embodied, km.Ubp13EoL * " + area + " as UBP13EoL, km.TotalEmbodied * " + area + " as TotalEmbodied, " +
+                            "km.UBPEmbodied * " + area + " as UBPEmbodied, km.UBPEoL * " + area + " as UBPEoL, km.TotalEmbodied * " + area + " as TotalEmbodied, " +
                             "km.TotalEoL * " + area + " as TotalEoL, km.RenewableEmbodied * " + area + " as RenewableEmbodied, km.RenewableEoL * " + area + " as RenewableEoL, " +
                             "km.NonRenewableEmbodied * " + area + " as NonRenewableEmbodied, km.NonRenewableEoL * " + area + " as NonRenewableEoL, " +
                             "km.GHGEmbodied * " + area + " as GHGEmbodied, km.GHGEoL * " + area + " as GHGEoL ";
@@ -240,7 +240,7 @@ namespace Bombyx2.Data.Access
                                 "THEN km.ThermalCond " +
                                 "ELSE 1 / (ec.Thickness / km.ThermalCond) " +
                             "END Uvalue, " +
-                            "km.Ubp13Embodied as UBP13Embodied, km.Ubp13EoL as UBP13EoL, km.TotalEmbodied as TotalEmbodied, km.TotalEoL as TotalEoL, " +
+                            "km.UBPEmbodied as UBPEmbodied, km.UBPEoL as UBPEoL, km.TotalEmbodied as TotalEmbodied, km.TotalEoL as TotalEoL, " +
                             "km.RenewableEmbodied as RenewableEmbodied, km.RenewableEoL as RenewableEoL, km.NonRenewableEmbodied as NonRenewableEmbodied, " +
                             "km.NonRenewableEoL as NonRenewableEoL, km.GHGEmbodied as GHGEmbodied, km.GHGEoL as GHGEoL " +            
                             "FROM EcoKompositComponents ec " +

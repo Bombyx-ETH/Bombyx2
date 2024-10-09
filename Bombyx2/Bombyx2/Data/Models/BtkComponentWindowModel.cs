@@ -6,8 +6,8 @@
         public string NameEnglish { get; set; }
         public string NameGerman { get; set; }
         public string NameFrench { get; set; }
-        public double UBP13Embodied { get; set; }
-        public double UBP13EoL { get; set; }
+        public double UBPEmbodied { get; set; }
+        public double UBPEoL { get; set; }
         public double TotalEmbodied { get; set; }
         public double TotalEoL { get; set; }
         public double RenewableEmbodied { get; set; }

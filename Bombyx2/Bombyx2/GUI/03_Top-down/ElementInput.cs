@@ -289,8 +289,8 @@ namespace Bombyx2.GUI._10_BuildingLevel
 
             foreach (var item in resultsMin)
             {
-                outputMin.UBP13Embodied += (item.UBP13Embodied * area);
-                outputMin.UBP13EoL += (item.UBP13EoL * area);
+                outputMin.UBPEmbodied += (item.UBPEmbodied * area);
+                outputMin.UBPEoL += (item.UBPEoL * area);
                 outputMin.TotalEmbodied += (item.TotalEmbodied * area);
                 outputMin.TotalEoL += (item.TotalEoL * area);
                 outputMin.RenewableEmbodied += (item.RenewableEmbodied * area);
@@ -305,8 +305,8 @@ namespace Bombyx2.GUI._10_BuildingLevel
 
             foreach (var item in resultsMax)
             {
-                outputMax.UBP13Embodied += (item.UBP13Embodied * area);
-                outputMax.UBP13EoL += (item.UBP13EoL * area);
+                outputMax.UBPEmbodied += (item.UBPEmbodied * area);
+                outputMax.UBPEoL += (item.UBPEoL * area);
                 outputMax.TotalEmbodied += (item.TotalEmbodied * area);
                 outputMax.TotalEoL += (item.TotalEoL * area);
                 outputMax.RenewableEmbodied += (item.RenewableEmbodied * area);
@@ -321,8 +321,8 @@ namespace Bombyx2.GUI._10_BuildingLevel
 
             foreach (var item in resultsAvg)
             {
-                outputAvg.UBP13Embodied += (item.UBP13Embodied * area);
-                outputAvg.UBP13EoL += (item.UBP13EoL * area);
+                outputAvg.UBPEmbodied += (item.UBPEmbodied * area);
+                outputAvg.UBPEoL += (item.UBPEoL * area);
                 outputAvg.TotalEmbodied += (item.TotalEmbodied * area);
                 outputAvg.TotalEoL += (item.TotalEoL * area);
                 outputAvg.RenewableEmbodied += (item.RenewableEmbodied * area);
@@ -341,8 +341,8 @@ namespace Bombyx2.GUI._10_BuildingLevel
 
             var outputMinText = new Dictionary<string, double>
             {
-                { "UBP13 Embodied (P/m\xB2)", Math.Round(outputMin.UBP13Embodied, 2) },
-                { "UBP13 End of Life (P/m\xB2)", Math.Round(outputMin.UBP13EoL, 2) },
+                { "UBP Embodied (P/m\xB2)", Math.Round(outputMin.UBPEmbodied, 2) },
+                { "UBP End of Life (P/m\xB2)", Math.Round(outputMin.UBPEoL, 2) },
                 { "PE Total Embodied (kWh oil-eq)", Math.Round(outputMin.TotalEmbodied, 2) },
                 { "PE Total End of Life (kWh oil-eq)", Math.Round(outputMin.TotalEoL, 2) },
                 { "PE Renewable Embodied (kWh oil-eq)", Math.Round(outputMin.RenewableEmbodied, 2) },
@@ -356,8 +356,8 @@ namespace Bombyx2.GUI._10_BuildingLevel
 
             var outputMaxText = new Dictionary<string, double>
             {
-                { "UBP13 Embodied (P/m\xB2)", Math.Round(outputMax.UBP13Embodied, 2) },
-                { "UBP13 End of Life (P/m\xB2)", Math.Round(outputMax.UBP13EoL, 2) },
+                { "UBP Embodied (P/m\xB2)", Math.Round(outputMax.UBPEmbodied, 2) },
+                { "UBP End of Life (P/m\xB2)", Math.Round(outputMax.UBPEoL, 2) },
                 { "PE Total Embodied (kWh oil-eq)", Math.Round(outputMax.TotalEmbodied, 2) },
                 { "PE Total End of Life (kWh oil-eq)", Math.Round(outputMax.TotalEoL, 2) },
                 { "PE Renewable Embodied (kWh oil-eq)", Math.Round(outputMax.RenewableEmbodied, 2) },
@@ -371,8 +371,8 @@ namespace Bombyx2.GUI._10_BuildingLevel
 
             var outputAvgText = new Dictionary<string, double>
             {
-                { "UBP13 Embodied (P/m\xB2)", Math.Round(outputAvg.UBP13Embodied, 2) },
-                { "UBP13 End of Life (P/m\xB2)", Math.Round(outputAvg.UBP13EoL, 2) },
+                { "UBP Embodied (P/m\xB2)", Math.Round(outputAvg.UBPEmbodied, 2) },
+                { "UBP End of Life (P/m\xB2)", Math.Round(outputAvg.UBPEoL, 2) },
                 { "PE Total Embodied (kWh oil-eq)", Math.Round(outputAvg.TotalEmbodied, 2) },
                 { "PE Total End of Life (kWh oil-eq)", Math.Round(outputAvg.TotalEoL, 2) },
                 { "PE Renewable Embodied (kWh oil-eq)", Math.Round(outputAvg.RenewableEmbodied, 2) },

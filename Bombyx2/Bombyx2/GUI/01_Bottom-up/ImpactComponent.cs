@@ -62,9 +62,9 @@ namespace Bombyx2.GUI._01_Bottom_up
 
             var results = new Dictionary<string, double>
             {
-                { "UBP13 Embodied (P/m²)", 0 },
-                { "UBP13 Replacements (P/m²)", 0 },
-                { "UBP13 End of Life (P/m²)", 0 },
+                { "UBP Embodied (P/m²)", 0 },
+                { "UBP Replacements (P/m²)", 0 },
+                { "UBP End of Life (P/m²)", 0 },
                 { "PE Total Embodied (kWh oil-eq/m²)", 0 },
                 { "PE Total Replacements (kWh oil-eq/m²)", 0 },
                 { "PE Total End of Life (kWh oil-eq/m²)", 0 },
@@ -84,9 +84,9 @@ namespace Bombyx2.GUI._01_Bottom_up
 
             foreach (var item in valueSets)
             {
-                results["UBP13 Embodied (P/m²)"] += item[1];
-                results["UBP13 Replacements (P/m²)"] += ((item[1] + item[2]) * repNum);
-                results["UBP13 End of Life (P/m²)"] += item[2];
+                results["UBP Embodied (P/m²)"] += item[1];
+                results["UBP Replacements (P/m²)"] += ((item[1] + item[2]) * repNum);
+                results["UBP End of Life (P/m²)"] += item[2];
                 results["PE Total Embodied (kWh oil-eq/m²)"] += item[3];
                 results["PE Total Replacements (kWh oil-eq/m²)"] += ((item[3] + item[4]) * repNum);
                 results["PE Total End of Life (kWh oil-eq/m²)"] += item[4];

@@ -16,7 +16,7 @@ namespace Bombyx2.Data.Access
             using (IDbConnection conn = new SQLiteConnection(Config.LoadConnectionString(), true))
             {
                 var parameter = new { code = param };
-                var query = "SELECT bk.SortCode, mat.Ubp13Embodied * bk.Percentage / 100 as Ubp13Embodied, mat.Ubp13EoL * bk.Percentage / 100 as Ubp13EoL, " +
+                var query = "SELECT bk.SortCode, mat.UBPEmbodied * bk.Percentage / 100 as UBPEmbodied, mat.UBPEoL * bk.Percentage / 100 as UBPEoL, " +
                             "mat.TotalEmbodied * bk.Percentage / 100 as TotalEmbodied, mat.TotalEoL * bk.Percentage / 100 as TotalEoL, " +
                             "mat.RenewableEmbodied * bk.Percentage / 100 as RenewableEmbodied, mat.RenewableEoL * bk.Percentage / 100 as RenewableEoL, " +
                             "mat.NonRenewableEmbodied * bk.Percentage / 100 as NonRenewableEmbodied, mat.NonRenewableEoL * bk.Percentage / 100 as NonRenewableEoL, " +
@@ -75,8 +75,8 @@ namespace Bombyx2.Data.Access
             using (IDbConnection conn = new SQLiteConnection(Config.LoadConnectionString(), true))
             {
                 var parameter = new { code = param };
-                var query = "SELECT bkw.SortCode, mat.NameEnglish, mat.NameGerman, mat.NameFrench, mat.Ubp13Embodied * bkw.FramePercentage / 100 as Ubp13Embodied, " +
-                            "mat.Ubp13EoL * bkw.FramePercentage / 100 as Ubp13EoL, mat.TotalEmbodied * bkw.FramePercentage / 100 as TotalEmbodied, " +
+                var query = "SELECT bkw.SortCode, mat.NameEnglish, mat.NameGerman, mat.NameFrench, mat.UBPEmbodied * bkw.FramePercentage / 100 as UBPEmbodied, " +
+                            "mat.UBPEoL * bkw.FramePercentage / 100 as UBPEoL, mat.TotalEmbodied * bkw.FramePercentage / 100 as TotalEmbodied, " +
                             "mat.TotalEoL * bkw.FramePercentage / 100 as TotalEoL, mat.RenewableEmbodied * bkw.FramePercentage / 100 as RenewableEmbodied, " +
                             "mat.RenewableEoL * bkw.FramePercentage / 100 as RenewableEoL, mat.NonRenewableEmbodied * bkw.FramePercentage / 100 as NonRenewableEmbodied, " +
                             "mat.NonRenewableEoL * bkw.FramePercentage / 100 as NonRenewableEoL, mat.GHGEmbodied * bkw.FramePercentage / 100 as GHGEmbodied, " +

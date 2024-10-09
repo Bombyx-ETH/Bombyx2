@@ -56,8 +56,8 @@ namespace Bombyx2.GUI._01_Bottom_up
             var output = new Dictionary<string, double>
             {
                 { "Density (kg/m\xB3)", (double?)material[0] ?? -1 },
-                { "UBP13 Embodied * (density * thickness) (P/m²)", Math.Round(material[1] * AreaDensity, 3) },
-                { "UBP13 End of Life * (density * thickness) (P/m²)", Math.Round(material[2] * AreaDensity, 3) },
+                { "UBP Embodied * (density * thickness) (P/m²)", Math.Round(material[1] * AreaDensity, 3) },
+                { "UBP End of Life * (density * thickness) (P/m²)", Math.Round(material[2] * AreaDensity, 3) },
                 { "PE Total Embodied * (density * thickness) (kWh oil-eq/m²)", Math.Round(material[3] * AreaDensity, 3) },
                 { "PE Total End of Life * (density * thickness) (kWh oil-eq/m²)", Math.Round(material[4] * AreaDensity, 3) },
                 { "PE Renewable Embodied * (density * thickness) (kWh oil-eq/m²)", Math.Round(material[5] * AreaDensity, 3) },

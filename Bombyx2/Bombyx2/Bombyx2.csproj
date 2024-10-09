@@ -155,9 +155,6 @@
     <None Include="MaterialsDB.db">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="MaterialsDB_208.db">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
     <None Include="Resources\brasilComponent.png" />
     <None Include="Resources\brasilComponentList.png" />
     <None Include="Resources\brasilElement.png" />

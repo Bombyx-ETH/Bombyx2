@@ -73,9 +73,9 @@ namespace Bombyx2.GUI._01_Bottom_up
 
             var results = new Dictionary<string, double>
             {
-                { "UBP13 Embodied (P)", 0 },
-                { "UBP13 Replacements (P)", 0 },
-                { "UBP13 End of Life (P)", 0 },
+                { "UBP Embodied (P)", 0 },
+                { "UBP Replacements (P)", 0 },
+                { "UBP End of Life (P)", 0 },
                 { "PE Total Embodied (kWh oil-eq)", 0 },
                 { "PE Total Replacements (kWh oil-eq)", 0 },
                 { "PE Total End of Life (kWh oil-eq)", 0 },
@@ -94,9 +94,9 @@ namespace Bombyx2.GUI._01_Bottom_up
 
             foreach (var item in valueSets)
             {
-                results["UBP13 Embodied (P)"] += item[0];
-                results["UBP13 Replacements (P)"] += item[1];
-                results["UBP13 End of Life (P)"] += item[2];
+                results["UBP Embodied (P)"] += item[0];
+                results["UBP Replacements (P)"] += item[1];
+                results["UBP End of Life (P)"] += item[2];
                 results["PE Total Embodied (kWh oil-eq)"] += item[3];
                 results["PE Total Replacements (kWh oil-eq)"] += item[4];
                 results["PE Total End of Life (kWh oil-eq)"] += item[5];
@@ -148,9 +148,9 @@ namespace Bombyx2.GUI._01_Bottom_up
             var U_value = Math.Round(1 / R_tot,4);
             if (R_element == 0) { U_value = 9999; }
 
-            results["UBP13 Embodied (P)"] = Math.Round(results["UBP13 Embodied (P)"] * area, 3);
-            results["UBP13 Replacements (P)"] = Math.Round(results["UBP13 Replacements (P)"] * area, 3);
-            results["UBP13 End of Life (P)"] = Math.Round(results["UBP13 End of Life (P)"] * area, 3);
+            results["UBP Embodied (P)"] = Math.Round(results["UBP Embodied (P)"] * area, 3);
+            results["UBP Replacements (P)"] = Math.Round(results["UBP Replacements (P)"] * area, 3);
+            results["UBP End of Life (P)"] = Math.Round(results["UBP End of Life (P)"] * area, 3);
             results["PE Total Embodied (kWh oil-eq)"] = Math.Round(results["PE Total Embodied (kWh oil-eq)"] * area, 3);
             results["PE Total Replacements (kWh oil-eq)"] = Math.Round(results["PE Total Replacements (kWh oil-eq)"] * area, 3);
             results["PE Total End of Life (kWh oil-eq)"] = Math.Round(results["PE Total End of Life (kWh oil-eq)"] * area, 3);

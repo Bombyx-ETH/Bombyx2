@@ -63,9 +63,9 @@ namespace Bombyx2.GUI._00_Database
 
             var output = new Dictionary<string, double>
             {
-                { "UBP13 Embodied (P)", service.UBP13Embodied * area },
-                { "UBP13 Replacements (P)", (service.UBP13Embodied+service.UBP13EoL) * area * repNum},
-                { "UBP13 End of Life (P)", service.UBP13EoL * area },
+                { "UBP Embodied (P)", service.UBPEmbodied * area },
+                { "UBP Replacements (P)", (service.UBPEmbodied+service.UBPEoL) * area * repNum},
+                { "UBP End of Life (P)", service.UBPEoL * area },
 
                 { "PE Total Embodied (kWh oil-eq)", service.TotalEmbodied * area },
                 { "PE Total Replacements (kWh oil-eq)", (service.TotalEmbodied + service.TotalEoL) * area * repNum },

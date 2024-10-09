@@ -47,6 +47,9 @@ namespace Bombyx2.GUI.Common
         {
             ClearData();
         }
+
+        public override string Name { get => "Data (from Bombyx)"; set => base.Name = value; }
+
         public override GH_Exposure Exposure => GH_Exposure.hidden;
 
         public override Guid ComponentGuid => new Guid("ff9faf9b-fda6-4bd0-9e6e-04c850c7d962");

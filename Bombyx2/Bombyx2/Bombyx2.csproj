@@ -118,6 +118,7 @@
     <Compile Include="GUI\03_Top-down\ElementInput.cs" />
     <Compile Include="GUI\03_Top-down\SpecificComponent.cs" />
     <Compile Include="GUI\Common\GenericParameter.cs" />
+    <Compile Include="GUI\Common\GenericParameterUpgrader.cs" />
     <Compile Include="Icons.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -152,9 +153,6 @@
     </Content>
     <None Include="app.config" />
     <None Include="libsqlite3.dylib" />
-    <None Include="MaterialsDB.db">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
     <None Include="Resources\brasilComponent.png" />
     <None Include="Resources\brasilComponentList.png" />
     <None Include="Resources\brasilElement.png" />
